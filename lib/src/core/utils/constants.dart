@@ -15,12 +15,12 @@ const String kPasswordTxt = "Password";
 const String kConfirmPasswordTxt = "Confirm Password";
 const String kSignInText = "sign in";
 const String kSignUpText = "sign Up";
+const String kMakeTransferText = "Make a Transfer";
 const String kInitAccountText = "Don't have an account ? ";
 const String kForgotPasswordTxt = "Forgot Password ?";
-const String kAboutTxt = "About";
-const String kMovies = "Movies";
-const String kAboutDemo =
-    "One of the greatest actors of all time, Robert De Niro was born on August 17, 1943 in Manhattan, New York City";
+const String kCurrencyExchangeTxt = "Currency exchange";
+const String kCheckTxt = "Check";
+const String kPayUnvMoneyTxt = "Pay Unverisity Money";
 
 const String kPeopleTxt = "People";
 const String kGenderTxt = "Gender";

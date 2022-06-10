@@ -22,9 +22,11 @@ class OvalButtonWdgt extends StatelessWidget {
       width: double.infinity,
       height: 60,
       child: MaterialButton(
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 20),
+        child: FittedBox(
+          child: Text(
+            text,
+            style: TextStyle(fontSize: 20),
+          ),
         ),
         textColor: textColor,
         shape: RoundedRectangleBorder(

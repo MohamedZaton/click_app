@@ -80,3 +80,24 @@ final kBoxDecorationStyle = BoxDecoration(
 
 const kDefaultPaddin = 20.0;
 const List<Color> kPremierColorList = [Color(0XFF026B9A), Color(0XFF3BBCE9)];
+
+Decoration decorationBlueBorder = BoxDecoration(
+  color: Colors.white,
+  borderRadius: BorderRadius.circular(20.0),
+  border: Border.all(color: kLightAccent, width: 1.0),
+);
+
+InputDecoration editTextWithBoarderDecoration(String labelText) =>
+    InputDecoration(
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25.0),
+          borderSide: BorderSide(color: kLightAccent),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25.0),
+          borderSide: BorderSide(width: 1, color: kDarkGray),
+        ),
+        labelText: labelText,
+        labelStyle: TextStyle(color: kLightAccent),
+        alignLabelWithHint: false,
+        filled: true);

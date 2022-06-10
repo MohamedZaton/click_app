@@ -8,6 +8,7 @@ const KDropBoxTwoShadowColor = Color(0xFFD1D9E6);
 const kLightAccent = Color(0xFF118FA6);
 const kCyanColor = Color(0xFFB1D9FC);
 const kBackgdDarkColor = Color(0xFF1A202C);
+const kCurrentLightBkgdColor = Color(0xFFFFB374);
 const kDarkAccent = Color(0xFFe9f5fe);
 const kDarkGray = Color(0xFF343434);
 const kShadowColor = Color(0x95E9EBF0);

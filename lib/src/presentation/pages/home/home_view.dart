@@ -23,18 +23,22 @@ class HomePage extends StatelessWidget {
 
     return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            AppBarWidget(),
-            IndexedStack(
-              index: controller.tabIndex,
-              children: [
-                CurrencyExchangePage(),
-                PrizesPage(),
-                HistoryPage(),
-                SettingPage(),
-              ],
+            Expanded(flex: 2, child: AppBarWidget()),
+            Expanded(
+              flex: 14,
+              child: IndexedStack(
+                index: controller.tabIndex,
+                children: [
+                  CurrencyExchangePage(),
+                  PrizesPage(),
+                  HistoryPage(),
+                  SettingPage(),
+                ],
+              ),
             ),
           ],
         ),
