@@ -12,7 +12,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double? targetValue = 3.0;
+    double? targetValue = 80;
 
     return Scaffold(
       body: Container(
@@ -21,9 +21,17 @@ class SplashPage extends StatelessWidget {
           tween: Tween<double>(begin: 0, end: targetValue),
           duration: const Duration(seconds: 3),
           builder: (context, value, Widget? child) {
-            return FluxImage(imageUrl: 'assets/logo/logo.png');
+            return FluxImage(
+              imageUrl: 'assets/logo/logo.png',
+              width: value,
+              height: value,
+            );
           },
-          child: FluxImage(imageUrl: 'assets/logo/logo.png'),
+          child: FluxImage(
+            imageUrl: 'assets/logo/logo.png',
+            width: 80,
+            height: 80,
+          ),
           onEnd: () async {
             Get.offAll(() => SignInPage());
           },

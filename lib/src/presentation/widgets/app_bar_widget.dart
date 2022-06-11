@@ -2,8 +2,6 @@ import 'package:click_app/src/core/utils/colors.dart';
 import 'package:click_app/src/core/utils/screens.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/utils/constants.dart';
-
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
     Key? key,
@@ -12,14 +10,14 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: spacing_control),
+      padding: EdgeInsets.only(
+          left: ScreenWeb.width(context) * 0.02,
+          right: ScreenWeb.width(context) * 0.02,
+          top: ScreenWeb.width(context) * 0.08),
       color: kLightAccent,
       height: ScreenWeb.heigth(context) * 0.10,
       child: Column(
         children: [
-          SizedBox(
-            height: 20,
-          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -28,12 +26,14 @@ class AppBarWidget extends StatelessWidget {
                   icon: Icon(
                     Icons.menu_outlined,
                     color: kOrangeColor,
+                    size: 40,
                   )),
               IconButton(
                   onPressed: () {},
                   icon: Icon(
                     Icons.notifications_none_rounded,
                     color: kOrangeColor,
+                    size: 40,
                   )),
             ],
           ),

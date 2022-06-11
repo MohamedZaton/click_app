@@ -1,3 +1,4 @@
+import 'package:click_app/src/presentation/widgets/flux_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/utils/colors.dart';
@@ -6,6 +7,8 @@ class OvalButtonWdgt extends StatelessWidget {
   final String text;
   final Color? textColor;
   final Color? backgroundColor;
+  final String? imagePath;
+  final bool isCenter;
   final void Function() onPressed;
 
   OvalButtonWdgt(
@@ -13,7 +16,9 @@ class OvalButtonWdgt extends StatelessWidget {
       required this.text,
       this.textColor = Colors.white,
       this.backgroundColor = kLightAccent,
-      required this.onPressed})
+      required this.onPressed,
+      this.imagePath,
+      this.isCenter = true})
       : super(key: key);
 
   @override
@@ -22,11 +27,18 @@ class OvalButtonWdgt extends StatelessWidget {
       width: double.infinity,
       height: 60,
       child: MaterialButton(
-        child: FittedBox(
-          child: Text(
-            text,
-            style: TextStyle(fontSize: 20),
-          ),
+        child: Row(
+          mainAxisAlignment:
+              isCenter ? MainAxisAlignment.center : MainAxisAlignment.start,
+          children: [
+            leftIcon(imagePath ?? ""),
+            FittedBox(
+              child: Text(
+                text,
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+          ],
         ),
         textColor: textColor,
         shape: RoundedRectangleBorder(
@@ -35,5 +47,23 @@ class OvalButtonWdgt extends StatelessWidget {
         onPressed: onPressed,
       ),
     );
+  }
+
+  Widget leftIcon(String imagePath) {
+    return (imagePath == "")
+        ? SizedBox(
+            height: 1,
+          )
+        : Row(
+            children: [
+              SizedBox(
+                width: 8,
+              ),
+              FluxImage(imageUrl: imagePath),
+              SizedBox(
+                width: 8,
+              )
+            ],
+          );
   }
 }

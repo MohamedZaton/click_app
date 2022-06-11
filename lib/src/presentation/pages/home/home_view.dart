@@ -25,7 +25,8 @@ class HomePage extends StatelessWidget {
       return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(flex: 2, child: AppBarWidget()),
             Expanded(

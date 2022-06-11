@@ -31,14 +31,14 @@ class CurrencyExchangePage extends StatelessWidget {
                 child: Stack(
                   children: [
                     Container(
-                      height: 70,
+                      height: ScreenWeb.heigth(context) * 0.12,
                       color: kLightAccent,
                     ),
                     Positioned(
-                      top: 40,
-                      left: 70,
-                      right: 70,
-                      bottom: 10,
+                      top: ScreenWeb.heigth(context) * 0.08,
+                      left: ScreenWeb.width(context) * 0.07,
+                      right: ScreenWeb.width(context) * 0.07,
+                      bottom: ScreenWeb.heigth(context) * 0.008,
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
@@ -48,6 +48,7 @@ class CurrencyExchangePage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20.0),
                           child: FluxImage(
                             imageUrl: kExchangeImg,
+                            fit: BoxFit.fill,
                           ),
                         ),
                       ),

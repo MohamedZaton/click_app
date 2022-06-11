@@ -6,10 +6,13 @@ const kLightPrimary = Color(0xFFEDEDEE);
 const KLogCardColor = Color(0xFFE3E6EC);
 const KDropBoxTwoShadowColor = Color(0xFFD1D9E6);
 const kLightAccent = Color(0xFF118FA6);
-const kCyanColor = Color(0xFFB1D9FC);
+const kCyanColor = Color(0xFF2FBBCA);
+const kCyanButtonTgColor = Color(0xFF6BD4E2);
 const kBackgdDarkColor = Color(0xFF1A202C);
 const kCurrentLightBkgdColor = Color(0xFFFFB374);
-const kDarkAccent = Color(0xFFe9f5fe);
+const kPrizeCardBkgdColor = Color(0xFFD8D5D5);
+const kDarkAccent = Color(0xFF02444F);
+const kSettingListColor = Color(0xFF036070);
 const kDarkGray = Color(0xFF343434);
 const kShadowColor = Color(0x95E9EBF0);
 
