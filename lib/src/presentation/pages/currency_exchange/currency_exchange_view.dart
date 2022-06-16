@@ -14,260 +14,289 @@ import '../../widgets/oval_btn_widget.dart';
 import '../payment_countries/pay_university_view.dart';
 
 class CurrencyExchangePage extends StatelessWidget {
+  static const String id = "/currencyExchange";
   final logic = Get.put(CurrencyExchangeController());
 
-  static const String id = "/currencyExchange";
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Container(
-        height: ScreenWeb.heigth(context) * 0.75,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 3,
-              child: Container(
-                color: Colors.white,
-                child: Stack(
-                  children: [
-                    Container(
-                      height: ScreenWeb.heigth(context) * 0.08,
-                      color: kLightAccent,
-                    ),
-                    Positioned(
-                      top: ScreenWeb.heigth(context) * 0.03,
-                      left: ScreenWeb.width(context) * 0.07,
-                      right: ScreenWeb.width(context) * 0.07,
-                      bottom: ScreenWeb.heigth(context) * 0.08,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          border: Border.all(color: kLightAccent, width: 5.0),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: FluxImage(
-                            imageUrl: kExchangeImg,
-                            fit: BoxFit.fill,
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+      child: GetBuilder<CurrencyExchangeController>(builder: (controller) {
+        return Container(
+          width: ScreenWeb.width(context),
+          height: ScreenWeb.heigth(context) * 0.75,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 10,
               ),
-            ),
-            Expanded(
-              flex: 5,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: spacing_standard_new),
+              Expanded(
+                flex: 2,
                 child: Container(
-                  height: ScreenWeb.heigth(context) * 0.50,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  color: Colors.white,
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
                     children: [
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          kCurrencyExchangeTxt,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6!
-                              .copyWith(color: kLightAccent),
-                        ),
+                      NewsItemWidget(),
+                      SizedBox(width: 6),
+                      NewsItemWidget(
+                        imagePath: kExchangeTwoImg,
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            /// from currency input
-                            Expanded(
-                              flex: 6,
-                              child: TextField(
-                                decoration:
-                                    editTextWithBoarderDecoration("from"),
-                                cursorColor: kLightAccent,
-                                keyboardType: TextInputType.text,
-                                textInputAction: TextInputAction.done,
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-
-                            /// select currency  type
-                            Expanded(
-                              flex: 3,
-                              child: InkWell(
-                                onTap: () {
-                                  selectCountryDialog();
-                                },
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                      decoration: decorationBlueBorder,
-                                    ),
-                                    Positioned(
-                                      top: 1,
-                                      left: 1,
-                                      bottom: 1,
-                                      child: Container(
-                                        height: 60,
-                                        decoration: BoxDecoration(
-                                          color: kOrangeColor,
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            bottomLeft: Radius.circular(20),
-                                          ),
-                                        ),
-                                        child: FluxImage(
-                                            imageUrl: kCurrencyValueImg),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      SizedBox(width: 6),
+                      NewsItemWidget(
+                        imagePath: kExchangeThreeImg,
                       ),
-                      SizedBox(
-                        height: 10,
+                      SizedBox(width: 6),
+                      NewsItemWidget(
+                        imagePath: kExchangeTwoImg,
                       ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            // Rub  result
-                            Expanded(
-                              flex: 6,
-                              child: Container(
-                                decoration: decorationBlueBorder,
-                                padding: EdgeInsets.all(8),
-                                child: Row(
-                                  children: [
-                                    Text("RUB =  "),
-                                    SizedBox(
-                                      width: 8,
-                                    ),
-                                    Text("......... "),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            // Rub  result
-                            Expanded(
-                              flex: 3,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: FluxImage(
-                                  imageUrl: kRoubleImg,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          children: [
-                            /// check & pay money buttons
-                            Expanded(
-                              flex: 1,
-                              child: OvalButtonWdgt(
-                                  text: kCheckTxt, onPressed: () {}),
-                            ),
-                            SizedBox(
-                              width: 2,
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: OvalButtonWdgt(
-                                  text: kPayUnvMoneyTxt,
-                                  onPressed: () {
-                                    Get.to(() => PayUniversityPage());
-                                  }),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(
-                          children: [
-                            /// make transfer button
-                            Expanded(
-                              child: OvalButtonWdgt(
-                                  text: kMakeTransferText,
-                                  onPressed: () {
-                                    Get.to(() => PaymentCountriesPage());
-                                  }),
-                            ),
-                          ],
-                        ),
-                      )
+                      SizedBox(width: 6),
+                      NewsItemWidget(),
+                      SizedBox(width: 6),
                     ],
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+              Expanded(
+                flex: 5,
+                child: Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: spacing_standard_new),
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    children: [
+                      Container(
+                        height: ScreenWeb.heigth(context) * 0.50,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Text(
+                                kCurrencyExchangeTxt,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(color: kLightAccent),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  /// from currency input
+                                  Expanded(
+                                    flex: 6,
+                                    child: TextField(
+                                      decoration:
+                                          editTextWithBoarderDecoration("from"),
+                                      cursorColor: kLightAccent,
+                                      keyboardType: TextInputType.text,
+                                      textInputAction: TextInputAction.done,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+
+                                  /// select currency  type
+                                  Expanded(
+                                    flex: 3,
+                                    child: InkWell(
+                                      onTap: () {
+                                        selectCountryDialog(controller);
+                                      },
+                                      child: Container(
+                                        decoration: decorationBlueBorder,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              height: 60,
+                                              decoration: BoxDecoration(
+                                                color: kLightAccent,
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(20),
+                                                  bottomLeft:
+                                                      Radius.circular(20),
+                                                ),
+                                              ),
+                                              child: Icon(
+                                                Icons.arrow_drop_down_outlined,
+                                                size: 30,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 2,
+                                            ),
+                                            FlagCountryWidget(
+                                              currencyModel:
+                                                  controller.selectedCurrency,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  // Rub  result
+                                  Expanded(
+                                    flex: 6,
+                                    child: Container(
+                                      decoration: decorationBlueBorder,
+                                      padding: EdgeInsets.all(8),
+                                      child: Row(
+                                        children: [
+                                          Text("RUB =  "),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          Text("......... "),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  // Rub  result
+                                  Expanded(
+                                    flex: 3,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey,
+                                        borderRadius:
+                                            BorderRadius.circular(20.0),
+                                      ),
+                                      child: FluxImage(
+                                        imageUrl: kRoubleImg,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Row(
+                                children: [
+                                  /// check & pay money buttons
+                                  Expanded(
+                                    flex: 1,
+                                    child: OvalButtonWdgt(
+                                        text: kCheckTxt, onPressed: () {}),
+                                  ),
+                                  SizedBox(
+                                    width: 2,
+                                  ),
+                                  Expanded(
+                                    flex: 2,
+                                    child: OvalButtonWdgt(
+                                        text: kPayUnvMoneyTxt,
+                                        onPressed: () {
+                                          Get.to(() => PayUniversityPage());
+                                        }),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Row(
+                                children: [
+                                  /// make transfer button
+                                  Expanded(
+                                    child: OvalButtonWdgt(
+                                        text: kMakeTransferText,
+                                        onPressed: () {
+                                          Get.to(() => PaymentCountriesPage());
+                                        }),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 
-  Future<dynamic> selectCountryDialog() {
+  Future<dynamic> selectCountryDialog(CurrencyExchangeController controller) {
     return Get.defaultDialog(
       title: "Select Currency ",
       titleStyle: TextStyle(color: kLightAccent),
       middleTextStyle: TextStyle(color: Colors.black),
       backgroundColor: Colors.white,
       content: Container(
-        height: 300,
+        height: 100,
         width: 100,
         child: ListView(
-          children: <Widget>[
-            FlagCountryWidget(
-              flagImgPath: kEgyptFlagImg,
-              name: "EGP",
-              onTap: () {
-                Get.back();
-              },
-            ),
-            FlagCountryWidget(
-              flagImgPath: kKsaFlagImg,
-              name: "KSA",
-              onTap: () {
-                Get.back();
-              },
-            ),
-            FlagCountryWidget(
-              flagImgPath: kUaeFlagImg,
-              name: "UAE",
-              onTap: () {
-                Get.back();
-              },
-            ),
-          ],
+          children: currencyDemoList
+              .map((item) => InkWell(
+                  onTap: () {
+                    controller.chooseSelected(item);
+                    Get.back();
+                  },
+                  child: FlagCountryWidget(currencyModel: item)))
+              .toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class NewsItemWidget extends StatelessWidget {
+  final String? imagePath;
+
+  const NewsItemWidget({
+    Key? key,
+    this.imagePath = kExchangeImg,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 170,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        border: Border.all(color: kLightAccent, width: 3.0),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(17.0),
+        child: FluxImage(
+          imageUrl: imagePath.toString(),
+          fit: BoxFit.fill,
         ),
       ),
     );

@@ -1,3 +1,6 @@
+import '../../data/models/currency_model.dart';
+import 'images_path.dart';
+
 /// website links
 const String kBaseUrl = "https://api.themoviedb.org";
 const String kImageUrlSmall = "https://image.tmdb.org/t/p/w200/";
@@ -93,22 +96,22 @@ const String kBodyDemoTxt =
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 const String kBodyDemoSmallTxt =
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley  ";
-
-void mostFreq(List<int> givenList) {
-  int mostFreqNumber = 0;
-  int numberRepited = 0;
-  Map<int, int> map = new Map();
-  for (int number in givenList) {
-    // containsKey
-    if (map.containsKey(number)) {
-      map[number] = map[number]! + 1;
-    } else {
-      map[number] = 1;
-    }
-    if (numberRepited < map[number]!) {
-      numberRepited = map[number]!;
-      mostFreqNumber = number;
-    }
-  }
-  print("most Frequest $mostFreqNumber");
-}
+List<CurrencyModel> currencyDemoList = [
+  CurrencyModel(
+    name: "EGP",
+    country: kEgyptText,
+    value: "20",
+    flagImg: kEgyptFlagImg,
+  ),
+  CurrencyModel(
+      name: "KSA",
+      country: kSaudiArabiaText,
+      value: "20",
+      flagImg: kKsaFlagImg),
+  CurrencyModel(
+    name: "UAE",
+    country: kUaeText,
+    value: "20",
+    flagImg: kUaeFlagImg,
+  ),
+];

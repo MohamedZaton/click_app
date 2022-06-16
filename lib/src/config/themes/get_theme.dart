@@ -12,6 +12,7 @@ ThemeData? buildLightTheme() {
         color: kLightAccent,
         centerTitle: true,
       ),
+      canvasColor: Colors.white,
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: kBgFloatBtnLightColor),
       scaffoldBackgroundColor: kBackgdDarkColor);
@@ -36,6 +37,7 @@ ThemeData? buildDarkTheme() {
 
   return base.copyWith(
       textTheme: darkTextTheme(),
+      canvasColor: Colors.white,
       appBarTheme: AppBarTheme(
         color: kLightAccent,
         centerTitle: true,

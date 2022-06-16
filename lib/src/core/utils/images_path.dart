@@ -3,6 +3,8 @@ const String kPrizeIcon = "assets/icons/prizes_icon.png";
 const String kLogIcon = "assets/icons/log_history_icon.png";
 const String kSettingIcon = "assets/icons/setting_icon.png";
 const String kExchangeImg = "assets/images/exchange_money.png";
+const String kExchangeTwoImg = "assets/images/exchange_money_2.png";
+const String kExchangeThreeImg = "assets/images/exchange_money_3.png";
 const String kRoubleImg = "assets/icons/russa_currency.png";
 
 /// currency changed 's images page

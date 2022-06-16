@@ -36,7 +36,7 @@ class PrizesPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            height: 70,
+            height: 30,
             color: kLightAccent,
           ),
           Expanded(

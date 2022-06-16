@@ -38,13 +38,9 @@ class PayDetailsPage extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 70,
-                color: kLightAccent,
-              ),
-              Container(
                 margin: EdgeInsets.only(top: 30),
-                height: ScreenWeb.heigth(context) * 0.70,
-                width: ScreenWeb.width(context) * 0.8,
+                height: ScreenWeb.heigth(context) * 0.75,
+                width: ScreenWeb.width(context) * 0.85,
                 decoration: BoxDecoration(
                   color: kPrizeCardBkgdColor,
                   borderRadius: BorderRadius.circular(20.0),
