@@ -8,6 +8,10 @@ ThemeData? buildLightTheme() {
   return base.copyWith(
       textTheme: lightTextTheme(),
       backgroundColor: kBackgdDarkColor,
+      appBarTheme: AppBarTheme(
+        color: kLightAccent,
+        centerTitle: true,
+      ),
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: kBgFloatBtnLightColor),
       scaffoldBackgroundColor: kBackgdDarkColor);
@@ -32,6 +36,10 @@ ThemeData? buildDarkTheme() {
 
   return base.copyWith(
       textTheme: darkTextTheme(),
+      appBarTheme: AppBarTheme(
+        color: kLightAccent,
+        centerTitle: true,
+      ),
       backgroundColor: Colors.white,
       scaffoldBackgroundColor: Colors.white);
 }

@@ -87,7 +87,8 @@ Decoration decorationBlueBorder = BoxDecoration(
   border: Border.all(color: kLightAccent, width: 1.0),
 );
 
-InputDecoration editTextWithBoarderDecoration(String labelText) =>
+InputDecoration editTextWithBoarderDecoration(String labelText,
+        {double thickness = 1.0}) =>
     InputDecoration(
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25.0),
@@ -95,9 +96,17 @@ InputDecoration editTextWithBoarderDecoration(String labelText) =>
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25.0),
-          borderSide: BorderSide(width: 1, color: kDarkGray),
+          borderSide: BorderSide(width: thickness, color: kLightAccent),
         ),
         labelText: labelText,
         labelStyle: TextStyle(color: kLightAccent),
         alignLabelWithHint: false,
         filled: true);
+
+Decoration decorOnlyBlueBoarder = BoxDecoration(
+    borderRadius: BorderRadius.circular(5),
+    border: Border.all(color: kLightAccent, width: 2));
+
+Decoration decorEggsBlueBoarder = BoxDecoration(
+    borderRadius: BorderRadius.circular(20),
+    border: Border.all(color: kLightAccent, width: 2));

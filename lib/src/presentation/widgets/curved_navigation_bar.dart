@@ -67,12 +67,12 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar>
     Size size = MediaQuery.of(context).size;
     return Container(
       color: widget.backgroundColor,
-      height: 75.0,
+      height: 70.0,
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: <Widget>[
           Positioned(
-            bottom: -40,
+            bottom: -45,
             left: _pos! * size.width,
             width: size.width / _length!,
             child: Center(
@@ -99,14 +99,14 @@ class _CurvedNavigationBarState extends State<CurvedNavigationBar>
             child: CustomPaint(
               painter: NavCustomPainter(_pos!, _length!, widget.color),
               child: Container(
-                height: 75.0,
+                height: 55.0,
               ),
             ),
           ),
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
-                height: 100.0,
+                height: 52.0,
                 child: Row(
                     children: widget.items.map((item) {
                   return NavButton(
@@ -158,7 +158,7 @@ class NavButton extends StatelessWidget {
           onTap!(index);
         },
         child: Container(
-            height: 75.0,
+            height: 30.0,
             child: Transform.translate(
               offset: Offset(
                   0, difference < 1.0 / length! ? verticalAlignment * 40 : 0),

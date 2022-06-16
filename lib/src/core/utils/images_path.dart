@@ -22,8 +22,22 @@ const String kAboutImg = "assets/icons/info_icon.png";
 /// history's images page
 const String kCreditImg = "assets/icons/credit_card_icon.png";
 const String kWalledImg = "assets/icons/wallet_icon.png";
+const String kSuccessImg = "assets/icons/checked_true.png";
+const String kPendingImg = "assets/icons/checked_pending.png";
+const String kScreenShotImg = "assets/images/screenshot.png";
 
 /// prize's images page
 const String kPrizeAImg = "assets/icons/prize_A_logo.png";
 const String kPrizeBImg = "assets/icons/prize_B_logo.png";
 const String kPrizeCImg = "assets/icons/prize_C_logo.png";
+
+/// profile page
+const String kEditImg = "assets/icons/edit_icon.png";
+const String kAddImg = "assets/icons/image_add.png";
+const String kProfileDemoImg = "assets/images/avatar_man.png";
+const String kWhatsAppImg = "assets/icons/whatsapp.png";
+
+/// details make transfer
+const String kCopyImg = "assets/icons/copy_icon.png";
+const String kAppliedImg = "assets/images/appled.png";
+const String kUploadingImg = "assets/icons/upload_arrow_icon.png";

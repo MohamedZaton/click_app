@@ -14,17 +14,17 @@ class PrizesPage extends StatelessWidget {
     PrizeCard(
       logoPath: kPrizeAImg,
       title: kPrizeTitleTxt,
-      body: kPrizeBodyTxt,
+      body: kBodyDemoTxt,
     ),
     PrizeCard(
       logoPath: kPrizeAImg,
       title: kPrizeTitleTxt,
-      body: kPrizeBodyTxt,
+      body: kBodyDemoTxt,
     ),
     PrizeCard(
       logoPath: kPrizeAImg,
       title: kPrizeTitleTxt,
-      body: kPrizeBodyTxt,
+      body: kBodyDemoTxt,
     ),
   ];
 

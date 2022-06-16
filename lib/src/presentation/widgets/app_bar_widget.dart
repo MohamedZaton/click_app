@@ -18,24 +18,24 @@ class AppBarWidget extends StatelessWidget {
       height: ScreenWeb.heigth(context) * 0.10,
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.menu_outlined,
-                    color: kOrangeColor,
-                    size: 40,
-                  )),
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.notifications_none_rounded,
-                    color: kOrangeColor,
-                    size: 40,
-                  )),
-            ],
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.menu_outlined,
+                      color: kOrangeColor,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.notifications_none_rounded,
+                      color: kOrangeColor,
+                    )),
+              ],
+            ),
           ),
         ],
       ),

@@ -19,8 +19,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double? targetValue = 1.0;
-
     return GetBuilder<HomeController>(builder: (controller) {
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -44,17 +42,37 @@ class HomePage extends StatelessWidget {
           ],
         ),
         bottomNavigationBar: Container(
-          height: 100,
+          height: 80,
           color: kLightAccent,
           child: CurvedNavigationBar(
             backgroundColor: Colors.white,
             buttonBackgroundColor: kOrangeColor,
             color: kLightAccent,
             items: [
-              FluxImage(imageUrl: kHomeIcon, color: Colors.white),
-              FluxImage(imageUrl: kPrizeIcon, color: Colors.white),
-              FluxImage(imageUrl: kLogIcon, color: Colors.white),
-              FluxImage(imageUrl: kSettingIcon, color: Colors.white),
+              FluxImage(
+                imageUrl: kHomeIcon,
+                color: Colors.white,
+                width: 15,
+                height: 15,
+              ),
+              FluxImage(
+                imageUrl: kPrizeIcon,
+                color: Colors.white,
+                width: 15,
+                height: 15,
+              ),
+              FluxImage(
+                imageUrl: kLogIcon,
+                color: Colors.white,
+                width: 15,
+                height: 15,
+              ),
+              FluxImage(
+                imageUrl: kSettingIcon,
+                color: Colors.white,
+                width: 15,
+                height: 15,
+              ),
             ],
             onTap: (index) {
               controller.changeTabIndex(index);

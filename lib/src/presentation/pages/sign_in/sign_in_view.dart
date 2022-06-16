@@ -28,20 +28,20 @@ class SignInPage extends StatelessWidget {
             height: ScreenWeb.heigth(context) * 0.05,
           ),
           Expanded(
-            flex: 2,
+            flex: 1,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
                 kHelloLogInTxt,
                 style: Theme.of(context)
                     .textTheme
-                    .headline3
+                    .headline4
                     ?.copyWith(color: Colors.white),
               ),
             ),
           ),
           Expanded(
-            flex: 8,
+            flex: 6,
             child: Container(
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -64,8 +64,7 @@ class SignInPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            padding:
-                                EdgeInsets.only(left: 16, right: 16, top: 8),
+                            padding: EdgeInsets.all(25),
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
@@ -73,7 +72,7 @@ class SignInPage extends StatelessWidget {
                                     decoration: InputDecoration(
                                       labelText: kEmailTxt,
                                       labelStyle: TextStyle(
-                                          fontSize: 20, color: kLightAccent),
+                                          fontSize: 15, color: kLightAccent),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide:
                                             BorderSide(color: Colors.black12),
@@ -89,7 +88,7 @@ class SignInPage extends StatelessWidget {
                                     decoration: InputDecoration(
                                       labelText: kPasswordTxt,
                                       labelStyle: TextStyle(
-                                          fontSize: 20, color: kLightAccent),
+                                          fontSize: 15, color: kLightAccent),
                                       suffixIcon: Icon(
                                         true
                                             ? Icons.visibility_off

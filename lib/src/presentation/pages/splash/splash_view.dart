@@ -12,14 +12,14 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double? targetValue = 80;
+    double? targetValue = 300;
 
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
         child: TweenAnimationBuilder<double>(
           tween: Tween<double>(begin: 0, end: targetValue),
-          duration: const Duration(seconds: 3),
+          duration: const Duration(seconds: 1),
           builder: (context, value, Widget? child) {
             return FluxImage(
               imageUrl: 'assets/logo/logo.png',

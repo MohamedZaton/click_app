@@ -1,5 +1,6 @@
 import 'package:click_app/src/core/utils/colors.dart';
 import 'package:click_app/src/core/utils/screens.dart';
+import 'package:click_app/src/presentation/pages/payment_countries/pay_countries_view.dart';
 import 'package:click_app/src/presentation/widgets/flag_country.dart';
 import 'package:click_app/src/presentation/widgets/flux_image.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import '../../../core/utils/images_path.dart';
 import '../../../core/utils/styles.dart';
 import '../../getx/currency_exchange_controller.dart';
 import '../../widgets/oval_btn_widget.dart';
+import '../payment_countries/pay_university_view.dart';
 
 class CurrencyExchangePage extends StatelessWidget {
   final logic = Get.put(CurrencyExchangeController());
@@ -31,14 +33,14 @@ class CurrencyExchangePage extends StatelessWidget {
                 child: Stack(
                   children: [
                     Container(
-                      height: ScreenWeb.heigth(context) * 0.12,
+                      height: ScreenWeb.heigth(context) * 0.08,
                       color: kLightAccent,
                     ),
                     Positioned(
-                      top: ScreenWeb.heigth(context) * 0.08,
+                      top: ScreenWeb.heigth(context) * 0.03,
                       left: ScreenWeb.width(context) * 0.07,
                       right: ScreenWeb.width(context) * 0.07,
-                      bottom: ScreenWeb.heigth(context) * 0.008,
+                      bottom: ScreenWeb.heigth(context) * 0.08,
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
@@ -196,7 +198,10 @@ class CurrencyExchangePage extends StatelessWidget {
                             Expanded(
                               flex: 2,
                               child: OvalButtonWdgt(
-                                  text: kPayUnvMoneyTxt, onPressed: () {}),
+                                  text: kPayUnvMoneyTxt,
+                                  onPressed: () {
+                                    Get.to(() => PayUniversityPage());
+                                  }),
                             ),
                           ],
                         ),
@@ -211,7 +216,10 @@ class CurrencyExchangePage extends StatelessWidget {
                             /// make transfer button
                             Expanded(
                               child: OvalButtonWdgt(
-                                  text: kMakeTransferText, onPressed: () {}),
+                                  text: kMakeTransferText,
+                                  onPressed: () {
+                                    Get.to(() => PaymentCountriesPage());
+                                  }),
                             ),
                           ],
                         ),

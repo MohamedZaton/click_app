@@ -1,3 +1,4 @@
+import 'package:click_app/src/presentation/pages/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,20 +28,20 @@ class SignUpPage extends StatelessWidget {
               height: 5,
             ),
             Expanded(
-              flex: 2,
+              flex: 1,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
                   kCreateAccountTxt,
                   style: Theme.of(context)
                       .textTheme
-                      .headline3
+                      .headline4
                       ?.copyWith(color: Colors.white),
                 ),
               ),
             ),
             Expanded(
-              flex: 8,
+              flex: 7,
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -63,7 +64,11 @@ class SignUpPage extends StatelessWidget {
                           children: <Widget>[
                             Align(
                               child: FluxImage(
-                                  imageUrl: "assets/images/avatar_sign_up.png"),
+                                imageUrl: "assets/images/avatar_sign_up.png",
+                                fit: BoxFit.cover,
+                                width: 100,
+                                height: 100,
+                              ),
                               alignment: Alignment.center,
                             ),
                             Container(
@@ -76,7 +81,7 @@ class SignUpPage extends StatelessWidget {
                                       decoration: InputDecoration(
                                         labelText: kFullNameTxt,
                                         labelStyle: TextStyle(
-                                            fontSize: 20, color: kLightAccent),
+                                            fontSize: 10, color: kLightAccent),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.black12),
@@ -87,12 +92,12 @@ class SignUpPage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 16),
+                                    SizedBox(height: 10),
                                     TextFormField(
                                       decoration: InputDecoration(
                                         labelText: kEmailTxt,
                                         labelStyle: TextStyle(
-                                            fontSize: 20, color: kLightAccent),
+                                            fontSize: 10, color: kLightAccent),
                                         enabledBorder: UnderlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.black12),
@@ -103,12 +108,12 @@ class SignUpPage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 16),
+                                    SizedBox(height: 10),
                                     TextFormField(
                                       decoration: InputDecoration(
                                         labelText: kPasswordTxt,
                                         labelStyle: TextStyle(
-                                            fontSize: 20, color: kLightAccent),
+                                            fontSize: 10, color: kLightAccent),
                                         suffixIcon: Icon(
                                           true
                                               ? Icons.visibility_off
@@ -127,12 +132,12 @@ class SignUpPage extends StatelessWidget {
                                       autofocus: false,
                                       obscureText: obscureText,
                                     ),
-                                    SizedBox(height: 16),
+                                    SizedBox(height: 10),
                                     TextFormField(
                                       decoration: InputDecoration(
                                         labelText: kConfirmPasswordTxt,
                                         labelStyle: TextStyle(
-                                            fontSize: 20, color: kLightAccent),
+                                            fontSize: 10, color: kLightAccent),
                                         suffixIcon: Icon(
                                           true
                                               ? Icons.visibility_off
@@ -202,7 +207,9 @@ class SignUpPage extends StatelessWidget {
                                     SizedBox(height: 20),
                                     OvalButtonWdgt(
                                         text: kSignUpText.toUpperCase(),
-                                        onPressed: () {}),
+                                        onPressed: () {
+                                          Get.to(() => HomePage());
+                                        }),
                                   ]),
                             )
                           ],

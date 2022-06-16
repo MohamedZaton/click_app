@@ -32,7 +32,8 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Click_App',
-        darkTheme: buildLightTheme(),
+        themeMode: ThemeMode.light,
+        darkTheme: buildDarkTheme(),
         theme: buildDarkTheme(),
         initialRoute: SplashPage.id,
         getPages: AppRoutes.onGenerateRoutes(),

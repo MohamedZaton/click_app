@@ -12,7 +12,12 @@ const String kHelloLogInTxt = "Hello\nLogin!";
 const String kCreateAccountTxt = "CreateYour\nAccount";
 const String kEmailTxt = "Email";
 const String kPasswordTxt = "Password";
-const String kConfirmPasswordTxt = "Confirm Password";
+const String kSuccessTxt = "Success";
+const String kPendingTxt = "Pending";
+const String kCancelTxt = "Cancel";
+const String kConfirmTxt = "Confirm";
+
+const String kConfirmPasswordTxt = "$kConfirmTxt Password";
 const String kSignInText = "sign in";
 const String kSignUpText = "sign Up";
 const String kLogOutText = "logout";
@@ -20,10 +25,15 @@ const String kMakeTransferText = "Make a Transfer";
 const String kInitAccountText = "Don't have an account ? ";
 const String kForgotPasswordTxt = "Forgot Password ?";
 const String kCurrencyExchangeTxt = "Currency exchange";
+const String kDoneTransformTxt = "Transform has been done";
+const String kDoneTxt = "Done";
+const String kTransformtionTxt = "Transformation";
 const String kCheckTxt = "Check";
-const String kPendingTxt = "Pending";
 const String kCompletedTxt = "Completed";
-const String kPayUnvMoneyTxt = "Pay Unverisity Money";
+const String kPayUnvMoneyTxt = "Pay University Money";
+const String kAccountNumberTxt = "Your Account Number :";
+const String kMoneyAmountTxt = "Your Money Amount :";
+const String kScreenShotTxt = "Your Transformation ScreenShot";
 
 const String kPeopleTxt = "People";
 const String kGenderTxt = "Gender";
@@ -50,13 +60,55 @@ const kResultsKey = "results";
 
 // setting
 const kProfileText = "Profile";
+const kChooseCountryText = "Choose Your country";
 const kLanguageText = "Language";
 const kContactUsText = "Contact us";
 const kShareAppText = "Share App";
 const kRateAppText = "Rate App";
 const kAboutAppText = "About App";
+const kSaveText = "Save";
+const kAppliedText = "Applied";
+const kNextText = "Next";
+const kFormPayText = "Payment Form";
+const kUniversityPayText = "Payment University";
+const kNameDemoText = "Full Name";
+const kPhoneDemoText = "+7  9999 99 999 9";
+const kEmailDemoText = "*********@gmail.com";
+const kEgyptText = "Egypt";
+const kUaeText = "The United Arab Emirates";
+const kSaudiArabiaText = "Saudi Arabia";
+const kAmountOfMoneyText = "Amount Of Money";
+const kBankAccountNameText = "Bank Account Name ";
+const kBankAccountNumberText = "Bank Account Number ";
+const kRussianRubleRateTodayText = "Russian ruble rate today";
+const kChoosePassportImageText = " Choose Your Passport Image";
+const kChooseYourIdImageText = "Choose Your ID Image";
+
+const kChooseConfirmationMessageImageText =
+    "Choose Your Confirmation Message Image";
 
 // demo data
 const String kPrizeTitleTxt = "Facilitations for entering the university";
-const String kPrizeBodyTxt =
+const String kBodyDemoTxt =
     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+const String kBodyDemoSmallTxt =
+    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley  ";
+
+void mostFreq(List<int> givenList) {
+  int mostFreqNumber = 0;
+  int numberRepited = 0;
+  Map<int, int> map = new Map();
+  for (int number in givenList) {
+    // containsKey
+    if (map.containsKey(number)) {
+      map[number] = map[number]! + 1;
+    } else {
+      map[number] = 1;
+    }
+    if (numberRepited < map[number]!) {
+      numberRepited = map[number]!;
+      mostFreqNumber = number;
+    }
+  }
+  print("most Frequest $mostFreqNumber");
+}

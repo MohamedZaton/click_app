@@ -9,7 +9,7 @@ class OvalButtonWdgt extends StatelessWidget {
   final Color? backgroundColor;
   final String? imagePath;
   final bool isCenter;
-  final void Function() onPressed;
+  final void Function()? onPressed;
 
   OvalButtonWdgt(
       {Key? key,
@@ -25,7 +25,7 @@ class OvalButtonWdgt extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 60,
+      height: 45,
       child: MaterialButton(
         child: Row(
           mainAxisAlignment:

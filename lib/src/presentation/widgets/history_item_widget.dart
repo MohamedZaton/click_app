@@ -4,13 +4,13 @@ import 'package:click_app/src/presentation/widgets/flux_image.dart';
 import 'package:flutter/material.dart';
 
 class ItemHistoryWidget extends StatelessWidget {
-  final int creditCode;
-  final double money;
+  final int idTransform;
+  final String money;
   final Function() onPress;
   const ItemHistoryWidget(
       {Key? key,
-      this.creditCode = 11111111111,
-      this.money = 2222,
+      this.idTransform = 11111111111,
+      this.money = "2222",
       required this.onPress})
       : super(key: key);
 
@@ -29,7 +29,7 @@ class ItemHistoryWidget extends StatelessWidget {
               width: 20,
               height: 20,
             ),
-            Text(creditCode.toString()),
+            Text(idTransform.toString()),
             FluxImage(
               imageUrl: kWalledImg,
               width: 20,
