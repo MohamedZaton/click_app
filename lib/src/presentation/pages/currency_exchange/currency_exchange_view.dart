@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:click_app/src/core/utils/colors.dart';
 import 'package:click_app/src/core/utils/screens.dart';
 import 'package:click_app/src/presentation/pages/payment_countries/pay_countries_view.dart';
@@ -34,6 +35,30 @@ class CurrencyExchangePage extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Container(
+                    width: ScreenWeb.width(context),
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        viewportFraction: 1,
+                        aspectRatio: 1,
+                        enlargeCenterPage: true,
+                        scrollDirection: Axis.horizontal,
+                      ),
+                      items: [
+                        NewsItemWidget(),
+                        NewsItemWidget(
+                          imagePath: kExchangeTwoImg,
+                        ),
+                        NewsItemWidget(
+                          imagePath: kExchangeThreeImg,
+                        ),
+                        NewsItemWidget(
+                          imagePath: kExchangeTwoImg,
+                        ),
+                        NewsItemWidget(),
+                      ],
+                    )),
+
+                /*Container(
                   color: Colors.white,
                   child: ListView(
                     scrollDirection: Axis.horizontal,
@@ -57,7 +82,7 @@ class CurrencyExchangePage extends StatelessWidget {
                       SizedBox(width: 6),
                     ],
                   ),
-                ),
+                )*/
               ),
               Expanded(
                 flex: 5,
