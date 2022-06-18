@@ -8,7 +8,6 @@ import '../../../core/utils/constants.dart';
 import '../../../core/utils/screens.dart';
 import '../../getx/history_controller.dart';
 import '../../widgets/history_item_widget.dart';
-import '../../widgets/toggle_button.dart';
 
 class HistoryPage extends StatelessWidget {
   final historyController = Get.put(HistoryController());
@@ -17,6 +16,47 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _statuePage = [
+      TransformListWdgt(
+        controller: historyController,
+        nameList: kSuccessTxt,
+        transformList: historyController.successList.value,
+      ),
+      TransformListWdgt(
+        controller: historyController,
+        nameList: kPendingTxt,
+        transformList: historyController.pendingList.value,
+      ),
+      TransformListWdgt(
+        controller: historyController,
+        nameList: kRejectedTxt,
+        transformList: historyController.rejectedList.value,
+      ),
+    ];
+    List<Widget> _titlesToggleButtons = [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          kCompletedTxt,
+          style: TextStyle(color: kTextDark),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          kPendingTxt,
+          style: TextStyle(color: kTextDark),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+          kRejectedTxt,
+          style: TextStyle(color: kTextDark),
+        ),
+      ),
+    ];
+
     return Container(
       width: ScreenWeb.width(context),
       height: ScreenWeb.heigth(context) * 0.80,
@@ -35,25 +75,17 @@ class HistoryPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ToggleButton(
-                      width: 300.0,
-                      height: 40.0,
-                      toggleBackgroundColor: kCyanColor,
-                      toggleBorderColor: kLightAccent,
-                      toggleColor: kCyanButtonTgColor,
-                      activeTextColor: kTextDark,
-                      inactiveTextColor: kTextDark,
-                      leftDescription: kPendingTxt,
-                      rightDescription: kCompletedTxt,
-                      onLeftToggleActive: () {
-                        print('left toggle activated');
-                        historyController.selectTab(1);
+                    ToggleButtons(
+                      children: _titlesToggleButtons,
+                      isSelected: historyController.selectedToggelButton.value,
+                      borderRadius: BorderRadius.circular(30),
+                      borderColor: kCyanButtonTgColor,
+                      selectedColor: kCyanButtonTgColor,
+                      fillColor: kCyanColor,
+                      onPressed: (int index) {
+                        historyController.selectTab(index);
                       },
-                      onRightToggleActive: () {
-                        print('right toggle activated');
-                        historyController.selectTab(1);
-                      },
-                    )
+                    ),
                   ],
                 ),
               ),
@@ -62,16 +94,7 @@ class HistoryPage extends StatelessWidget {
               flex: 8,
               child: IndexedStack(
                   index: historyController.tabIndex.value,
-                  children: [
-                    TransformListWdgt(
-                      nameList: kSuccessTxt,
-                      transformList: historyController.successList.value,
-                    ),
-                    TransformListWdgt(
-                      nameList: kPendingTxt,
-                      transformList: historyController.successList.value,
-                    ),
-                  ]),
+                  children: _statuePage),
             ),
           ],
         );
@@ -83,8 +106,10 @@ class HistoryPage extends StatelessWidget {
 class TransformListWdgt extends StatelessWidget {
   final String nameList;
   final List<TransformModel> transformList;
+  final HistoryController controller;
   TransformListWdgt({
     Key? key,
+    required this.controller,
     required this.nameList,
     required this.transformList,
   }) : super(key: key);
@@ -106,30 +131,29 @@ class TransformListWdgt extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
+                  height: ScreenWeb.heigth(context) * 0.80,
                   padding: EdgeInsets.only(left: 16, right: 16, top: 8),
-                  child: SingleChildScrollView(
+                  child: ListView.builder(
                     scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        ItemHistoryWidget(
-                          onPress: () {
-                            Get.to(() => HistoryDetailPage());
-                          },
-                          money: transformList[0].moneyAmount,
-                          idTransform: transformList[0].id,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        ItemHistoryWidget(
-                          onPress: () {
-                            Get.to(() => HistoryDetailPage());
-                          },
-                          money: transformList[1].moneyAmount,
-                          idTransform: transformList[1].id,
-                        )
-                      ],
-                    ),
+                    itemCount: transformList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Column(
+                        children: [
+                          ItemHistoryWidget(
+                            onPress: () {
+                              controller.changeClickItem(
+                                  nameList, transformList[index]);
+                              Get.to(() => HistoryDetailPage());
+                            },
+                            money: transformList[index].moneyAmount,
+                            idTransform: transformList[index].id,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      );
+                    },
 
                     /*             child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

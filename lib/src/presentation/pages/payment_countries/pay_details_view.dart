@@ -18,14 +18,14 @@ class PayDetailsPage extends StatelessWidget {
 
   final String? nameCountry;
   final String? detailsCountry;
-  final String? numberCountry;
+  final List<String?> numberCountry;
   final String? flagPath;
 
   PayDetailsPage(
       {this.nameCountry = "Egypt",
       this.detailsCountry = kBodyDemoSmallTxt,
       this.flagPath = kEgyptFlagImg,
-      this.numberCountry = kPhoneDemoText});
+      this.numberCountry = const [kPhoneDemoText, kPhoneDemoText + "7"]});
 
   @override
   Widget build(BuildContext context) {
@@ -61,38 +61,77 @@ class PayDetailsPage extends StatelessWidget {
                       ),
                       Expanded(flex: 1, child: Text(nameCountry!)),
                       Expanded(
-                          flex: 1,
-                          child: InkWell(
-                            onTap: () {
-                              Clipboard.setData(
-                                      new ClipboardData(text: numberCountry))
-                                  .then((_) {
-                                Get.snackbar("Copied", "This number is Copied ",
-                                    backgroundColor: Colors.green);
-                                // ScaffoldMessenger.of(context).showSnackBar(
-                                //     SnackBar(
-                                //         content: Text(
-                                //             'Copied to your clipboard !')));
-                              });
-                            },
-                            child: Container(
-                              decoration: decorOnlyBlueBoarder,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    numberCountry.toString(),
-                                    style: TextStyle(
-                                        color: kLightAccent,
-                                        fontWeight: FontWeight.bold),
+                          flex: 2,
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Clipboard.setData(new ClipboardData(
+                                          text: numberCountry[0]))
+                                      .then((_) {
+                                    Get.snackbar(
+                                        "Copied", "This number is Copied ",
+                                        backgroundColor: Colors.green);
+                                    // ScaffoldMessenger.of(context).showSnackBar(
+                                    //     SnackBar(
+                                    //         content: Text(
+                                    //             'Copied to your clipboard !')));
+                                  });
+                                },
+                                child: Container(
+                                  decoration: decorOnlyBlueBoarder,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        numberCountry[0].toString(),
+                                        style: TextStyle(
+                                            color: kLightAccent,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      FluxImage(imageUrl: kCopyImg)
+                                    ],
                                   ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  FluxImage(imageUrl: kCopyImg)
-                                ],
+                                ),
                               ),
-                            ),
+                              Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  Clipboard.setData(new ClipboardData(
+                                          text: numberCountry[1]))
+                                      .then((_) {
+                                    Get.snackbar(
+                                        "Copied", "This number is Copied ",
+                                        backgroundColor: Colors.green);
+                                    // ScaffoldMessenger.of(context).showSnackBar(
+                                    //     SnackBar(
+                                    //         content: Text(
+                                    //             'Copied to your clipboard !')));
+                                  });
+                                },
+                                child: Container(
+                                  decoration: decorOnlyBlueBoarder,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        numberCountry[1].toString(),
+                                        style: TextStyle(
+                                            color: kLightAccent,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width: 5,
+                                      ),
+                                      FluxImage(imageUrl: kCopyImg)
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
                           )),
                       Spacer(
                         flex: 1,

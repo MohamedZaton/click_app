@@ -35,7 +35,7 @@ class OvalButtonWdgt extends StatelessWidget {
             FittedBox(
               child: Text(
                 text,
-                style: TextStyle(fontSize: 20),
+                style: TextStyle(fontSize: 15),
               ),
             ),
           ],

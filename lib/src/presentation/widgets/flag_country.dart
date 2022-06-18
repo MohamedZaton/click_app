@@ -10,7 +10,7 @@ class FlagCountryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.white,
+      height: 50,
       child: Row(
         children: [
           FluxImage(
@@ -23,7 +23,7 @@ class FlagCountryWidget extends StatelessWidget {
             currencyModel.name!,
             style: Theme.of(context)
                 .textTheme
-                .headline5!
+                .headline6!
                 .copyWith(color: Colors.blue),
           )
         ],

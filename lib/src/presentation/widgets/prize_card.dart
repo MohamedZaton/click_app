@@ -44,14 +44,14 @@ class PrizeLogo extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 15.0),
       alignment: FractionalOffset.center,
-      height: 70,
-      width: 70,
+      height: 60,
+      width: 60,
       child: CircleAvatar(
         backgroundColor: Colors.white,
         child: FluxImage(
           imageUrl: logoPath.toString(),
-          width: 70,
-          height: 70,
+          width: 60,
+          height: 60,
         ),
         radius: 50,
       ),
@@ -85,21 +85,22 @@ class PrizeBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Wrap(
-                runSpacing: 5,
-                children: [
-                  Text(
-                    title.toString(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        ?.copyWith(color: kDarkAccent),
-                  ),
-                  Text(
-                    body.toString(),
-                    style: TextStyle(color: Colors.black),
-                  ),
-                ],
+              Flexible(
+                child: Text(
+                  title.toString(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline6
+                      ?.copyWith(color: kDarkAccent),
+                ),
+              ),
+              Flexible(
+                child: Text(
+                  body.toString(),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 6,
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ],
           ),

@@ -5,13 +5,13 @@ const String kSettingIcon = "assets/icons/setting_icon.png";
 const String kExchangeImg = "assets/images/exchange_money.png";
 const String kExchangeTwoImg = "assets/images/exchange_money_2.png";
 const String kExchangeThreeImg = "assets/images/exchange_money_3.png";
-const String kRoubleImg = "assets/icons/russa_currency.png";
 
 /// currency changed 's images page
 const String kCurrencyValueImg = "assets/icons/from_currency.png";
 const String kEgyptFlagImg = "assets/icons/egypt_flag.png";
 const String kKsaFlagImg = "assets/icons/ksa_flag.png";
 const String kUaeFlagImg = "assets/icons/uae_flag.png";
+const String kRussiaFlagImg = "assets/icons/russia_flag.png";
 
 /// setting's images page
 const String kProfileImg = "assets/icons/profile_icon.png";
@@ -26,6 +26,7 @@ const String kCreditImg = "assets/icons/credit_card_icon.png";
 const String kWalledImg = "assets/icons/wallet_icon.png";
 const String kSuccessImg = "assets/icons/checked_true.png";
 const String kPendingImg = "assets/icons/checked_pending.png";
+const String kRejectedImg = "assets/icons/checked_rejected.png";
 const String kScreenShotImg = "assets/images/screenshot.png";
 
 /// prize's images page

@@ -38,6 +38,8 @@ class CurrencyExchangePage extends StatelessWidget {
                     width: ScreenWeb.width(context),
                     child: CarouselSlider(
                       options: CarouselOptions(
+                        autoPlay: true,
+                        autoPlayAnimationDuration: Duration(seconds: 2),
                         viewportFraction: 1,
                         aspectRatio: 1,
                         enlargeCenterPage: true,
@@ -57,32 +59,6 @@ class CurrencyExchangePage extends StatelessWidget {
                         NewsItemWidget(),
                       ],
                     )),
-
-                /*Container(
-                  color: Colors.white,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    children: [
-                      NewsItemWidget(),
-                      SizedBox(width: 6),
-                      NewsItemWidget(
-                        imagePath: kExchangeTwoImg,
-                      ),
-                      SizedBox(width: 6),
-                      NewsItemWidget(
-                        imagePath: kExchangeThreeImg,
-                      ),
-                      SizedBox(width: 6),
-                      NewsItemWidget(
-                        imagePath: kExchangeTwoImg,
-                      ),
-                      SizedBox(width: 6),
-                      NewsItemWidget(),
-                      SizedBox(width: 6),
-                    ],
-                  ),
-                )*/
               ),
               Expanded(
                 flex: 5,
@@ -102,7 +78,7 @@ class CurrencyExchangePage extends StatelessWidget {
                             SizedBox(
                               height: 5,
                             ),
-                            Expanded(
+                            Flexible(
                               flex: 1,
                               child: Text(
                                 kCurrencyExchangeTxt,
@@ -112,13 +88,16 @@ class CurrencyExchangePage extends StatelessWidget {
                                     .copyWith(color: kLightAccent),
                               ),
                             ),
-                            Expanded(
+                            SizedBox(
+                              height: 15,
+                            ),
+                            Flexible(
                               flex: 1,
                               child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   /// from currency input
-                                  Expanded(
+                                  Flexible(
                                     flex: 6,
                                     child: TextField(
                                       decoration:
@@ -133,7 +112,7 @@ class CurrencyExchangePage extends StatelessWidget {
                                   ),
 
                                   /// select currency  type
-                                  Expanded(
+                                  Flexible(
                                     flex: 3,
                                     child: InkWell(
                                       onTap: () {
@@ -141,16 +120,18 @@ class CurrencyExchangePage extends StatelessWidget {
                                       },
                                       child: Container(
                                         decoration: decorationBlueBorder,
+                                        height: 50,
                                         child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
                                           children: [
                                             Container(
-                                              height: 60,
                                               decoration: BoxDecoration(
                                                 color: kLightAccent,
                                                 borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(20),
+                                                  topLeft: Radius.circular(19),
                                                   bottomLeft:
-                                                      Radius.circular(20),
+                                                      Radius.circular(19),
                                                 ),
                                               ),
                                               child: Icon(
@@ -176,13 +157,13 @@ class CurrencyExchangePage extends StatelessWidget {
                             SizedBox(
                               height: 10,
                             ),
-                            Expanded(
+                            Flexible(
                               flex: 1,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   // Rub  result
-                                  Expanded(
+                                  Flexible(
                                     flex: 6,
                                     child: Container(
                                       decoration: decorationBlueBorder,
@@ -202,16 +183,14 @@ class CurrencyExchangePage extends StatelessWidget {
                                     width: 5,
                                   ),
                                   // Rub  result
-                                  Expanded(
+                                  Flexible(
                                     flex: 3,
                                     child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius:
-                                            BorderRadius.circular(20.0),
-                                      ),
+                                      width: 200,
+                                      decoration: decorationBlueBorder,
                                       child: FluxImage(
-                                        imageUrl: kRoubleImg,
+                                        imageUrl: kRussiaFlagImg,
+                                        fit: BoxFit.contain,
                                       ),
                                     ),
                                   ),
@@ -221,12 +200,12 @@ class CurrencyExchangePage extends StatelessWidget {
                             SizedBox(
                               height: 10,
                             ),
-                            Expanded(
+                            Flexible(
                               flex: 1,
                               child: Row(
                                 children: [
                                   /// check & pay money buttons
-                                  Expanded(
+                                  Flexible(
                                     flex: 1,
                                     child: OvalButtonWdgt(
                                         text: kCheckTxt, onPressed: () {}),
@@ -234,7 +213,7 @@ class CurrencyExchangePage extends StatelessWidget {
                                   SizedBox(
                                     width: 2,
                                   ),
-                                  Expanded(
+                                  Flexible(
                                     flex: 2,
                                     child: OvalButtonWdgt(
                                         text: kPayUnvMoneyTxt,
@@ -248,12 +227,12 @@ class CurrencyExchangePage extends StatelessWidget {
                             SizedBox(
                               height: 10,
                             ),
-                            Expanded(
+                            Flexible(
                               flex: 1,
                               child: Row(
                                 children: [
                                   /// make transfer button
-                                  Expanded(
+                                  Flexible(
                                     child: OvalButtonWdgt(
                                         text: kMakeTransferText,
                                         onPressed: () {
@@ -312,7 +291,7 @@ class NewsItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 170,
+      width: ScreenWeb.width(context) * 0.95,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
         border: Border.all(color: kLightAccent, width: 3.0),

@@ -11,6 +11,12 @@ class CurrencyExchangeController extends GetxController {
     value: "20",
     flagImg: kEgyptFlagImg,
   );
+  CurrencyModel russiaCurrency = CurrencyModel(
+    name: "RUBLE",
+    country: kRussiaText,
+    value: "20",
+    flagImg: kRussiaFlagImg,
+  );
   void chooseSelected(CurrencyModel selected) {
     selectedCurrency = selected;
     update();
