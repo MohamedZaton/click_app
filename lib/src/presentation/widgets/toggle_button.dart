@@ -6,6 +6,7 @@ class ToggleButton extends StatefulWidget {
 
   final String leftDescription;
   final String rightDescription;
+  final String middleDescription;
 
   final Color toggleColor;
   final Color toggleBackgroundColor;
@@ -16,9 +17,11 @@ class ToggleButton extends StatefulWidget {
 
   final double _leftToggleAlign = -1;
   final double _rightToggleAlign = 1;
+  final double _middleToggleAlign = 0;
 
   final VoidCallback onLeftToggleActive;
   final VoidCallback onRightToggleActive;
+  final VoidCallback onMiddleToggleActive;
 
   const ToggleButton(
       {Key? key,
@@ -32,7 +35,9 @@ class ToggleButton extends StatefulWidget {
       required this.leftDescription,
       required this.rightDescription,
       required this.onLeftToggleActive,
-      required this.onRightToggleActive})
+      required this.onRightToggleActive,
+      required this.middleDescription,
+      required this.onMiddleToggleActive})
       : super(key: key);
 
   @override
@@ -44,6 +49,7 @@ class _ToggleButtonState extends State<ToggleButton> {
 
   late Color _leftDescriptionColor;
   late Color _rightDescriptionColor;
+  late Color _middleDescriptionColor;
 
   @override
   void initState() {
@@ -51,6 +57,7 @@ class _ToggleButtonState extends State<ToggleButton> {
 
     _leftDescriptionColor = widget.activeTextColor;
     _rightDescriptionColor = widget.inactiveTextColor;
+    _middleDescriptionColor = widget.inactiveTextColor;
   }
 
   @override
@@ -71,7 +78,7 @@ class _ToggleButtonState extends State<ToggleButton> {
             alignment: Alignment(_toggleXAlign, 0),
             duration: Duration(milliseconds: 300),
             child: Container(
-              width: widget.width * 0.5,
+              width: widget.width * 0.33,
               height: widget.height,
               decoration: BoxDecoration(
                 color: widget.toggleColor,
@@ -81,6 +88,7 @@ class _ToggleButtonState extends State<ToggleButton> {
               ),
             ),
           ),
+          //xxxx
           GestureDetector(
             onTap: () {
               setState(
@@ -89,6 +97,7 @@ class _ToggleButtonState extends State<ToggleButton> {
 
                   _leftDescriptionColor = widget.activeTextColor;
                   _rightDescriptionColor = widget.inactiveTextColor;
+                  _middleDescriptionColor = widget.inactiveTextColor;
                 },
               );
 
@@ -97,7 +106,7 @@ class _ToggleButtonState extends State<ToggleButton> {
             child: Align(
               alignment: Alignment(-1, 0),
               child: Container(
-                width: widget.width * 0.5,
+                width: widget.width * 0.33,
                 color: Colors.transparent,
                 alignment: Alignment.center,
                 child: Text(
@@ -113,10 +122,40 @@ class _ToggleButtonState extends State<ToggleButton> {
             onTap: () {
               setState(
                 () {
+                  _toggleXAlign = widget._middleToggleAlign;
+
+                  _leftDescriptionColor = widget.inactiveTextColor;
+                  _rightDescriptionColor = widget.inactiveTextColor;
+                  _middleDescriptionColor = widget.activeTextColor;
+                },
+              );
+
+              widget.onMiddleToggleActive();
+            },
+            child: Align(
+              alignment: Alignment(0, 0),
+              child: Container(
+                width: widget.width * 0.33,
+                color: Colors.transparent,
+                alignment: Alignment.center,
+                child: Text(
+                  widget.middleDescription,
+                  style: TextStyle(
+                      color: _middleDescriptionColor,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              setState(
+                () {
                   _toggleXAlign = widget._rightToggleAlign;
 
                   _leftDescriptionColor = widget.inactiveTextColor;
                   _rightDescriptionColor = widget.activeTextColor;
+                  _middleDescriptionColor = widget.inactiveTextColor;
                 },
               );
 
@@ -125,7 +164,7 @@ class _ToggleButtonState extends State<ToggleButton> {
             child: Align(
               alignment: Alignment(1, 0),
               child: Container(
-                width: widget.width * 0.5,
+                width: widget.width * 0.33,
                 color: Colors.transparent,
                 alignment: Alignment.center,
                 child: Text(

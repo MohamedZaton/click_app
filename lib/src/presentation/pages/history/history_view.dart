@@ -8,6 +8,7 @@ import '../../../core/utils/constants.dart';
 import '../../../core/utils/screens.dart';
 import '../../getx/history_controller.dart';
 import '../../widgets/history_item_widget.dart';
+import '../../widgets/toggle_button.dart';
 
 class HistoryPage extends StatelessWidget {
   final historyController = Get.put(HistoryController());
@@ -16,47 +17,6 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _statuePage = [
-      TransformListWdgt(
-        controller: historyController,
-        nameList: kSuccessTxt,
-        transformList: historyController.successList.value,
-      ),
-      TransformListWdgt(
-        controller: historyController,
-        nameList: kPendingTxt,
-        transformList: historyController.pendingList.value,
-      ),
-      TransformListWdgt(
-        controller: historyController,
-        nameList: kRejectedTxt,
-        transformList: historyController.rejectedList.value,
-      ),
-    ];
-    List<Widget> _titlesToggleButtons = [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          kCompletedTxt,
-          style: TextStyle(color: kTextDark),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          kPendingTxt,
-          style: TextStyle(color: kTextDark),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(
-          kRejectedTxt,
-          style: TextStyle(color: kTextDark),
-        ),
-      ),
-    ];
-
     return Container(
       width: ScreenWeb.width(context),
       height: ScreenWeb.heigth(context) * 0.80,
@@ -75,17 +35,30 @@ class HistoryPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    ToggleButtons(
-                      children: _titlesToggleButtons,
-                      isSelected: historyController.selectedToggelButton.value,
-                      borderRadius: BorderRadius.circular(30),
-                      borderColor: kCyanButtonTgColor,
-                      selectedColor: kCyanButtonTgColor,
-                      fillColor: kCyanColor,
-                      onPressed: (int index) {
-                        historyController.selectTab(index);
+                    ToggleButton(
+                      width: ScreenWeb.width(context) * 0.9,
+                      height: 40.0,
+                      toggleBackgroundColor: kCyanColor,
+                      toggleBorderColor: kLightAccent,
+                      toggleColor: kCyanButtonTgColor,
+                      activeTextColor: kTextDark,
+                      inactiveTextColor: kTextDark,
+                      leftDescription: kPendingTxt,
+                      middleDescription: kRejectedTxt,
+                      rightDescription: kCompletedTxt,
+                      onLeftToggleActive: () {
+                        print('left toggle activated');
+                        historyController.selectTab(0);
                       },
-                    ),
+                      onMiddleToggleActive: () {
+                        print('middle toggle activated');
+                        historyController.selectTab(1);
+                      },
+                      onRightToggleActive: () {
+                        print('right toggle activated');
+                        historyController.selectTab(2);
+                      },
+                    )
                   ],
                 ),
               ),
@@ -94,7 +67,23 @@ class HistoryPage extends StatelessWidget {
               flex: 8,
               child: IndexedStack(
                   index: historyController.tabIndex.value,
-                  children: _statuePage),
+                  children: [
+                    TransformListWdgt(
+                      controller: historyController,
+                      nameList: kPendingTxt,
+                      transformList: historyController.successList.value,
+                    ),
+                    TransformListWdgt(
+                      controller: historyController,
+                      nameList: kRejectedTxt,
+                      transformList: historyController.rejectedList.value,
+                    ),
+                    TransformListWdgt(
+                      controller: historyController,
+                      nameList: kSuccessTxt,
+                      transformList: historyController.successList.value,
+                    ),
+                  ]),
             ),
           ],
         );

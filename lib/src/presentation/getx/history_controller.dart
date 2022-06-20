@@ -10,7 +10,7 @@ class HistoryController extends GetxController {
   RxList<TransformModel> successList = <TransformModel>[].obs;
   RxList<TransformModel> pendingList = <TransformModel>[].obs;
   RxList<TransformModel> rejectedList = <TransformModel>[].obs;
-  RxList<bool> selectedToggelButton = [true, false, false].obs;
+  // RxList<bool> selectedToggelButton = [true, false, false].obs;
   RxMap<String, String> selectStatueTitleImageMap = {
     kSuccessTxt: kSuccessImg,
     kPendingTxt: kPendingImg,
@@ -45,10 +45,9 @@ class HistoryController extends GetxController {
   }
 
   void selectTab(int index) {
-    selectedToggelButton.value = [false, false, false];
-    selectedToggelButton.value[index] = true;
+/*    selectedToggelButton.value = [false, false, false];
+    selectedToggelButton.value[index] = true;*/
     tabIndex.value = index;
-    update();
   }
 
   void changeClickItem(String statusType, TransformModel selectedItem) {
