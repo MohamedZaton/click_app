@@ -31,7 +31,7 @@ class PayDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("$nameCountry -  $kMakeTransferText"),
+          title: Text("$nameCountry -  $kMakeTransferTxt"),
         ),
         body: Container(
           alignment: Alignment.center,
@@ -142,7 +142,7 @@ class PayDetailsPage extends StatelessWidget {
                               runSpacing: 5,
                               children: [Text(detailsCountry!)])),
                       OvalButtonWdgt(
-                          text: kNextText.toUpperCase(),
+                          text: kNextTxt.toUpperCase(),
                           textColor: Colors.white,
                           onPressed: () {
                             Get.to(() => PayFormsPage());

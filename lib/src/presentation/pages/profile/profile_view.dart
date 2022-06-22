@@ -16,7 +16,7 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(kProfileText),
+        title: Text(kProfileTxt),
         centerTitle: true,
         backgroundColor: kLightAccent,
       ),
@@ -95,7 +95,7 @@ class ProfilePage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kAboutAppText,
+                                  text: kAboutAppTxt,
                                   imagePath: kEditImg,
                                   isCenter: false,
                                   backgroundColor: kPrizeCardBkgdColor,
@@ -105,7 +105,7 @@ class ProfilePage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kSaveText.toUpperCase(),
+                                  text: kSaveTxt.toUpperCase(),
                                   textColor: Colors.white,
                                   onPressed: () {}),
                             ]),

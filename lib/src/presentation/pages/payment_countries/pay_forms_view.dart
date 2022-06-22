@@ -19,7 +19,7 @@ class PayFormsPage extends StatelessWidget {
     String rateMoneyValue = "20 EGP";
     return Scaffold(
       appBar: AppBar(
-        title: Text(kFormPayText),
+        title: Text(kFormPayTxt),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -32,13 +32,13 @@ class PayFormsPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 UploadingButtonWdgt(
-                  nameBtn: kChooseConfirmationMessageImageText,
+                  nameBtn: kChooseConfirmationMessageImageTxt,
                 ),
                 SizedBox(height: spacing_middle),
 
                 /// amount of money
                 TextField(
-                  decoration: editTextWithBoarderDecoration(kAmountOfMoneyText,
+                  decoration: editTextWithBoarderDecoration(kAmountOfMoneyTxt,
                       thickness: 2.0),
                   cursorColor: kLightAccent,
                   keyboardType: TextInputType.text,
@@ -58,7 +58,7 @@ class PayFormsPage extends StatelessWidget {
                         width: spacing_middle,
                       ),
                       Text(
-                        kRussianRubleRateTodayText + " :",
+                        kRussianRubleRateTodayTxt + " :",
                         style: Theme.of(context)
                             .textTheme
                             .subtitle2!
@@ -82,8 +82,7 @@ class PayFormsPage extends StatelessWidget {
                 /// Bank Account Name
 
                 TextField(
-                  decoration: editTextWithBoarderDecoration(
-                      kBankAccountNameText,
+                  decoration: editTextWithBoarderDecoration(kBankAccountNameTxt,
                       thickness: 2.0),
                   cursorColor: kLightAccent,
                   keyboardType: TextInputType.text,
@@ -94,7 +93,7 @@ class PayFormsPage extends StatelessWidget {
                 /// k Bank Account Number
                 TextField(
                   decoration: editTextWithBoarderDecoration(
-                      kBankAccountNumberText,
+                      kBankAccountNumberTxt,
                       thickness: 2.0),
                   cursorColor: kLightAccent,
                   keyboardType: TextInputType.text,

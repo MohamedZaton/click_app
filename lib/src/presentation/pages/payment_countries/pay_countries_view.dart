@@ -17,7 +17,7 @@ class PaymentCountriesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(kChooseCountryText),
+        title: Text(kChooseCountryTxt),
         centerTitle: true,
         backgroundColor: kLightAccent,
       ),
@@ -53,7 +53,7 @@ class PaymentCountriesPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               OvalButtonWdgt(
-                                  text: kEgyptText,
+                                  text: kEgyptTxt,
                                   imagePath: kEgyptFlagImg,
                                   isCenter: false,
                                   backgroundColor: kLightAccent,
@@ -65,14 +65,14 @@ class PaymentCountriesPage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kUaeText,
+                                  text: kUaeTxt,
                                   imagePath: kUaeFlagImg,
                                   isCenter: false,
                                   backgroundColor: kLightAccent,
                                   textColor: Colors.white,
                                   onPressed: () {
                                     Get.to(() => PayDetailsPage(
-                                          nameCountry: kUaeText,
+                                          nameCountry: kUaeTxt,
                                           flagPath: kUaeFlagImg,
                                         ));
                                   }),
@@ -80,14 +80,14 @@ class PaymentCountriesPage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kSaudiArabiaText,
+                                  text: kSaudiArabiaTxt,
                                   imagePath: kKsaFlagImg,
                                   isCenter: false,
                                   backgroundColor: kLightAccent,
                                   textColor: Colors.white,
                                   onPressed: () {
                                     Get.to(() => PayDetailsPage(
-                                          nameCountry: kSaudiArabiaText,
+                                          nameCountry: kSaudiArabiaTxt,
                                           flagPath: kKsaFlagImg,
                                         ));
                                   }),
@@ -105,7 +105,7 @@ class PaymentCountriesPage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kContactUsText,
+                                  text: kContactUsTxt,
                                   imagePath: kWhatsAppImg,
                                   isCenter: false,
                                   backgroundColor: kLightAccent,

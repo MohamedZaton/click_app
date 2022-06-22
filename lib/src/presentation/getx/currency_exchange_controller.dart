@@ -7,13 +7,13 @@ import '../../core/utils/images_path.dart';
 class CurrencyExchangeController extends GetxController {
   CurrencyModel selectedCurrency = CurrencyModel(
     name: "EGP",
-    country: kEgyptText,
+    country: kEgyptTxt,
     value: "20",
     flagImg: kEgyptFlagImg,
   );
   CurrencyModel russiaCurrency = CurrencyModel(
     name: "RUBLE",
-    country: kRussiaText,
+    country: kRussiaTxt,
     value: "20",
     flagImg: kRussiaFlagImg,
   );

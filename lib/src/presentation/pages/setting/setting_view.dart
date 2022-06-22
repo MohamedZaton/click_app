@@ -46,7 +46,7 @@ class SettingPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             OvalButtonWdgt(
-                                text: kProfileText,
+                                text: kProfileTxt,
                                 imagePath: kProfileImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -58,7 +58,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kLanguageText,
+                                text: kLanguageTxt,
                                 imagePath: kLanguageImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -68,7 +68,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kContactUsText,
+                                text: kContactUsTxt,
                                 imagePath: kContactUsImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -78,7 +78,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kShareAppText,
+                                text: kShareAppTxt,
                                 imagePath: kShareAppImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -88,7 +88,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kRateAppText,
+                                text: kRateAppTxt,
                                 imagePath: kRateImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -98,7 +98,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kAboutAppText,
+                                text: kAboutAppTxt,
                                 imagePath: kAboutImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -108,7 +108,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kLogOutText.toUpperCase(),
+                                text: kLogOutTxt.toUpperCase(),
                                 textColor: Colors.white,
                                 onPressed: () {}),
                           ]),

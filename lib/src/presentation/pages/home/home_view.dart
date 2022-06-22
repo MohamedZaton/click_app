@@ -47,6 +47,7 @@ class HomePage extends StatelessWidget {
           child: CurvedNavigationBar(
             backgroundColor: Colors.white,
             buttonBackgroundColor: kOrangeColor,
+            initialIndex: controller.tabIndex,
             color: kLightAccent,
             items: [
               FluxImage(

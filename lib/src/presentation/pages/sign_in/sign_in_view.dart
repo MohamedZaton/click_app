@@ -130,7 +130,7 @@ class SignInPage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        kInitAccountText,
+                                        kInitAccountTxt,
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
@@ -138,7 +138,7 @@ class SignInPage extends StatelessWidget {
                                       ),
                                       InkWell(
                                         child: Text(
-                                          kSignUpText,
+                                          kSignUpTxt,
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1
@@ -158,7 +158,7 @@ class SignInPage extends StatelessWidget {
                                   ),
                                   SizedBox(height: 20),
                                   OvalButtonWdgt(
-                                      text: kSignInText.toUpperCase(),
+                                      text: kSignInTxt.toUpperCase(),
                                       onPressed: () {
                                         Get.to(() => HomePage());
                                       }),

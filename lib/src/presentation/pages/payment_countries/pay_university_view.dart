@@ -18,7 +18,7 @@ class PayUniversityPage extends StatelessWidget {
     String rateMoneyValue = "20 EGP";
     return Scaffold(
       appBar: AppBar(
-        title: Text(kUniversityPayText),
+        title: Text(kUniversityPayTxt),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -31,21 +31,21 @@ class PayUniversityPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 UploadingButtonWdgt(
-                  nameBtn: kChooseConfirmationMessageImageText,
+                  nameBtn: kChooseConfirmationMessageImageTxt,
                 ),
                 SizedBox(height: spacing_middle),
                 UploadingButtonWdgt(
-                  nameBtn: kChoosePassportImageText,
+                  nameBtn: kChoosePassportImageTxt,
                 ),
                 SizedBox(height: spacing_middle),
                 UploadingButtonWdgt(
-                  nameBtn: kChooseYourIdImageText,
+                  nameBtn: kChooseYourIdImageTxt,
                 ),
                 SizedBox(height: spacing_middle),
 
                 /// amount of money
                 TextField(
-                  decoration: editTextWithBoarderDecoration(kAmountOfMoneyText,
+                  decoration: editTextWithBoarderDecoration(kAmountOfMoneyTxt,
                       thickness: 2.0),
                   cursorColor: kLightAccent,
                   keyboardType: TextInputType.text,
@@ -65,7 +65,7 @@ class PayUniversityPage extends StatelessWidget {
                         width: spacing_middle,
                       ),
                       Text(
-                        kRussianRubleRateTodayText + " :",
+                        kRussianRubleRateTodayTxt + " :",
                         style: Theme.of(context)
                             .textTheme
                             .subtitle2!
@@ -89,8 +89,7 @@ class PayUniversityPage extends StatelessWidget {
                 /// Bank Account Name
 
                 TextField(
-                  decoration: editTextWithBoarderDecoration(
-                      kBankAccountNameText,
+                  decoration: editTextWithBoarderDecoration(kBankAccountNameTxt,
                       thickness: 2.0),
                   cursorColor: kLightAccent,
                   keyboardType: TextInputType.text,
@@ -101,7 +100,7 @@ class PayUniversityPage extends StatelessWidget {
                 /// k Bank Account Number
                 TextField(
                   decoration: editTextWithBoarderDecoration(
-                      kBankAccountNumberText,
+                      kBankAccountNumberTxt,
                       thickness: 2.0),
                   cursorColor: kLightAccent,
                   keyboardType: TextInputType.text,

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:click_app/src/config/routes/app_routes.dart';
 import 'package:click_app/src/config/themes/get_theme.dart';
+import 'package:click_app/src/core/languages/translation.dart';
 import 'package:click_app/src/presentation/pages/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -35,6 +36,9 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.light,
         darkTheme: buildDarkTheme(),
         theme: buildDarkTheme(),
+        translations: TranslationApp(),
+        locale: Locale('ar'),
+        fallbackLocale: Locale('en'),
         initialRoute: SplashPage.id,
         getPages: AppRoutes.onGenerateRoutes(),
       ),

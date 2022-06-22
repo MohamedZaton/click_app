@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../../../core/utils/constants.dart';
 import '../../../core/utils/images_path.dart';
+import '../../getx/home_controller.dart';
 import '../../widgets/oval_btn_widget.dart';
 import '../home/home_view.dart';
 
@@ -15,7 +16,7 @@ class MessagesPage extends StatelessWidget {
   final String? imgPath;
   final String? nameButton;
   MessagesPage({
-    this.title = kAppliedText,
+    this.title = kAppliedTxt,
     this.imgPath = kAppliedImg,
     this.nameButton = kDoneTxt,
   });
@@ -51,6 +52,9 @@ class MessagesPage extends StatelessWidget {
           OvalButtonWdgt(
               text: kDoneTxt,
               onPressed: () {
+                final logic = Get.put(HomeController());
+                logic.tabIndex = 2;
+
                 Get.to(() => HomePage());
               }),
         ],

@@ -234,7 +234,7 @@ class CurrencyExchangePage extends StatelessWidget {
                                   /// make transfer button
                                   Flexible(
                                     child: OvalButtonWdgt(
-                                        text: kMakeTransferText,
+                                        text: kMakeTransferTxt,
                                         onPressed: () {
                                           Get.to(() => PaymentCountriesPage());
                                         }),
