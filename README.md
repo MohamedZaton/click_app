@@ -1,16 +1,22 @@
 # click_app
 
-A new Flutter project.
+The Click App is a currency exchange app for currency exchange from the Middle East to Russia or Ukraine .
 
-## Getting Started
+So far it is just a UI Kit, and the next step will be to add Rest API and Unit testing .
 
-This project is a starting point for a Flutter application.
+## App Images
 
-A few resources to get you started if this is your first Flutter project:
+![click_poster](https://user-images.githubusercontent.com/26501595/175790810-3b86d899-0cc5-485f-a6db-06aa5b827a5f.png)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Android APK 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://drive.google.com/drive/folders/1ilsf4zY245BRGav-0Mx9oZUUlb2KGOv2?usp=sharing
+
+## Features
+
+☑︎  UI Kit .  
+
+☑︎ State management -> Getx . 
+
+☑︎ Using Flutter TDD Clean Architecture . 
+
