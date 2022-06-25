@@ -1,4 +1,4 @@
-# click_app
+# Click App
 
 The Click App is a currency exchange app for currency exchange from the Middle East to Russia or Ukraine .
 
