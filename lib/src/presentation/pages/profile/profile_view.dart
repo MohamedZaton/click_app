@@ -16,18 +16,18 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(kProfileTxt),
+        title: Text(kProfileTxt.tr),
         centerTitle: true,
         backgroundColor: kLightAccent,
       ),
       body: Container(
-        width: ScreenWeb.width(context),
-        height: ScreenWeb.heigth(context) * 0.80,
+        width: ScreenDevices.width(context),
+        height: ScreenDevices.heigth(context) * 0.80,
         color: kLightAccent,
         child: Container(
           margin: EdgeInsets.only(top: 30),
-          width: ScreenWeb.width(context),
-          height: ScreenWeb.heigth(context) * 0.80,
+          width: ScreenDevices.width(context),
+          height: ScreenDevices.heigth(context) * 0.80,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -95,7 +95,7 @@ class ProfilePage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kAboutAppTxt,
+                                  text: kAboutAppTxt.tr,
                                   imagePath: kEditImg,
                                   isCenter: false,
                                   backgroundColor: kPrizeCardBkgdColor,
@@ -105,7 +105,7 @@ class ProfilePage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kSaveTxt.toUpperCase(),
+                                  text: kSaveTxt.tr.toUpperCase(),
                                   textColor: Colors.white,
                                   onPressed: () {}),
                             ]),

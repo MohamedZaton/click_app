@@ -58,7 +58,7 @@ class HomeItemWgt extends StatelessWidget {
                         Expanded(
                           flex: 1,
                           child: SizedBox(
-                            width: ScreenWeb.width(ctx) * 0.1,
+                            width: ScreenDevices.width(ctx) * 0.1,
                           ),
                         ),
 
@@ -92,7 +92,7 @@ class HomeItemWgt extends StatelessWidget {
                         Expanded(
                           flex: 1,
                           child: SizedBox(
-                            width: ScreenWeb.width(ctx) * 0.1,
+                            width: ScreenDevices.width(ctx) * 0.1,
                           ),
                         ),
 

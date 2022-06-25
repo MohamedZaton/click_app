@@ -22,6 +22,7 @@ dependencies:
   # function programing thinking
   dartz: ^0.10.1
   # tools & custom ui
+  flutter_launcher_icons: ^0.9.3
   google_fonts: 3.0.1
   flutter_svg: ^1.1.0
   lazy_load_scrollview: ^1.3.0
@@ -45,6 +46,10 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
 
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/logo/click_logo_new.png"
 
 flutter:
 

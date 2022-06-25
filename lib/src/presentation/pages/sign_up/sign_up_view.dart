@@ -32,7 +32,7 @@ class SignUpPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Text(
-                  kCreateAccountTxt,
+                  kCreateAccountTxt.tr,
                   style: Theme.of(context)
                       .textTheme
                       .headline4
@@ -79,7 +79,7 @@ class SignUpPage extends StatelessWidget {
                                   children: <Widget>[
                                     TextFormField(
                                       decoration: InputDecoration(
-                                        labelText: kFullNameTxt,
+                                        labelText: kFullNameTxt.tr,
                                         labelStyle: TextStyle(
                                             fontSize: 10, color: kLightAccent),
                                         enabledBorder: UnderlineInputBorder(
@@ -95,7 +95,7 @@ class SignUpPage extends StatelessWidget {
                                     SizedBox(height: 10),
                                     TextFormField(
                                       decoration: InputDecoration(
-                                        labelText: kEmailTxt,
+                                        labelText: kEmailTxt.tr,
                                         labelStyle: TextStyle(
                                             fontSize: 10, color: kLightAccent),
                                         enabledBorder: UnderlineInputBorder(
@@ -111,7 +111,7 @@ class SignUpPage extends StatelessWidget {
                                     SizedBox(height: 10),
                                     TextFormField(
                                       decoration: InputDecoration(
-                                        labelText: kPasswordTxt,
+                                        labelText: kPasswordTxt.tr,
                                         labelStyle: TextStyle(
                                             fontSize: 10, color: kLightAccent),
                                         suffixIcon: Icon(
@@ -135,7 +135,7 @@ class SignUpPage extends StatelessWidget {
                                     SizedBox(height: 10),
                                     TextFormField(
                                       decoration: InputDecoration(
-                                        labelText: kConfirmPasswordTxt,
+                                        labelText: kConfirmPasswordTxt.tr,
                                         labelStyle: TextStyle(
                                             fontSize: 10, color: kLightAccent),
                                         suffixIcon: Icon(
@@ -162,7 +162,7 @@ class SignUpPage extends StatelessWidget {
                                       children: [
                                         InkWell(
                                           child: Text(
-                                            kForgotPasswordTxt,
+                                            kForgotPasswordTxt.tr,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .subtitle1
@@ -180,7 +180,7 @@ class SignUpPage extends StatelessWidget {
                                           MainAxisAlignment.center,
                                       children: [
                                         Text(
-                                          kInitAccountTxt,
+                                          kInitAccountTxt.tr,
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1
@@ -188,7 +188,7 @@ class SignUpPage extends StatelessWidget {
                                         ),
                                         InkWell(
                                           child: Text(
-                                            kSignInTxt,
+                                            kSignInTxt.tr,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .subtitle1
@@ -206,7 +206,7 @@ class SignUpPage extends StatelessWidget {
                                     ),
                                     SizedBox(height: 20),
                                     OvalButtonWdgt(
-                                        text: kSignUpTxt.toUpperCase(),
+                                        text: kSignUpTxt.tr.toUpperCase(),
                                         onPressed: () {
                                           Get.to(() => HomePage());
                                         }),

@@ -27,16 +27,16 @@ class MessagesPage extends StatelessWidget {
       padding: EdgeInsets.all(16),
       color: Colors.white,
       alignment: Alignment.center,
-      width: ScreenWeb.width(context),
-      height: ScreenWeb.heigth(context),
+      width: ScreenDevices.width(context),
+      height: ScreenDevices.heigth(context),
       child: Column(
         children: [
           Expanded(
             flex: 4,
             child: FluxImage(
               imageUrl: kAppliedImg,
-              width: ScreenWeb.width(context) * 0.6,
-              height: ScreenWeb.heigth(context) * 0.6,
+              width: ScreenDevices.width(context) * 0.6,
+              height: ScreenDevices.heigth(context) * 0.6,
             ),
           ),
           Expanded(
@@ -50,7 +50,7 @@ class MessagesPage extends StatelessWidget {
             ),
           ),
           OvalButtonWdgt(
-              text: kDoneTxt,
+              text: kDoneTxt.tr,
               onPressed: () {
                 final logic = Get.put(HomeController());
                 logic.tabIndex = 2;

@@ -50,6 +50,7 @@ const Map<String, String> en = {
   kRussiaTxt: "Russia",
   kUaeTxt: "The United Arab Emirates",
   kSaudiArabiaTxt: "Saudi Arabia",
+
   kAmountOfMoneyTxt: "Amount Of Money",
   kBankAccountNameTxt: "Bank Account Name ",
   kBankAccountNumberTxt: "Bank Account Number ",

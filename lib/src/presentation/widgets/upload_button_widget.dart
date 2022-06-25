@@ -16,8 +16,8 @@ class UploadingButtonWdgt extends StatelessWidget {
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: decorEggsBlueBoarder,
-        width: ScreenWeb.width(context) * 0.95,
-        height: ScreenWeb.width(context) * 0.30,
+        width: ScreenDevices.width(context) * 0.95,
+        height: ScreenDevices.width(context) * 0.30,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,

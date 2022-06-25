@@ -2,6 +2,10 @@ import 'package:click_app/src/core/utils/colors.dart';
 import 'package:click_app/src/core/utils/screens.dart';
 import 'package:click_app/src/presentation/widgets/flux_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../core/utils/constants.dart';
+import '../pages/language_list/language_list_controller.dart';
 
 class PrizeCard extends StatelessWidget {
   final String? logoPath;
@@ -70,12 +74,14 @@ class PrizeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final langController = Get.put(LanguageListController());
+    String _selectedLanguage = langController.getLanguage();
     return Container(
       color: Colors.white,
       child: Container(
         margin: EdgeInsets.only(top: 30),
-        height: ScreenWeb.heigth(context) * 0.55,
-        width: ScreenWeb.width(context) * 0.8,
+        height: ScreenDevices.heigth(context) * 0.55,
+        width: ScreenDevices.width(context) * 0.8,
         decoration: BoxDecoration(
           color: kPrizeCardBkgdColor,
           borderRadius: BorderRadius.circular(20.0),
@@ -83,7 +89,9 @@ class PrizeBody extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.only(left: 8, right: 8, top: 45),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: _selectedLanguage != kArabicCode
+                ? CrossAxisAlignment.start
+                : CrossAxisAlignment.end,
             children: [
               Flexible(
                 child: Text(

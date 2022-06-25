@@ -19,26 +19,27 @@ class PayFormsPage extends StatelessWidget {
     String rateMoneyValue = "20 EGP";
     return Scaffold(
       appBar: AppBar(
-        title: Text(kFormPayTxt),
+        title: Text(kFormPayTxt.tr),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Container(
             alignment: Alignment.center,
-            width: ScreenWeb.width(context),
-            height: ScreenWeb.heigth(context),
+            width: ScreenDevices.width(context),
+            height: ScreenDevices.heigth(context),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 UploadingButtonWdgt(
-                  nameBtn: kChooseConfirmationMessageImageTxt,
+                  nameBtn: kChooseConfirmationMessageImageTxt.tr,
                 ),
                 SizedBox(height: spacing_middle),
 
                 /// amount of money
                 TextField(
-                  decoration: editTextWithBoarderDecoration(kAmountOfMoneyTxt,
+                  decoration: editTextWithBoarderDecoration(
+                      kAmountOfMoneyTxt.tr,
                       thickness: 2.0),
                   cursorColor: kLightAccent,
                   keyboardType: TextInputType.text,
@@ -49,8 +50,8 @@ class PayFormsPage extends StatelessWidget {
                 /// Russian ruble rate today
                 Container(
                   decoration: decorEggsBlueBoarder,
-                  width: ScreenWeb.width(context),
-                  height: ScreenWeb.heigth(context) * 0.08,
+                  width: ScreenDevices.width(context),
+                  height: ScreenDevices.heigth(context) * 0.08,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -58,7 +59,7 @@ class PayFormsPage extends StatelessWidget {
                         width: spacing_middle,
                       ),
                       Text(
-                        kRussianRubleRateTodayTxt + " :",
+                        kRussianRubleRateTodayTxt.tr + " :",
                         style: Theme.of(context)
                             .textTheme
                             .subtitle2!
@@ -82,7 +83,8 @@ class PayFormsPage extends StatelessWidget {
                 /// Bank Account Name
 
                 TextField(
-                  decoration: editTextWithBoarderDecoration(kBankAccountNameTxt,
+                  decoration: editTextWithBoarderDecoration(
+                      kBankAccountNameTxt.tr,
                       thickness: 2.0),
                   cursorColor: kLightAccent,
                   keyboardType: TextInputType.text,
@@ -93,7 +95,7 @@ class PayFormsPage extends StatelessWidget {
                 /// k Bank Account Number
                 TextField(
                   decoration: editTextWithBoarderDecoration(
-                      kBankAccountNumberTxt,
+                      kBankAccountNumberTxt.tr,
                       thickness: 2.0),
                   cursorColor: kLightAccent,
                   keyboardType: TextInputType.text,
@@ -103,7 +105,7 @@ class PayFormsPage extends StatelessWidget {
 
                 /// confirm button
                 OvalButtonWdgt(
-                    text: kConfirmTxt,
+                    text: kConfirmTxt.tr,
                     onPressed: () {
                       Get.to(() => MessagesPage());
                     }),

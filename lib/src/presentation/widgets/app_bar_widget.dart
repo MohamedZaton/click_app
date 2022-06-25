@@ -11,11 +11,11 @@ class AppBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(
-          left: ScreenWeb.width(context) * 0.02,
-          right: ScreenWeb.width(context) * 0.02,
-          top: ScreenWeb.width(context) * 0.08),
+          left: ScreenDevices.width(context) * 0.02,
+          right: ScreenDevices.width(context) * 0.02,
+          top: ScreenDevices.width(context) * 0.08),
       color: kLightAccent,
-      height: ScreenWeb.heigth(context) * 0.10,
+      height: ScreenDevices.heigth(context) * 0.10,
       child: Column(
         children: [
           Expanded(

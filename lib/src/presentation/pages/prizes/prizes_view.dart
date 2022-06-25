@@ -13,18 +13,18 @@ class PrizesPage extends StatelessWidget {
   List<Widget> imageSliders = [
     PrizeCard(
       logoPath: kPrizeAImg,
-      title: kPrizeTitleTxt,
-      body: kBodyDemoTxt,
+      title: kPrizeTitleTxt.tr,
+      body: kBodyDemoTxt.tr,
     ),
     PrizeCard(
       logoPath: kPrizeAImg,
-      title: kPrizeTitleTxt,
-      body: kBodyDemoTxt,
+      title: kPrizeTitleTxt.tr,
+      body: kBodyDemoTxt.tr,
     ),
     PrizeCard(
       logoPath: kPrizeAImg,
-      title: kPrizeTitleTxt,
-      body: kBodyDemoTxt,
+      title: kPrizeTitleTxt.tr,
+      body: kBodyDemoTxt.tr,
     ),
   ];
 

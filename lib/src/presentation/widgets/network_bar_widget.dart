@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../core/utils/constants.dart';
 import '../../core/utils/screens.dart';
@@ -11,16 +12,16 @@ class NetworkBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return isConnect
         ? SizedBox(
-            width: ScreenWeb.width(context),
+            width: ScreenDevices.width(context),
             height: 1,
           )
         : Container(
             alignment: Alignment.center,
             color: Colors.red,
             height: 32,
-            width: ScreenWeb.width(context),
+            width: ScreenDevices.width(context),
             child: Center(
-              child: Text(kOfflineTxt,
+              child: Text(kOfflineTxt.tr,
                   style: Theme.of(context).textTheme.headline6!),
             ),
           );

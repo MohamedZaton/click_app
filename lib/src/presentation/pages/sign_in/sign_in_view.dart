@@ -25,14 +25,14 @@ class SignInPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: ScreenWeb.heigth(context) * 0.05,
+            height: ScreenDevices.heigth(context) * 0.05,
           ),
           Expanded(
-            flex: 1,
+            flex: 2,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Text(
-                kHelloLogInTxt,
+                kHelloLogInTxt.tr,
                 style: Theme.of(context)
                     .textTheme
                     .headline4
@@ -70,7 +70,7 @@ class SignInPage extends StatelessWidget {
                                 children: <Widget>[
                                   TextFormField(
                                     decoration: InputDecoration(
-                                      labelText: kEmailTxt,
+                                      labelText: kEmailTxt.tr,
                                       labelStyle: TextStyle(
                                           fontSize: 15, color: kLightAccent),
                                       enabledBorder: UnderlineInputBorder(
@@ -86,7 +86,7 @@ class SignInPage extends StatelessWidget {
                                   SizedBox(height: 16),
                                   TextFormField(
                                     decoration: InputDecoration(
-                                      labelText: kPasswordTxt,
+                                      labelText: kPasswordTxt.tr,
                                       labelStyle: TextStyle(
                                           fontSize: 15, color: kLightAccent),
                                       suffixIcon: Icon(
@@ -113,7 +113,7 @@ class SignInPage extends StatelessWidget {
                                     children: [
                                       InkWell(
                                         child: Text(
-                                          kForgotPasswordTxt,
+                                          kForgotPasswordTxt.tr,
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1
@@ -130,7 +130,7 @@ class SignInPage extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        kInitAccountTxt,
+                                        kInitAccountTxt.tr,
                                         style: Theme.of(context)
                                             .textTheme
                                             .subtitle1
@@ -138,7 +138,7 @@ class SignInPage extends StatelessWidget {
                                       ),
                                       InkWell(
                                         child: Text(
-                                          kSignUpTxt,
+                                          kSignUpTxt.tr,
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1
@@ -158,7 +158,7 @@ class SignInPage extends StatelessWidget {
                                   ),
                                   SizedBox(height: 20),
                                   OvalButtonWdgt(
-                                      text: kSignInTxt.toUpperCase(),
+                                      text: kSignInTxt.tr.toUpperCase(),
                                       onPressed: () {
                                         Get.to(() => HomePage());
                                       }),

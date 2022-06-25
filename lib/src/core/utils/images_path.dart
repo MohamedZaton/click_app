@@ -12,6 +12,7 @@ const String kEgyptFlagImg = "assets/icons/egypt_flag.png";
 const String kKsaFlagImg = "assets/icons/ksa_flag.png";
 const String kUaeFlagImg = "assets/icons/uae_flag.png";
 const String kRussiaFlagImg = "assets/icons/russia_flag.png";
+const String kEnglishFlagImg = "assets/icons/english_flag.png";
 
 /// setting's images page
 const String kProfileImg = "assets/icons/profile_icon.png";
@@ -39,6 +40,7 @@ const String kEditImg = "assets/icons/edit_icon.png";
 const String kAddImg = "assets/icons/image_add.png";
 const String kProfileDemoImg = "assets/images/avatar_man.png";
 const String kWhatsAppImg = "assets/icons/whatsapp.png";
+const String kClockTimerImg = "assets/icons/stopwatch_icon.png";
 
 /// details make transfer
 const String kCopyImg = "assets/icons/copy_icon.png";

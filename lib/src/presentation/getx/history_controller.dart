@@ -6,7 +6,7 @@ import '../../core/utils/constants.dart';
 
 class HistoryController extends GetxController {
   RxInt tabIndex = 0.obs;
-
+  RxBool isTimerFinishedPadding = false.obs;
   RxList<TransformModel> successList = <TransformModel>[].obs;
   RxList<TransformModel> pendingList = <TransformModel>[].obs;
   RxList<TransformModel> rejectedList = <TransformModel>[].obs;

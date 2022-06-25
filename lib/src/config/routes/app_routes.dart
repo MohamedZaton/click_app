@@ -5,6 +5,7 @@ import 'package:click_app/src/presentation/getx/prizes_controller.dart';
 import 'package:click_app/src/presentation/getx/setting_controller.dart';
 import 'package:click_app/src/presentation/pages/history/history_view.dart';
 import 'package:click_app/src/presentation/pages/history_detail/history_view_detail.dart';
+import 'package:click_app/src/presentation/pages/language_list/language_list_controller.dart';
 import 'package:click_app/src/presentation/pages/payment_countries/pay_countries_view.dart';
 import 'package:click_app/src/presentation/pages/payment_countries/pay_details_view.dart';
 import 'package:click_app/src/presentation/pages/payment_countries/pay_forms_view.dart';
@@ -22,6 +23,7 @@ import '../../presentation/getx/sign_up_controller.dart';
 import '../../presentation/getx/splash_controller.dart';
 import '../../presentation/pages/currency_exchange/currency_exchange_view.dart';
 import '../../presentation/pages/home/home_view.dart';
+import '../../presentation/pages/language_list/language_list_view.dart';
 import '../../presentation/pages/messages/message_view.dart';
 import '../../presentation/pages/sign_in/sign_in_view.dart';
 import '../../presentation/pages/splash/splash_view.dart';
@@ -127,6 +129,13 @@ class AppRoutes {
         page: () => PayUniversityPage(),
         binding: BindingsBuilder(() {
           Get.lazyPut<PaymentCountriesPage>(() => PaymentCountriesPage());
+        }),
+      ),
+      GetPage(
+        name: LanguageListPage.id,
+        page: () => LanguageListPage(),
+        binding: BindingsBuilder(() {
+          Get.lazyPut<LanguageListController>(() => LanguageListController());
         }),
       ),
       GetPage(

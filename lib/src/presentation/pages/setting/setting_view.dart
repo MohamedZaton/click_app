@@ -1,6 +1,7 @@
 import 'package:click_app/src/core/utils/colors.dart';
 import 'package:click_app/src/core/utils/images_path.dart';
 import 'package:click_app/src/core/utils/screens.dart';
+import 'package:click_app/src/presentation/pages/language_list/language_list_view.dart';
 import 'package:click_app/src/presentation/pages/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,13 +16,13 @@ class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: ScreenWeb.width(context),
-      height: ScreenWeb.heigth(context) * 0.80,
+      width: ScreenDevices.width(context),
+      height: ScreenDevices.heigth(context) * 0.80,
       color: kLightAccent,
       child: Container(
         margin: EdgeInsets.only(top: 30),
-        width: ScreenWeb.width(context),
-        height: ScreenWeb.heigth(context) * 0.80,
+        width: ScreenDevices.width(context),
+        height: ScreenDevices.heigth(context) * 0.80,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -46,7 +47,7 @@ class SettingPage extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             OvalButtonWdgt(
-                                text: kProfileTxt,
+                                text: kProfileTxt.tr,
                                 imagePath: kProfileImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -58,17 +59,19 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kLanguageTxt,
+                                text: kLanguageTxt.tr,
                                 imagePath: kLanguageImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
                                 textColor: kSettingListColor,
-                                onPressed: () {}),
+                                onPressed: () {
+                                  Get.to(() => LanguageListPage());
+                                }),
                             SizedBox(
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kContactUsTxt,
+                                text: kContactUsTxt.tr,
                                 imagePath: kContactUsImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -78,7 +81,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kShareAppTxt,
+                                text: kShareAppTxt.tr,
                                 imagePath: kShareAppImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -88,7 +91,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kRateAppTxt,
+                                text: kRateAppTxt.tr,
                                 imagePath: kRateImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -98,7 +101,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kAboutAppTxt,
+                                text: kAboutAppTxt.tr,
                                 imagePath: kAboutImg,
                                 isCenter: false,
                                 backgroundColor: kCyanColor,
@@ -108,7 +111,7 @@ class SettingPage extends StatelessWidget {
                               height: 8,
                             ),
                             OvalButtonWdgt(
-                                text: kLogOutTxt.toUpperCase(),
+                                text: kLogOutTxt.tr.toUpperCase(),
                                 textColor: Colors.white,
                                 onPressed: () {}),
                           ]),

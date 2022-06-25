@@ -61,6 +61,9 @@ const kEgyptTxt = "Egypt";
 const kRussiaTxt = "Russia";
 const kUaeTxt = "The United Arab Emirates";
 const kSaudiArabiaTxt = "Saudi Arabia";
+const kArabicTxt = "Arabic";
+const kEnglishTxt = "English";
+
 const kAmountOfMoneyTxt = "Amount Of Money";
 const kBankAccountNameTxt = "Bank Account Name ";
 const kBankAccountNumberTxt = "Bank Account Number ";
@@ -105,3 +108,6 @@ const spacing_standard_new = 16.0;
 const spacing_large = 24.0;
 const spacing_xlarge = 32.0;
 const spacing_xxLarge = 40.0;
+
+const kEnglishCode = "en";
+const kArabicCode = "ar";

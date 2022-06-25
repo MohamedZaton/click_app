@@ -31,7 +31,7 @@ class PayDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("$nameCountry -  $kMakeTransferTxt"),
+          title: Text("$nameCountry -  ${kMakeTransferTxt.tr}"),
         ),
         body: Container(
           alignment: Alignment.center,
@@ -39,8 +39,8 @@ class PayDetailsPage extends StatelessWidget {
             children: [
               Container(
                 margin: EdgeInsets.only(top: 30),
-                height: ScreenWeb.heigth(context) * 0.75,
-                width: ScreenWeb.width(context) * 0.85,
+                height: ScreenDevices.heigth(context) * 0.75,
+                width: ScreenDevices.width(context) * 0.85,
                 decoration: BoxDecoration(
                   color: kPrizeCardBkgdColor,
                   borderRadius: BorderRadius.circular(20.0),
@@ -56,7 +56,7 @@ class PayDetailsPage extends StatelessWidget {
                         child: FluxImage(
                           imageUrl: flagPath.toString(),
                           fit: BoxFit.fill,
-                          width: ScreenWeb.width(context) * 0.40,
+                          width: ScreenDevices.width(context) * 0.40,
                         ),
                       ),
                       Expanded(flex: 1, child: Text(nameCountry!)),
@@ -142,7 +142,7 @@ class PayDetailsPage extends StatelessWidget {
                               runSpacing: 5,
                               children: [Text(detailsCountry!)])),
                       OvalButtonWdgt(
-                          text: kNextTxt.toUpperCase(),
+                          text: kNextTxt.tr.toUpperCase(),
                           textColor: Colors.white,
                           onPressed: () {
                             Get.to(() => PayFormsPage());

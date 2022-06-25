@@ -12,6 +12,7 @@ import '../../../core/utils/images_path.dart';
 import '../../../core/utils/styles.dart';
 import '../../getx/currency_exchange_controller.dart';
 import '../../widgets/oval_btn_widget.dart';
+import '../language_list/language_list_controller.dart';
 import '../payment_countries/pay_university_view.dart';
 
 class CurrencyExchangePage extends StatelessWidget {
@@ -20,11 +21,13 @@ class CurrencyExchangePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final langController = Get.put(LanguageListController());
+    String _selectedLanguage = langController.getLanguage();
     return SingleChildScrollView(
       child: GetBuilder<CurrencyExchangeController>(builder: (controller) {
         return Container(
-          width: ScreenWeb.width(context),
-          height: ScreenWeb.heigth(context) * 0.75,
+          width: ScreenDevices.width(context),
+          height: ScreenDevices.heigth(context) * 0.75,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -35,7 +38,7 @@ class CurrencyExchangePage extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Container(
-                    width: ScreenWeb.width(context),
+                    width: ScreenDevices.width(context),
                     child: CarouselSlider(
                       options: CarouselOptions(
                         autoPlay: true,
@@ -70,7 +73,7 @@ class CurrencyExchangePage extends StatelessWidget {
                     shrinkWrap: true,
                     children: [
                       Container(
-                        height: ScreenWeb.heigth(context) * 0.50,
+                        height: ScreenDevices.heigth(context) * 0.50,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,12 +83,18 @@ class CurrencyExchangePage extends StatelessWidget {
                             ),
                             Flexible(
                               flex: 1,
-                              child: Text(
-                                kCurrencyExchangeTxt,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline6!
-                                    .copyWith(color: kLightAccent),
+                              child: Align(
+                                alignment: _selectedLanguage != kArabicCode
+                                    ? Alignment.topLeft
+                                    : Alignment.topRight,
+                                child: Text(
+                                  kCurrencyExchangeTxt.tr,
+                                  textDirection: TextDirection.ltr,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline6!
+                                      .copyWith(color: kLightAccent),
+                                ),
                               ),
                             ),
                             SizedBox(
@@ -208,7 +217,7 @@ class CurrencyExchangePage extends StatelessWidget {
                                   Flexible(
                                     flex: 1,
                                     child: OvalButtonWdgt(
-                                        text: kCheckTxt, onPressed: () {}),
+                                        text: kCheckTxt.tr, onPressed: () {}),
                                   ),
                                   SizedBox(
                                     width: 2,
@@ -216,7 +225,7 @@ class CurrencyExchangePage extends StatelessWidget {
                                   Flexible(
                                     flex: 2,
                                     child: OvalButtonWdgt(
-                                        text: kPayUnvMoneyTxt,
+                                        text: kPayUnvMoneyTxt.tr,
                                         onPressed: () {
                                           Get.to(() => PayUniversityPage());
                                         }),
@@ -234,7 +243,7 @@ class CurrencyExchangePage extends StatelessWidget {
                                   /// make transfer button
                                   Flexible(
                                     child: OvalButtonWdgt(
-                                        text: kMakeTransferTxt,
+                                        text: kMakeTransferTxt.tr,
                                         onPressed: () {
                                           Get.to(() => PaymentCountriesPage());
                                         }),
@@ -291,7 +300,7 @@ class NewsItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: ScreenWeb.width(context) * 0.95,
+      width: ScreenDevices.width(context) * 0.95,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
         border: Border.all(color: kLightAccent, width: 3.0),

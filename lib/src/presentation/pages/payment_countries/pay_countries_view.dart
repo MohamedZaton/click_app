@@ -17,18 +17,18 @@ class PaymentCountriesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(kChooseCountryTxt),
+        title: Text(kChooseCountryTxt.tr),
         centerTitle: true,
         backgroundColor: kLightAccent,
       ),
       body: Container(
-        width: ScreenWeb.width(context),
-        height: ScreenWeb.heigth(context) * 0.80,
+        width: ScreenDevices.width(context),
+        height: ScreenDevices.heigth(context) * 0.80,
         color: kLightAccent,
         child: Container(
           margin: EdgeInsets.only(top: 30),
-          width: ScreenWeb.width(context),
-          height: ScreenWeb.heigth(context) * 0.80,
+          width: ScreenDevices.width(context),
+          height: ScreenDevices.heigth(context) * 0.80,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -53,7 +53,7 @@ class PaymentCountriesPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               OvalButtonWdgt(
-                                  text: kEgyptTxt,
+                                  text: kEgyptTxt.tr,
                                   imagePath: kEgyptFlagImg,
                                   isCenter: false,
                                   backgroundColor: kLightAccent,
@@ -65,14 +65,14 @@ class PaymentCountriesPage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kUaeTxt,
+                                  text: kUaeTxt.tr,
                                   imagePath: kUaeFlagImg,
                                   isCenter: false,
                                   backgroundColor: kLightAccent,
                                   textColor: Colors.white,
                                   onPressed: () {
                                     Get.to(() => PayDetailsPage(
-                                          nameCountry: kUaeTxt,
+                                          nameCountry: kUaeTxt.tr,
                                           flagPath: kUaeFlagImg,
                                         ));
                                   }),
@@ -80,14 +80,14 @@ class PaymentCountriesPage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kSaudiArabiaTxt,
+                                  text: kSaudiArabiaTxt.tr,
                                   imagePath: kKsaFlagImg,
                                   isCenter: false,
                                   backgroundColor: kLightAccent,
                                   textColor: Colors.white,
                                   onPressed: () {
                                     Get.to(() => PayDetailsPage(
-                                          nameCountry: kSaudiArabiaTxt,
+                                          nameCountry: kSaudiArabiaTxt.tr,
                                           flagPath: kKsaFlagImg,
                                         ));
                                   }),
@@ -105,7 +105,7 @@ class PaymentCountriesPage extends StatelessWidget {
                                 height: 8,
                               ),
                               OvalButtonWdgt(
-                                  text: kContactUsTxt,
+                                  text: kContactUsTxt.tr,
                                   imagePath: kWhatsAppImg,
                                   isCenter: false,
                                   backgroundColor: kLightAccent,

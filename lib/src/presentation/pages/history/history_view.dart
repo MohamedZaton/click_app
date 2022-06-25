@@ -18,8 +18,8 @@ class HistoryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: ScreenWeb.width(context),
-      height: ScreenWeb.heigth(context) * 0.80,
+      width: ScreenDevices.width(context),
+      height: ScreenDevices.heigth(context) * 0.80,
       color: Colors.white,
       child: Obx(() {
         //Map <String, dynamic>  transformMap = historyController.transformMap.value ;
@@ -30,22 +30,22 @@ class HistoryPage extends StatelessWidget {
               flex: 1,
               child: Container(
                 color: kLightAccent,
-                width: ScreenWeb.width(context),
+                width: ScreenDevices.width(context),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ToggleButton(
-                      width: ScreenWeb.width(context) * 0.9,
+                      width: ScreenDevices.width(context) * 0.9,
                       height: 40.0,
                       toggleBackgroundColor: kCyanColor,
                       toggleBorderColor: kLightAccent,
                       toggleColor: kCyanButtonTgColor,
                       activeTextColor: kTextDark,
                       inactiveTextColor: kTextDark,
-                      leftDescription: kPendingTxt,
-                      middleDescription: kRejectedTxt,
-                      rightDescription: kCompletedTxt,
+                      leftDescription: kPendingTxt.tr,
+                      middleDescription: kRejectedTxt.tr,
+                      rightDescription: kCompletedTxt.tr,
                       onLeftToggleActive: () {
                         print('left toggle activated');
                         historyController.selectTab(0);
@@ -106,7 +106,7 @@ class TransformListWdgt extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: ScreenWeb.width(context),
+      width: ScreenDevices.width(context),
       decoration: BoxDecoration(
         color: Colors.white,
       ),
@@ -120,7 +120,7 @@ class TransformListWdgt extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  height: ScreenWeb.heigth(context) * 0.80,
+                  height: ScreenDevices.heigth(context) * 0.80,
                   padding: EdgeInsets.only(left: 16, right: 16, top: 8),
                   child: ListView.builder(
                     scrollDirection: Axis.vertical,
