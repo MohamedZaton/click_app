@@ -7,7 +7,6 @@ import 'package:click_app/src/presentation/pages/language_list/language_list_con
 import 'package:click_app/src/presentation/pages/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -20,7 +19,6 @@ class MyHttpOverrides extends HttpOverrides {
 
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
-  await GetStorage.init();
   runApp(const MyApp());
 }
 
