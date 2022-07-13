@@ -7,44 +7,45 @@ String currenciesListModelToJson(CurrenciesListModel data) =>
 
 class CurrenciesListModel {
   CurrenciesListModel({
-    this.data,
+    this.dataCurrenciesList,
   });
 
   CurrenciesListModel.fromJson(dynamic json) {
     if (json['data'] != null) {
-      data = [];
+      dataCurrenciesList = [];
       json['data'].forEach((v) {
-        data?.add(Data.fromJson(v));
+        dataCurrenciesList?.add(DataCurrenciesList.fromJson(v));
       });
     }
   }
-  List<Data>? data;
+  List<DataCurrenciesList>? dataCurrenciesList;
   CurrenciesListModel copyWith({
-    List<Data>? data,
+    List<DataCurrenciesList>? dataCurrenciesList,
   }) =>
       CurrenciesListModel(
-        data: data ?? this.data,
+        dataCurrenciesList: dataCurrenciesList ?? this.dataCurrenciesList,
       );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (data != null) {
-      map['data'] = data?.map((v) => v.toJson()).toList();
+    if (dataCurrenciesList != null) {
+      map['data'] = dataCurrenciesList?.map((v) => v.toJson()).toList();
     }
     return map;
   }
 }
 
-Data dataFromJson(String str) => Data.fromJson(json.decode(str));
-String dataToJson(Data data) => json.encode(data.toJson());
+DataCurrenciesList dataFromJson(String str) =>
+    DataCurrenciesList.fromJson(json.decode(str));
+String dataToJson(DataCurrenciesList data) => json.encode(data.toJson());
 
-class Data {
-  Data({
+class DataCurrenciesList {
+  DataCurrenciesList({
     this.id,
     this.code,
     this.flag,
   });
 
-  Data.fromJson(dynamic json) {
+  DataCurrenciesList.fromJson(dynamic json) {
     id = json['id'];
     code = json['code'];
     flag = json['flag'];
@@ -52,12 +53,12 @@ class Data {
   int? id;
   String? code;
   String? flag;
-  Data copyWith({
+  DataCurrenciesList copyWith({
     int? id,
     String? code,
     String? flag,
   }) =>
-      Data(
+      DataCurrenciesList(
         id: id ?? this.id,
         code: code ?? this.code,
         flag: flag ?? this.flag,

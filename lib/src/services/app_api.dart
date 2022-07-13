@@ -1,11 +1,8 @@
 import 'dart:io';
 
-import 'package:click_app/src/data/models/TransactionModel.dart';
 import 'package:dio/dio.dart';
 
-import '../data/models/login_model.dart';
-import '../data/models/register_model.dart';
-import '../data/models/university_payment_model.dart';
+import '../data/models/all_models.dart';
 
 abstract class AppApi {
   /// Auth Methods

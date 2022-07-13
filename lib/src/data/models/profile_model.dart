@@ -7,38 +7,36 @@ String profileModelToJson(ProfileModel data) => json.encode(data.toJson());
 class ProfileModel {
   ProfileModel({
     this.success,
-    this.data,
+    this.dataProfile,
   });
 
   ProfileModel.fromJson(dynamic json) {
     success = json['success'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    dataProfile =
+        json['data'] != null ? DataProfile.fromJson(json['data']) : null;
   }
   bool? success;
-  Data? data;
+  DataProfile? dataProfile;
   ProfileModel copyWith({
     bool? success,
-    Data? data,
+    DataProfile? dataProfile,
   }) =>
       ProfileModel(
         success: success ?? this.success,
-        data: data ?? this.data,
+        dataProfile: dataProfile ?? this.dataProfile,
       );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['success'] = success;
-    if (data != null) {
-      map['data'] = data?.toJson();
+    if (dataProfile != null) {
+      map['data'] = dataProfile?.toJson();
     }
     return map;
   }
 }
 
-Data dataFromJson(String str) => Data.fromJson(json.decode(str));
-String dataToJson(Data data) => json.encode(data.toJson());
-
-class Data {
-  Data({
+class DataProfile {
+  DataProfile({
     this.id,
     this.name,
     this.phone,
@@ -50,7 +48,7 @@ class Data {
     this.deletedAt,
   });
 
-  Data.fromJson(dynamic json) {
+  DataProfile.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
     phone = json['phone'];
@@ -70,7 +68,7 @@ class Data {
   String? createdAt;
   String? updatedAt;
   dynamic deletedAt;
-  Data copyWith({
+  DataProfile copyWith({
     int? id,
     String? name,
     String? phone,
@@ -81,7 +79,7 @@ class Data {
     String? updatedAt,
     dynamic deletedAt,
   }) =>
-      Data(
+      DataProfile(
         id: id ?? this.id,
         name: name ?? this.name,
         phone: phone ?? this.phone,

@@ -10,43 +10,41 @@ class RegisterRepoModel {
   RegisterRepoModel({
     this.accessToken,
     this.tokenType,
-    this.data,
+    this.dataRegisterRepo,
   });
 
   RegisterRepoModel.fromJson(dynamic json) {
     accessToken = json['access_token'];
     tokenType = json['token_type'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    dataRegisterRepo =
+        json['data'] != null ? DataRegisterRepo.fromJson(json['data']) : null;
   }
   String? accessToken;
   String? tokenType;
-  Data? data;
+  DataRegisterRepo? dataRegisterRepo;
   RegisterRepoModel copyWith({
     String? accessToken,
     String? tokenType,
-    Data? data,
+    DataRegisterRepo? dataRegisterRepo,
   }) =>
       RegisterRepoModel(
         accessToken: accessToken ?? this.accessToken,
         tokenType: tokenType ?? this.tokenType,
-        data: data ?? this.data,
+        dataRegisterRepo: dataRegisterRepo ?? this.dataRegisterRepo,
       );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['access_token'] = accessToken;
     map['token_type'] = tokenType;
-    if (data != null) {
-      map['data'] = data?.toJson();
+    if (dataRegisterRepo != null) {
+      map['data'] = dataRegisterRepo?.toJson();
     }
     return map;
   }
 }
 
-Data dataFromJson(String str) => Data.fromJson(json.decode(str));
-String dataToJson(Data data) => json.encode(data.toJson());
-
-class Data {
-  Data({
+class DataRegisterRepo {
+  DataRegisterRepo({
     this.name,
     this.phone,
     this.email,
@@ -56,7 +54,7 @@ class Data {
     this.id,
   });
 
-  Data.fromJson(dynamic json) {
+  DataRegisterRepo.fromJson(dynamic json) {
     name = json['name'];
     phone = json['phone'];
     email = json['email'];
@@ -72,7 +70,7 @@ class Data {
   String? updatedAt;
   String? createdAt;
   int? id;
-  Data copyWith({
+  DataRegisterRepo copyWith({
     String? name,
     String? phone,
     String? email,
@@ -81,7 +79,7 @@ class Data {
     String? createdAt,
     int? id,
   }) =>
-      Data(
+      DataRegisterRepo(
         name: name ?? this.name,
         phone: phone ?? this.phone,
         email: email ?? this.email,

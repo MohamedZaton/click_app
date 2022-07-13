@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:click_app/src/data/models/TransactionModel.dart';
 import 'package:click_app/src/data/models/login_model.dart';
 import 'package:click_app/src/data/models/register_model.dart';
+import 'package:click_app/src/data/models/transaction_model.dart';
 import 'package:click_app/src/data/models/university_payment_model.dart';
 import 'package:dio/dio.dart';
 

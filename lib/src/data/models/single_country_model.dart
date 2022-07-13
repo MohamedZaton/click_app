@@ -7,33 +7,31 @@ String singleCountryModelToJson(SingleCountryModel data) =>
 
 class SingleCountryModel {
   SingleCountryModel({
-    this.data,
+    this.dataSingleCountry,
   });
 
   SingleCountryModel.fromJson(dynamic json) {
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    dataSingleCountry =
+        json['data'] != null ? DataSingleCountry.fromJson(json['data']) : null;
   }
-  Data? data;
+  DataSingleCountry? dataSingleCountry;
   SingleCountryModel copyWith({
-    Data? data,
+    DataSingleCountry? dataSingleCountry,
   }) =>
       SingleCountryModel(
-        data: data ?? this.data,
+        dataSingleCountry: dataSingleCountry ?? this.dataSingleCountry,
       );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
-    if (data != null) {
-      map['data'] = data?.toJson();
+    if (dataSingleCountry != null) {
+      map['data'] = dataSingleCountry?.toJson();
     }
     return map;
   }
 }
 
-Data dataFromJson(String str) => Data.fromJson(json.decode(str));
-String dataToJson(Data data) => json.encode(data.toJson());
-
-class Data {
-  Data(
+class DataSingleCountry {
+  DataSingleCountry(
       {this.id,
       this.nameEn,
       this.nameAr,
@@ -46,7 +44,7 @@ class Data {
       this.currencyId,
       h});
 
-  Data.fromJson(dynamic json) {
+  DataSingleCountry.fromJson(dynamic json) {
     id = json['id'];
     nameEn = json['name_en'];
     nameAr = json['name_ar'];
@@ -68,7 +66,7 @@ class Data {
   dynamic contactPhone2;
   String? code;
   int? currencyId;
-  Data copyWith({
+  DataSingleCountry copyWith({
     int? id,
     String? nameEn,
     String? nameAr,
@@ -80,7 +78,7 @@ class Data {
     String? code,
     int? currencyId,
   }) =>
-      Data(
+      DataSingleCountry(
         id: id ?? this.id,
         nameEn: nameEn ?? this.nameEn,
         nameAr: nameAr ?? this.nameAr,

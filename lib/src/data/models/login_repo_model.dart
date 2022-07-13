@@ -8,43 +8,41 @@ class LoginRepoModel {
   LoginRepoModel({
     this.accessToken,
     this.tokenType,
-    this.data,
+    this.dataLoginRepo,
   });
 
   LoginRepoModel.fromJson(dynamic json) {
     accessToken = json['access_token'];
     tokenType = json['token_type'];
-    data = json['data'] != null ? Data.fromJson(json['data']) : null;
+    dataLoginRepo =
+        json['data'] != null ? DataLoginRepo.fromJson(json['data']) : null;
   }
   String? accessToken;
   String? tokenType;
-  Data? data;
+  DataLoginRepo? dataLoginRepo;
   LoginRepoModel copyWith({
     String? accessToken,
     String? tokenType,
-    Data? data,
+    DataLoginRepo? dataLoginRepo,
   }) =>
       LoginRepoModel(
         accessToken: accessToken ?? this.accessToken,
         tokenType: tokenType ?? this.tokenType,
-        data: data ?? this.data,
+        dataLoginRepo: dataLoginRepo ?? this.dataLoginRepo,
       );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['access_token'] = accessToken;
     map['token_type'] = tokenType;
-    if (data != null) {
-      map['data'] = data?.toJson();
+    if (dataLoginRepo != null) {
+      map['data'] = dataLoginRepo?.toJson();
     }
     return map;
   }
 }
 
-Data dataFromJson(String str) => Data.fromJson(json.decode(str));
-String dataToJson(Data data) => json.encode(data.toJson());
-
-class Data {
-  Data({
+class DataLoginRepo {
+  DataLoginRepo({
     this.id,
     this.name,
     this.phone,
@@ -56,7 +54,7 @@ class Data {
     this.deletedAt,
   });
 
-  Data.fromJson(dynamic json) {
+  DataLoginRepo.fromJson(dynamic json) {
     id = json['id'];
     name = json['name'];
     phone = json['phone'];
@@ -76,7 +74,7 @@ class Data {
   String? createdAt;
   String? updatedAt;
   dynamic deletedAt;
-  Data copyWith({
+  DataLoginRepo copyWith({
     int? id,
     String? name,
     String? phone,
@@ -87,7 +85,7 @@ class Data {
     String? updatedAt,
     dynamic deletedAt,
   }) =>
-      Data(
+      DataLoginRepo(
         id: id ?? this.id,
         name: name ?? this.name,
         phone: phone ?? this.phone,
