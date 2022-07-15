@@ -1,15 +1,18 @@
 import 'package:click_app/src/core/utils/images_path.dart';
-import 'package:click_app/src/data/models/transform_model.dart';
+import 'package:click_app/src/data/repositories/StudentRepositoryImpl.dart';
 import 'package:get/get.dart';
 
 import '../../core/utils/constants.dart';
+import '../../data/models/all_models.dart';
+
+enum Status { PENDING, REJECTED, COMPLETED }
 
 class HistoryController extends GetxController {
   RxInt tabIndex = 0.obs;
   RxBool isTimerFinishedPadding = false.obs;
-  RxList<TransformModel> successList = <TransformModel>[].obs;
-  RxList<TransformModel> pendingList = <TransformModel>[].obs;
-  RxList<TransformModel> rejectedList = <TransformModel>[].obs;
+  RxList<TransactionsListModel> successList = <TransactionsListModel>[].obs;
+  RxList<TransactionsListModel> pendingList = <TransactionsListModel>[].obs;
+  RxList<TransactionsListModel> rejectedList = <TransactionsListModel>[].obs;
   // RxList<bool> selectedToggelButton = [true, false, false].obs;
   RxMap<String, String> selectStatueTitleImageMap = {
     kSuccessTxt: kSuccessImg,
@@ -18,17 +21,13 @@ class HistoryController extends GetxController {
   }.obs;
 
   RxString selectedStatueItem = kSuccessTxt.obs;
-  Rx<TransformModel> historyItem = TransformModel(
-          moneyAmount: '2000 doller',
-          accountNumber: '123412341241',
-          id: 654987,
-          screenShotPath: '')
-      .obs;
+  Rx<TransactionsListModel> historyItem =
+      TransactionsListModel(id: 666, moneyAmount: 100).obs;
 
   @override
   onInit() {
     super.onInit();
-    fetchMapDataLists();
+    fetchTransactionsList();
   }
 
   @override
@@ -50,50 +49,30 @@ class HistoryController extends GetxController {
     tabIndex.value = index;
   }
 
-  void changeClickItem(String statusType, TransformModel selectedItem) {
+  void changeClickItem(String statusType, TransactionsListModel selectedItem) {
     selectedStatueItem.value = statusType;
     historyItem.value = selectedItem;
   }
 
-  void fetchMapDataLists() {
-    List<TransformModel> successDataList = [
-      TransformModel(
-          moneyAmount: '2000 doller',
-          accountNumber: '654987',
-          id: 654907,
-          screenShotPath: ''),
-      TransformModel(
-          moneyAmount: '2000 doller',
-          accountNumber: '654987',
-          id: 654983,
-          screenShotPath: ''),
-    ];
-    List<TransformModel> pendingDataList = [
-      TransformModel(
-          moneyAmount: '1000 doller',
-          accountNumber: '654987',
-          id: 654977,
-          screenShotPath: ''),
-      TransformModel(
-          moneyAmount: '1000 doller',
-          accountNumber: '654987',
-          id: 654947,
-          screenShotPath: ''),
-    ];
-    List<TransformModel> rejectedDataList = [
-      TransformModel(
-          moneyAmount: '1010 doller',
-          accountNumber: '600987',
-          id: 600987,
-          screenShotPath: ''),
-      TransformModel(
-          moneyAmount: '1010 doller',
-          accountNumber: '600987',
-          id: 600987,
-          screenShotPath: ''),
-    ];
-    successList.value = successDataList;
-    pendingList.value = pendingDataList;
-    rejectedList.value = rejectedDataList;
+  void fetchTransactionsList() {
+    getTransactionRequest(
+        status: Status.PENDING.name, typeContainerList: successList.value);
+    getTransactionRequest(
+        status: Status.REJECTED.name, typeContainerList: pendingList.value);
+    getTransactionRequest(
+        status: Status.COMPLETED.name, typeContainerList: rejectedList.value);
+  }
+
+  Future<void> getTransactionRequest(
+      {required String status,
+      required List<TransactionsListModel> typeContainerList}) async {
+    final response = await StudentRepositoryImpl().getTransactionsList(status);
+    response.fold((failure) {
+      print("[getTransactionRequest ] error : ${failure.message}");
+      return;
+    }, (transactionsListModel) {
+      typeContainerList = transactionsListModel;
+      return;
+    });
   }
 }

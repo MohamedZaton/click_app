@@ -1,13 +1,15 @@
-import 'package:click_app/src/data/models/transform_model.dart';
+import 'package:click_app/src/data/models/all_models.dart';
 import 'package:click_app/src/presentation/pages/history_detail/history_view_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/constants.dart';
+import '../../../core/utils/images_path.dart';
 import '../../../core/utils/screens.dart';
 import '../../getx/history_controller.dart';
 import '../../widgets/history_item_widget.dart';
+import '../../widgets/message_img_btn_widget.dart';
 import '../../widgets/toggle_button.dart';
 
 class HistoryPage extends StatelessWidget {
@@ -70,17 +72,17 @@ class HistoryPage extends StatelessWidget {
                   children: [
                     TransformListWdgt(
                       controller: historyController,
-                      nameList: kPendingTxt,
-                      transformList: historyController.successList.value,
+                      nameList: Status.PENDING.name,
+                      transformList: historyController.pendingList.value,
                     ),
                     TransformListWdgt(
                       controller: historyController,
-                      nameList: kRejectedTxt,
+                      nameList: Status.REJECTED.name,
                       transformList: historyController.rejectedList.value,
                     ),
                     TransformListWdgt(
                       controller: historyController,
-                      nameList: kSuccessTxt,
+                      nameList: Status.COMPLETED.name,
                       transformList: historyController.successList.value,
                     ),
                   ]),
@@ -94,7 +96,7 @@ class HistoryPage extends StatelessWidget {
 
 class TransformListWdgt extends StatelessWidget {
   final String nameList;
-  final List<TransformModel> transformList;
+  final List<TransactionsListModel> transformList;
   final HistoryController controller;
   TransformListWdgt({
     Key? key,
@@ -119,41 +121,42 @@ class TransformListWdgt extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  height: ScreenDevices.heigth(context) * 0.80,
-                  padding: EdgeInsets.only(left: 16, right: 16, top: 8),
-                  child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemCount: transformList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Column(
-                        children: [
-                          ItemHistoryWidget(
-                            onPress: () {
-                              controller.changeClickItem(
-                                  nameList, transformList[index]);
-                              Get.to(() => HistoryDetailPage());
-                            },
-                            money: transformList[index].moneyAmount,
-                            idTransform: transformList[index].id,
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                        ],
-                      );
-                    },
-
-                    /*             child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: List<ItemHistoryWidget>.from(
-                            transformList.map((item) => ItemHistoryWidget(
-                                  onPress: () {},
-                                  idTransform: item.id,
-                                  money: item.moneyAmount,
-                                )))),*/
-                  ),
-                )
+                if (transformList.length > 0) ...[
+                  Container(
+                    height: ScreenDevices.heigth(context) * 0.80,
+                    padding: EdgeInsets.only(left: 16, right: 16, top: 8),
+                    child: ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: transformList.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Column(
+                          children: [
+                            ItemHistoryWidget(
+                              onPress: () {
+                                controller.changeClickItem(
+                                    nameList, transformList[index]);
+                                Get.to(() => HistoryDetailPage());
+                              },
+                              money:
+                                  transformList[index].moneyAmount.toString(),
+                              idTransform: transformList[index].id!,
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  )
+                ] else ...[
+                  Container(
+                    height: ScreenDevices.heigth(context) * 0.80,
+                    padding: EdgeInsets.only(left: 16, right: 16, top: 8),
+                    child: MessageImgButtonWdgt(
+                        title: kNoListTxt.tr, imageUrl: kEmptyImg),
+                  )
+                ]
               ],
             ),
           ],

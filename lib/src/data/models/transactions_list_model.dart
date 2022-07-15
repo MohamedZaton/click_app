@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+
 TransactionsListModel transactionsListModelFromJson(String str) =>
     TransactionsListModel.fromJson(json.decode(str));
 String transactionsListModelToJson(TransactionsListModel data) =>
@@ -32,9 +34,9 @@ class TransactionsListModel {
     return map;
   }
 
-  static List<TransactionsListModel> getListObject(List<dynamic> jsonBody) {
-    List<TransactionsListModel> itemsList = List<TransactionsListModel>.from(
-        jsonBody.map((val) => TransactionsListModel.fromJson(val)));
-    return itemsList;
+  static List<TransactionsListModel> getListObject(Response response) {
+    return (response.data as List)
+        .map((x) => TransactionsListModel.fromJson(x))
+        .toList();
   }
 }

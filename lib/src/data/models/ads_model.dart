@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+
 AdsModel adsModelFromJson(String str) => AdsModel.fromJson(json.decode(str));
 String adsModelToJson(AdsModel data) => json.encode(data.toJson());
 
@@ -30,9 +32,7 @@ class AdsModel {
     return map;
   }
 
-  static List<AdsModel> getListObject(List<dynamic> jsonBody) {
-    List<AdsModel> itemsList =
-        List<AdsModel>.from(jsonBody.map((val) => AdsModel.fromJson(val)));
-    return itemsList;
+  static List<AdsModel> getListObject(Response response) {
+    return (response.data as List).map((x) => AdsModel.fromJson(x)).toList();
   }
 }

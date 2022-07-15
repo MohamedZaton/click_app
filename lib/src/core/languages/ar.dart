@@ -60,4 +60,6 @@ const Map<String, String> ar = {
   kNoNetworkTxt: "لا يوجد اتصال بالإنترنت ",
   kNoServerTxt: "هناك مشكلة فى السيرفر",
   kWrongPwdOrPhoneTxt: "التسجيل غير صحيح تاكد من الايميل و كلمة السر",
+  kNoServicesListTxt: "قائمة الخدمات فارغة",
+  kNoListTxt: "هذة القائمة  فارغة",
 };

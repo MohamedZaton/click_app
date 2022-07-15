@@ -30,16 +30,19 @@ class PayUniversityPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                UploadingButtonWdgt(
+                UploadingImgButtonWdgt(
                   nameBtn: kChooseConfirmationMessageImageTxt.tr,
+                  onPress: () {},
                 ),
                 SizedBox(height: spacing_middle),
-                UploadingButtonWdgt(
+                UploadingImgButtonWdgt(
                   nameBtn: kChoosePassportImageTxt.tr,
+                  onPress: () {},
                 ),
                 SizedBox(height: spacing_middle),
-                UploadingButtonWdgt(
+                UploadingImgButtonWdgt(
                   nameBtn: kChooseYourIdImageTxt.tr,
+                  onPress: () {},
                 ),
                 SizedBox(height: spacing_middle),
 

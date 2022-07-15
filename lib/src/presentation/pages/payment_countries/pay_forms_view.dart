@@ -31,8 +31,9 @@ class PayFormsPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                UploadingButtonWdgt(
+                UploadingImgButtonWdgt(
                   nameBtn: kChooseConfirmationMessageImageTxt.tr,
+                  onPress: () {},
                 ),
                 SizedBox(height: spacing_middle),
 

@@ -1,19 +1,20 @@
 import 'dart:convert';
 
-ServicesListModel servicesListModelFromJson(String str) =>
-    ServicesListModel.fromJson(json.decode(str));
-String servicesListModelToJson(ServicesListModel data) =>
-    json.encode(data.toJson());
+import 'package:dio/dio.dart';
 
-class ServicesListModel {
-  ServicesListModel({
+ServiceModel ServiceModelFromJson(String str) =>
+    ServiceModel.fromJson(json.decode(str));
+String ServiceModelToJson(ServiceModel data) => json.encode(data.toJson());
+
+class ServiceModel {
+  ServiceModel({
     this.id,
     this.logo,
     this.titleEn,
     this.descriptionEn,
   });
 
-  ServicesListModel.fromJson(dynamic json) {
+  ServiceModel.fromJson(dynamic json) {
     id = json['id'];
     logo = json['logo'];
     titleEn = json['title_en'];
@@ -23,13 +24,13 @@ class ServicesListModel {
   String? logo;
   String? titleEn;
   String? descriptionEn;
-  ServicesListModel copyWith({
+  ServiceModel copyWith({
     int? id,
     String? logo,
     String? titleEn,
     String? descriptionEn,
   }) =>
-      ServicesListModel(
+      ServiceModel(
         id: id ?? this.id,
         logo: logo ?? this.logo,
         titleEn: titleEn ?? this.titleEn,
@@ -44,9 +45,9 @@ class ServicesListModel {
     return map;
   }
 
-  static List<ServicesListModel> getListObject(List<dynamic> jsonBody) {
-    List<ServicesListModel> itemsList = List<ServicesListModel>.from(
-        jsonBody.map((val) => ServicesListModel.fromJson(val)));
-    return itemsList;
+  static List<ServiceModel> getListObject(Response response) {
+    return (response.data as List)
+        .map((x) => ServiceModel.fromJson(x))
+        .toList();
   }
 }

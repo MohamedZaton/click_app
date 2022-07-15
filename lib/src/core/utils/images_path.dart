@@ -46,5 +46,6 @@ const String kClockTimerImg = "assets/icons/stopwatch_icon.png";
 
 /// details make transfer
 const String kCopyImg = "assets/icons/copy_icon.png";
+const String kEmptyImg = "assets/icons/empty.png";
 const String kAppliedImg = "assets/images/appled.png";
 const String kUploadingImg = "assets/icons/upload_arrow_icon.png";

@@ -16,7 +16,7 @@ abstract class StudentRepository {
   Future<Either<Failure, List<String>>> getWhatsAppNumbers();
   Future<Either<Failure, String>> getCheckRate(int countryCode, double money);
 
-  Future<Either<Failure, List<ServicesListModel>>> getServicesList();
+  Future<Either<Failure, List<ServiceModel>>> getServicesList();
 
   Future<Either<Failure, DataSingleCountry>> getSingleCountryRequest(int? id);
   Future<Either<Failure, SingleTransactionModel>> getSingleTransactionRequest(

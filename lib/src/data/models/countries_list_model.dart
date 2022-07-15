@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
+
 CountriesListModel countriesListModelFromJson(String str) =>
     CountriesListModel.fromJson(json.decode(str));
 String countriesListModelToJson(CountriesListModel data) =>
@@ -38,9 +40,9 @@ class CountriesListModel {
     return map;
   }
 
-  static List<CountriesListModel> getListObject(List<dynamic> jsonBody) {
-    List<CountriesListModel> itemsList = List<CountriesListModel>.from(
-        jsonBody.map((val) => CountriesListModel.fromJson(val)));
-    return itemsList;
+  static List<CountriesListModel> getListObject(Response response) {
+    return (response.data as List)
+        .map((x) => CountriesListModel.fromJson(x))
+        .toList();
   }
 }

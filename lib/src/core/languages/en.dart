@@ -62,4 +62,6 @@ const Map<String, String> en = {
   kNoNetworkTxt: "No Connecting ",
   kNoServerTxt: "problem inside host",
   kWrongPwdOrPhoneTxt: "Wrong password or email",
+  kNoServicesListTxt: "The list of services is empty",
+  kNoListTxt: "This list is empty",
 };

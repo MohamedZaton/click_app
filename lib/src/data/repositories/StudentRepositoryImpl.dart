@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:click_app/src/core/error/failure.dart';
@@ -18,8 +17,7 @@ class StudentRepositoryImpl implements StudentRepository {
   Future<Either<Failure, List<AdsModel>>> getAdsList() async {
     Response response = await ServerAppApi().getAdsRequest();
     try {
-      List<dynamic> decodeList = json.decode(response.data);
-      List<AdsModel> adsList = AdsModel.getListObject(decodeList);
+      List<AdsModel> adsList = AdsModel.getListObject(response);
       return right(adsList);
     } catch (e) {
       String messageFailure = await errorMessage(response);
@@ -48,9 +46,8 @@ class StudentRepositoryImpl implements StudentRepository {
   Future<Either<Failure, List<CountriesListModel>>> getCountriesList() async {
     Response response = await ServerAppApi().getCountriesListRequest();
     try {
-      List<dynamic> decodeList = json.decode(response.data);
       List<CountriesListModel> countryListModel =
-          CountriesListModel.getListObject(decodeList);
+          CountriesListModel.getListObject(response);
 
       return right(countryListModel);
     } catch (e) {
@@ -80,9 +77,10 @@ class StudentRepositoryImpl implements StudentRepository {
 
   @override
   Future<Either<Failure, String>> getLogOut() async {
+    Response response = await ServerAppApi().getLogOutRequest();
+
     LocalData().clearAccessToken();
     LocalData().writeRejectAutoLogin();
-    Response response = await ServerAppApi().getLogOutRequest();
     try {
       String message = response.data['message'];
 
@@ -111,14 +109,13 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, List<ServicesListModel>>> getServicesList() async {
+  Future<Either<Failure, List<ServiceModel>>> getServicesList() async {
     Response response = await ServerAppApi().getServicesListRequest();
     try {
-      List<dynamic> decodeList = json.decode(response.data);
-      List<ServicesListModel> servicesListModel =
-          ServicesListModel.getListObject(decodeList);
-
-      return right(servicesListModel);
+/*      List<ServiceModel> serviceModel =
+          (response.data as List).map((x) => ServiceModel.fromJson(x)).toList();*/
+      List<ServiceModel> serviceModel = ServiceModel.getListObject(response);
+      return right(serviceModel);
     } catch (e) {
       String messageFailure = await errorMessage(response);
       return left(Failure(
@@ -166,9 +163,8 @@ class StudentRepositoryImpl implements StudentRepository {
       String status) async {
     Response response = await ServerAppApi().getTransactionsListRequest(status);
     try {
-      List<dynamic> decodeList = json.decode(response.data);
       List<TransactionsListModel> transactionList =
-          TransactionsListModel.getListObject(decodeList);
+          TransactionsListModel.getListObject(response);
       return right(transactionList);
     } catch (e) {
       String messageFailure = await errorMessage(response);

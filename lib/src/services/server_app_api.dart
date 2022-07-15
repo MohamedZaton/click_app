@@ -101,7 +101,7 @@ class ServerAppApi implements AppApi {
 
   @override
   Future<Response> getWhatsAppNumbersRequest() async {
-    String url = baseServer + 'client/getWhatsAppContact';
+    String url = baseServer + 'student/getWhatsAppContact';
     await addTokenHeader();
     final response = await dio.get(url);
     print("whatsapp numbers  : ${response.data.toString()}");

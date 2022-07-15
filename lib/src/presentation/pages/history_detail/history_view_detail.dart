@@ -171,8 +171,8 @@ class HistoryDetailPage extends StatelessWidget {
                                     Text(kAccountNumberTxt.tr,
                                         style: TextStyle(color: kDarkAccent)),
                                     Text(
-                                        controller
-                                            .historyItem.value.accountNumber,
+                                        controller.historyItem.value.id
+                                            .toString(),
                                         style: TextStyle(color: kOrangeColor)),
                                   ],
                                 ),
@@ -186,7 +186,8 @@ class HistoryDetailPage extends StatelessWidget {
                                                 TextStyle(color: kDarkAccent)),
                                         Text(
                                             controller
-                                                .historyItem.value.moneyAmount,
+                                                .historyItem.value.moneyAmount
+                                                .toString(),
                                             style:
                                                 TextStyle(color: kOrangeColor)),
                                       ],

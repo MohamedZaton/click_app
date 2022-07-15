@@ -81,6 +81,8 @@ const kChooseYourIdImageTxt = "Choose Your ID Image";
 const kChooseConfirmationMessageImageTxt =
     "Choose Your Confirmation Message Image";
 const String kPrizeTitleTxt = "Facilitations for entering the university";
+const String kNoServicesListTxt = "The list of services is empty";
+const String kNoListTxt = "This list is empty";
 
 // demo data
 const kNameDemoText = "Full Name";
