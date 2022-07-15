@@ -1,10 +1,10 @@
 import 'package:click_app/src/core/utils/screens.dart';
-import 'package:click_app/src/presentation/pages/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/constants.dart';
+import '../../../data/models/all_models.dart';
 import '../../getx/sign_in_controller.dart';
 import '../../widgets/oval_btn_widget.dart';
 import '../sign_up/sign_up_view.dart';
@@ -14,6 +14,8 @@ class SignInPage extends StatelessWidget {
 
   final logic = Get.put(SignInController());
   final _formSignInKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,56 +60,68 @@ class SignInPage extends StatelessWidget {
                     SizedBox(
                       height: 20,
                     ),
-                    Form(
-                      key: _formSignInKey,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Container(
-                            padding: EdgeInsets.all(25),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                      labelText: kEmailTxt.tr,
-                                      labelStyle: TextStyle(
-                                          fontSize: 15, color: kLightAccent),
-                                      enabledBorder: UnderlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black12),
+                    GetBuilder<SignInController>(builder: (controller) {
+                      return Form(
+                        key: _formSignInKey,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              padding: EdgeInsets.all(25),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    /// email input field
+                                    TextFormField(
+                                      decoration: InputDecoration(
+                                        labelText: kEmailTxt.tr,
+                                        labelStyle: TextStyle(
+                                            fontSize: 15, color: kLightAccent),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black12),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: kLightAccent),
+                                        ),
                                       ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: kLightAccent),
-                                      ),
+                                      controller: emailController,
                                     ),
-                                  ),
-                                  SizedBox(height: 16),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                      labelText: kPasswordTxt.tr,
-                                      labelStyle: TextStyle(
-                                          fontSize: 15, color: kLightAccent),
-                                      suffixIcon: Icon(
-                                        true
-                                            ? Icons.visibility_off
-                                            : Icons.visibility,
-                                        color: kLightAccent,
+                                    SizedBox(height: 16),
+
+                                    /// password input field
+                                    TextFormField(
+                                      decoration: InputDecoration(
+                                        labelText: kPasswordTxt.tr,
+                                        labelStyle: TextStyle(
+                                            fontSize: 15, color: kLightAccent),
+                                        suffixIcon: InkWell(
+                                          child: Icon(
+                                            controller.isHiddenPassword
+                                                ? Icons.visibility_off
+                                                : Icons.visibility,
+                                            color: kLightAccent,
+                                          ),
+                                          onTap: () {
+                                            controller.setPasswordHidden(
+                                                !controller.isHiddenPassword);
+                                          },
+                                        ),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.black12),
+                                        ),
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: kLightAccent),
+                                        ),
                                       ),
-                                      enabledBorder: UnderlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black12),
-                                      ),
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: kLightAccent),
-                                      ),
+                                      autofocus: false,
+                                      obscureText: controller.isHiddenPassword,
+                                      controller: passwordController,
                                     ),
-                                    autofocus: false,
-                                    obscureText: obscureText,
-                                  ),
-                                  SizedBox(height: 20),
+/*                                  SizedBox(height: 20),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
@@ -124,49 +138,67 @@ class SignInPage extends StatelessWidget {
                                         },
                                       )
                                     ],
-                                  ),
-                                  SizedBox(height: 20),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        kInitAccountTxt.tr,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle1
-                                            ?.copyWith(color: kDarkGray),
-                                      ),
-                                      InkWell(
-                                        child: Text(
-                                          kSignUpTxt.tr,
+                                  ),*/
+                                    SizedBox(height: 20),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          kInitAccountTxt.tr,
                                           style: Theme.of(context)
                                               .textTheme
                                               .subtitle1
-                                              ?.copyWith(
-                                                color: kLightAccent,
-                                                decoration:
-                                                    TextDecoration.underline,
-                                              ),
+                                              ?.copyWith(color: kDarkGray),
                                         ),
-                                        onTap: () {
-                                          Get.to(SignUpPage());
 
-                                          /// tap forget password
+                                        /// tap  Sign up button
+                                        InkWell(
+                                          child: Text(
+                                            kSignUpTxt.tr,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .subtitle1
+                                                ?.copyWith(
+                                                  color: kLightAccent,
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                ),
+                                          ),
+                                          onTap: () {
+                                            Get.to(SignUpPage());
+                                          },
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 20),
+                                    if (!controller.isLoading) ...[
+                                      OvalButtonWdgt(
+                                        text: kSignInTxt.tr.toUpperCase(),
+                                        onPressed: () {
+                                          if (_formSignInKey.currentState!
+                                              .validate()) {
+                                            controller.loginUser(
+                                              LogInModel(
+                                                  email: emailController.text,
+                                                  password:
+                                                      passwordController.text),
+                                            );
+                                          }
                                         },
-                                      )
+                                      ),
+                                    ] else ...[
+                                      Container(
+                                        child: CircularProgressIndicator(
+                                            color: kDarkAccent),
+                                      ),
                                     ],
-                                  ),
-                                  SizedBox(height: 20),
-                                  OvalButtonWdgt(
-                                      text: kSignInTxt.tr.toUpperCase(),
-                                      onPressed: () {
-                                        Get.to(() => HomePage());
-                                      }),
-                                ]),
-                          )
-                        ],
-                      ),
-                    ),
+                                  ]),
+                            )
+                          ],
+                        ),
+                      );
+                    }),
                   ],
                 ),
               ),

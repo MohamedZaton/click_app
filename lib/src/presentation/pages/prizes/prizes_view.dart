@@ -29,30 +29,33 @@ class PrizesPage extends StatelessWidget {
   ];
 
   static const String id = "/prizes";
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            height: 20,
-            color: kLightAccent,
-          ),
-          Expanded(
-            child: Container(
-                child: CarouselSlider(
-              options: CarouselOptions(
-                viewportFraction: 1,
-                aspectRatio: 1,
-                enlargeCenterPage: true,
-                scrollDirection: Axis.horizontal,
-              ),
-              items: imageSliders,
-            )),
-          ),
-        ],
-      ),
-    );
+    return Obx(() {
+      return Container(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: 20,
+              color: kLightAccent,
+            ),
+            Expanded(
+              child: Container(
+                  child: CarouselSlider(
+                options: CarouselOptions(
+                  viewportFraction: 1,
+                  aspectRatio: 1,
+                  enlargeCenterPage: true,
+                  scrollDirection: Axis.horizontal,
+                ),
+                items: imageSliders,
+              )),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

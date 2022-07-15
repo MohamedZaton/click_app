@@ -29,4 +29,10 @@ class AdsModel {
     map['image'] = image;
     return map;
   }
+
+  static List<AdsModel> getListObject(List<dynamic> jsonBody) {
+    List<AdsModel> itemsList =
+        List<AdsModel>.from(jsonBody.map((val) => AdsModel.fromJson(val)));
+    return itemsList;
+  }
 }

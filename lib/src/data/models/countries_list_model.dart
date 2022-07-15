@@ -37,4 +37,10 @@ class CountriesListModel {
     map['name_en'] = nameEn;
     return map;
   }
+
+  static List<CountriesListModel> getListObject(List<dynamic> jsonBody) {
+    List<CountriesListModel> itemsList = List<CountriesListModel>.from(
+        jsonBody.map((val) => CountriesListModel.fromJson(val)));
+    return itemsList;
+  }
 }

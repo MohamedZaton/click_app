@@ -31,4 +31,10 @@ class TransactionsListModel {
     map['money_amount'] = moneyAmount;
     return map;
   }
+
+  static List<TransactionsListModel> getListObject(List<dynamic> jsonBody) {
+    List<TransactionsListModel> itemsList = List<TransactionsListModel>.from(
+        jsonBody.map((val) => TransactionsListModel.fromJson(val)));
+    return itemsList;
+  }
 }

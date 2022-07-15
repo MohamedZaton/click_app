@@ -48,10 +48,10 @@ class DataLoginRepo {
     this.phone,
     this.email,
     this.photo,
-    this.active,
+/*    this.active,
     this.createdAt,
     this.updatedAt,
-    this.deletedAt,
+    this.deletedAt,*/
   });
 
   DataLoginRepo.fromJson(dynamic json) {
@@ -60,30 +60,30 @@ class DataLoginRepo {
     phone = json['phone'];
     email = json['email'];
     photo = json['photo'];
-    active = json['active'];
+/*    active = json['active'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    deletedAt = json['deleted_at'];
+    deletedAt = json['deleted_at'];*/
   }
   int? id;
   String? name;
   String? phone;
   String? email;
   String? photo;
-  int? active;
+/*  int? active;
   String? createdAt;
   String? updatedAt;
-  dynamic deletedAt;
+  String? deletedAt;*/
   DataLoginRepo copyWith({
     int? id,
     String? name,
     String? phone,
     String? email,
     String? photo,
-    int? active,
+/*    int? active,
     String? createdAt,
     String? updatedAt,
-    dynamic deletedAt,
+    String? deletedAt,*/
   }) =>
       DataLoginRepo(
         id: id ?? this.id,
@@ -91,10 +91,10 @@ class DataLoginRepo {
         phone: phone ?? this.phone,
         email: email ?? this.email,
         photo: photo ?? this.photo,
-        active: active ?? this.active,
-        createdAt: createdAt ?? this.createdAt,
-        updatedAt: updatedAt ?? this.updatedAt,
-        deletedAt: deletedAt ?? this.deletedAt,
+/*        active: active ?? 0,
+        createdAt: createdAt ?? "",
+        updatedAt: updatedAt ?? "",
+        deletedAt: deletedAt ?? "",*/
       );
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -103,10 +103,10 @@ class DataLoginRepo {
     map['phone'] = phone;
     map['email'] = email;
     map['photo'] = photo;
-    map['active'] = active;
+/*    map['active'] = active;
     map['created_at'] = createdAt;
     map['updated_at'] = updatedAt;
-    map['deleted_at'] = deletedAt;
+    map['deleted_at'] = deletedAt;*/
     return map;
   }
 }

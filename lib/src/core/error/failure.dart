@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-
-abstract class Failure extends Equatable {
-  Failure([List properties = const <dynamic>[]]);
+class Failure {
+  String message;
+  Failure(this.message);
 }

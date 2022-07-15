@@ -1,6 +1,8 @@
+import 'package:click_app/src/presentation/pages/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../services/local_data.dart';
 import '../../getx/splash_controller.dart';
 import '../../widgets/flux_image.dart';
 import '../sign_in/sign_in_view.dart';
@@ -33,7 +35,12 @@ class SplashPage extends StatelessWidget {
             height: 80,
           ),
           onEnd: () async {
-            Get.offAll(() => SignInPage());
+            final bool isAuto = await LocalData().readAcceptAutoLogin();
+            if (isAuto) {
+              return Get.offAll(() => HomePage());
+            } else {
+              return Get.offAll(() => SignInPage());
+            }
           },
         ),
       ),

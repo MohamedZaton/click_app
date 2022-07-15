@@ -29,6 +29,7 @@ const String kSuccessImg = "assets/icons/checked_true.png";
 const String kPendingImg = "assets/icons/checked_pending.png";
 const String kRejectedImg = "assets/icons/checked_rejected.png";
 const String kScreenShotImg = "assets/images/screenshot.png";
+const String kOfflineImg = 'assets/icons/offline.png';
 
 /// prize's images page
 const String kPrizeAImg = "assets/icons/prize_A_logo.png";
@@ -39,6 +40,7 @@ const String kPrizeCImg = "assets/icons/prize_C_logo.png";
 const String kEditImg = "assets/icons/edit_icon.png";
 const String kAddImg = "assets/icons/image_add.png";
 const String kProfileDemoImg = "assets/images/avatar_man.png";
+const String kAvatarUserImg = "assets/images/avatar_sign_up.png";
 const String kWhatsAppImg = "assets/icons/whatsapp.png";
 const String kClockTimerImg = "assets/icons/stopwatch_icon.png";
 

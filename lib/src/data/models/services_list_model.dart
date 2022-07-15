@@ -43,4 +43,10 @@ class ServicesListModel {
     map['description_en'] = descriptionEn;
     return map;
   }
+
+  static List<ServicesListModel> getListObject(List<dynamic> jsonBody) {
+    List<ServicesListModel> itemsList = List<ServicesListModel>.from(
+        jsonBody.map((val) => ServicesListModel.fromJson(val)));
+    return itemsList;
+  }
 }

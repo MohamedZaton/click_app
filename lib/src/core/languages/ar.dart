@@ -57,4 +57,7 @@ const Map<String, String> ar = {
   kChooseYourIdImageTxt: "اختر صورة الهوية الخاصة بك",
   kChooseConfirmationMessageImageTxt: "اختر صورة رسالة التأكيد الخاصة بك",
   kPrizeTitleTxt: "تسهيل دخول الجامعة",
+  kNoNetworkTxt: "لا يوجد اتصال بالإنترنت ",
+  kNoServerTxt: "هناك مشكلة فى السيرفر",
+  kWrongPwdOrPhoneTxt: "التسجيل غير صحيح تاكد من الايميل و كلمة السر",
 };

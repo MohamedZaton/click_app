@@ -24,6 +24,8 @@ const String kConfirmTxt = "Confirm";
 
 const String kConfirmPasswordTxt = "$kConfirmTxt Password";
 const String kSignInTxt = "sign in";
+const String kSignUpSuccessText = "sign up Success";
+const String kSignUpFailedText = "sign up Failed";
 const String kSignUpTxt = "sign Up";
 const String kLogOutTxt = "logout";
 const String kMakeTransferTxt = "Make a Transfer";
@@ -42,6 +44,11 @@ const String kAccountNumberTxt = "Your Account Number :";
 const String kMoneyAmountTxt = "Your Money Amount :";
 const String kScreenShotTxt = "Your Transformation ScreenShot";
 const kResultsKey = "results";
+// error network
+const String kNoNetworkTxt = "No Connecting ";
+const String kNoServerTxt = "problem inside host";
+const String kWrongPwdOrPhoneTxt = "Wrong password or email";
+const String kErrorResponseTxt = "Error Response";
 
 // setting
 const kProfileTxt = "Profile";

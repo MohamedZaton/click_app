@@ -1,11 +1,8 @@
 import 'dart:io';
 
-import 'package:click_app/src/data/models/login_model.dart';
-import 'package:click_app/src/data/models/register_model.dart';
-import 'package:click_app/src/data/models/transaction_model.dart';
-import 'package:click_app/src/data/models/university_payment_model.dart';
 import 'package:dio/dio.dart';
 
+import '../data/models/all_models.dart';
 import 'app_api.dart';
 import 'local_data.dart';
 
@@ -95,6 +92,14 @@ class ServerAppApi implements AppApi {
   }
 
   @override
+  Future<Response> getCheckRateRequest(int countryCode, double money) async {
+    String url = baseServer + 'student/checkRate/${countryCode}/${money}';
+    await addTokenHeader();
+    final response = await dio.get(url);
+    return response;
+  }
+
+  @override
   Future<Response> getWhatsAppNumbersRequest() async {
     String url = baseServer + 'client/getWhatsAppContact';
     await addTokenHeader();
@@ -109,7 +114,6 @@ class ServerAppApi implements AppApi {
     String registerUrl = baseServer + 'student/register';
     String fileName = file.path.split('/').last;
 
-    await addTokenHeader();
     registerModel.copyWith(
       photo: await MultipartFile.fromFile(file.path, filename: fileName),
     );

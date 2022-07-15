@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:click_app/src/core/utils/colors.dart';
 import 'package:click_app/src/core/utils/screens.dart';
 import 'package:click_app/src/presentation/pages/payment_countries/pay_countries_view.dart';
-import 'package:click_app/src/presentation/widgets/flag_country.dart';
+import 'package:click_app/src/presentation/widgets/currency_data_widget.dart';
 import 'package:click_app/src/presentation/widgets/flux_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +24,7 @@ class CurrencyExchangePage extends StatelessWidget {
     final langController = Get.put(LanguageListController());
     String _selectedLanguage = langController.getLanguage();
     return SingleChildScrollView(
-      child: GetBuilder<CurrencyExchangeController>(builder: (controller) {
+      child: Obx(() {
         return Container(
           width: ScreenDevices.width(context),
           height: ScreenDevices.heigth(context) * 0.75,
@@ -39,29 +39,21 @@ class CurrencyExchangePage extends StatelessWidget {
                 flex: 2,
                 child: Container(
                     width: ScreenDevices.width(context),
-                    child: CarouselSlider(
-                      options: CarouselOptions(
-                        autoPlay: true,
-                        autoPlayAnimationDuration: Duration(seconds: 2),
-                        viewportFraction: 1,
-                        aspectRatio: 1,
-                        enlargeCenterPage: true,
-                        scrollDirection: Axis.horizontal,
-                      ),
-                      items: [
-                        NewsItemWidget(),
-                        NewsItemWidget(
-                          imagePath: kExchangeTwoImg,
-                        ),
-                        NewsItemWidget(
-                          imagePath: kExchangeThreeImg,
-                        ),
-                        NewsItemWidget(
-                          imagePath: kExchangeTwoImg,
-                        ),
-                        NewsItemWidget(),
-                      ],
-                    )),
+                    child: (logic.adsList.length > 0)
+                        ? CarouselSliderListWidget(
+                            itemList: logic.adsList.map((item) {
+                              return Builder(
+                                builder: (context) {
+                                  return NewsItemWidget(
+                                    imagePath: item.image.toString(),
+                                  );
+                                },
+                              );
+                            }).toList(),
+                          )
+                        : SizedBox(
+                            height: 50,
+                          )),
               ),
               Expanded(
                 flex: 5,
@@ -109,11 +101,21 @@ class CurrencyExchangePage extends StatelessWidget {
                                   Flexible(
                                     flex: 6,
                                     child: TextField(
-                                      decoration:
-                                          editTextWithBoarderDecoration("from"),
+                                      decoration: editTextWithBoarderDecoration(
+                                          "from ${logic.selectedCountryCurrency.value.code ?? ""}"),
                                       cursorColor: kLightAccent,
-                                      keyboardType: TextInputType.text,
+                                      keyboardType: TextInputType.number,
                                       textInputAction: TextInputAction.done,
+                                      onChanged: (inputeCurrency) {
+                                        logic.inputMoney.value =
+                                            double.parse(inputeCurrency);
+                                        logic.checkConvertfromMoneyToRussia(
+                                            countryCode: logic
+                                                .selectedCountryCurrency
+                                                .value
+                                                .id!,
+                                            inputMoney: logic.inputMoney.value);
+                                      },
                                     ),
                                   ),
                                   SizedBox(
@@ -125,7 +127,7 @@ class CurrencyExchangePage extends StatelessWidget {
                                     flex: 3,
                                     child: InkWell(
                                       onTap: () {
-                                        selectCountryDialog(controller);
+                                        selectCountryDialog(logic);
                                       },
                                       child: Container(
                                         decoration: decorationBlueBorder,
@@ -151,10 +153,13 @@ class CurrencyExchangePage extends StatelessWidget {
                                             SizedBox(
                                               width: 2,
                                             ),
-                                            FlagCountryWidget(
-                                              currencyModel:
-                                                  controller.selectedCurrency,
-                                            )
+                                            if (logic.currencyList.length >
+                                                0) ...[
+                                              CurrencyDataWidget(
+                                                  dataCurrencyModel: logic
+                                                      .selectedCountryCurrency
+                                                      .value)
+                                            ],
                                           ],
                                         ),
                                       ),
@@ -183,7 +188,10 @@ class CurrencyExchangePage extends StatelessWidget {
                                           SizedBox(
                                             width: 8,
                                           ),
-                                          Text("......... "),
+                                          Text((logic.outputMoneyRussia.value !=
+                                                  "")
+                                              ? logic.outputMoneyRussia.value
+                                              : "......... "),
                                         ],
                                       ),
                                     ),
@@ -217,7 +225,16 @@ class CurrencyExchangePage extends StatelessWidget {
                                   Flexible(
                                     flex: 1,
                                     child: OvalButtonWdgt(
-                                        text: kCheckTxt.tr, onPressed: () {}),
+                                        text: kCheckTxt.tr,
+                                        onPressed: () {
+                                          logic.checkConvertfromMoneyToRussia(
+                                              countryCode: logic
+                                                  .selectedCountryCurrency
+                                                  .value
+                                                  .id!,
+                                              inputMoney:
+                                                  logic.inputMoney.value);
+                                        }),
                                   ),
                                   SizedBox(
                                     width: 2,
@@ -275,13 +292,13 @@ class CurrencyExchangePage extends StatelessWidget {
         height: 100,
         width: 100,
         child: ListView(
-          children: currencyDemoList
+          children: controller.currencyList
               .map((item) => InkWell(
                   onTap: () {
                     controller.chooseSelected(item);
                     Get.back();
                   },
-                  child: FlagCountryWidget(currencyModel: item)))
+                  child: CurrencyDataWidget(dataCurrencyModel: item)))
               .toList(),
         ),
       ),
@@ -312,6 +329,30 @@ class NewsItemWidget extends StatelessWidget {
           fit: BoxFit.fill,
         ),
       ),
+    );
+  }
+}
+
+class CarouselSliderListWidget extends StatelessWidget {
+  List<Widget> itemList;
+
+  CarouselSliderListWidget({
+    required this.itemList,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return CarouselSlider(
+      options: CarouselOptions(
+        autoPlay: true,
+        autoPlayAnimationDuration: Duration(seconds: 2),
+        viewportFraction: 1,
+        aspectRatio: 1,
+        enlargeCenterPage: true,
+        scrollDirection: Axis.horizontal,
+      ),
+      items: itemList,
     );
   }
 }

@@ -22,6 +22,7 @@ abstract class AppApi {
   Future<Response> getAdsRequest();
   Future<Response> getSingleCountryRequest(int? id);
   Future<Response> getSingleTransactionRequest(int id);
+  Future<Response> getCheckRateRequest(int countryCode, double money);
   Future<Response> postTransactionRequest(
       TransactionModel transactionModel, File file);
   Future<Response> postUniversityPaymentTransactionRequest(

@@ -59,4 +59,7 @@ const Map<String, String> en = {
   kChooseYourIdImageTxt: "Choose Your ID Image",
   kChooseConfirmationMessageImageTxt: "Choose Your Confirmation Message Image",
   kPrizeTitleTxt: "Facilitation for entering the university",
+  kNoNetworkTxt: "No Connecting ",
+  kNoServerTxt: "problem inside host",
+  kWrongPwdOrPhoneTxt: "Wrong password or email",
 };
