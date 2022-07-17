@@ -22,7 +22,7 @@ class CurrencyExchangePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final langController = Get.put(LanguageListController());
-    String _selectedLanguage = langController.getLanguage();
+    String _selectedLanguage = langController.selectedLang;
     return SingleChildScrollView(
       child: Obx(() {
         return Container(

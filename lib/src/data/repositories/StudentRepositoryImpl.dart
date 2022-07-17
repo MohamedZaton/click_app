@@ -77,10 +77,10 @@ class StudentRepositoryImpl implements StudentRepository {
 
   @override
   Future<Either<Failure, String>> getLogOut() async {
-    Response response = await ServerAppApi().getLogOutRequest();
-
     LocalData().clearAccessToken();
     LocalData().writeRejectAutoLogin();
+    Response response = await ServerAppApi().getLogOutRequest();
+
     try {
       String message = response.data['message'];
 
@@ -258,7 +258,7 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> putMakeUniversityPaymentTransaction(
+  Future<Either<Failure, bool>> makeUniversityPaymentTransaction(
       UniversityPaymentModel universityPaymentModel,
       File confImage,
       File passportImage,

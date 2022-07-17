@@ -1,3 +1,7 @@
+import 'package:click_app/src/presentation/getx/currency_exchange_controller.dart';
+import 'package:click_app/src/presentation/getx/history_controller.dart';
+import 'package:click_app/src/presentation/getx/prizes_controller.dart';
+import 'package:click_app/src/presentation/getx/setting_controller.dart';
 import 'package:click_app/src/presentation/pages/currency_exchange/currency_exchange_view.dart';
 import 'package:click_app/src/presentation/pages/history/history_view.dart';
 import 'package:click_app/src/presentation/pages/prizes/prizes_view.dart';
@@ -11,10 +15,16 @@ import 'package:get/get.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/images_path.dart';
 import '../../getx/home_controller.dart';
+import '../language_list/language_list_controller.dart';
 
 class HomePage extends StatelessWidget {
   static const String id = "/home";
+  final languageLogic = Get.put(LanguageListController());
 
+  final prizeLogic = Get.put(PrizesController());
+  final historyLogic = Get.put(HistoryController());
+  final settingLogic = Get.put(SettingController());
+  final exchangeLogic = Get.put(CurrencyExchangeController());
   final logic = Get.put(HomeController());
 
   @override

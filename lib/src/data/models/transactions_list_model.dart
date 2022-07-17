@@ -18,10 +18,10 @@ class TransactionsListModel {
     moneyAmount = json['money_amount'];
   }
   int? id;
-  double? moneyAmount;
+  String? moneyAmount;
   TransactionsListModel copyWith({
     int? id,
-    double? moneyAmount,
+    String? moneyAmount,
   }) =>
       TransactionsListModel(
         id: id ?? this.id,

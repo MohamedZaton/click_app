@@ -1,5 +1,4 @@
 import 'package:click_app/src/data/models/all_models.dart';
-import 'package:click_app/src/presentation/pages/history_detail/history_view_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -133,9 +132,8 @@ class TransformListWdgt extends StatelessWidget {
                           children: [
                             ItemHistoryWidget(
                               onPress: () {
-                                controller.changeClickItem(
-                                    nameList, transformList[index]);
-                                Get.to(() => HistoryDetailPage());
+                                controller.getSingleTransactionClick(
+                                    transformList[index].id!);
                               },
                               money:
                                   transformList[index].moneyAmount.toString(),

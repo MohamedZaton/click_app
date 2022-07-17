@@ -14,8 +14,8 @@ class SignUpController extends GetxController {
   File image = new File('');
   String? imagePath = kAvatarImage;
   final ImagePicker _picker = ImagePicker();
-  bool isHiddenPassword = true;
   bool isAttached = false;
+  bool isHiddenPassword = true;
 
   void setPasswordHidden(bool isHidden) {
     isHiddenPassword = isHidden;
@@ -48,11 +48,12 @@ class SignUpController extends GetxController {
     isLoading = true;
     final responce =
         await StudentRepositoryImpl().postRegister(registerModel, image);
-    responce.fold((l) {
+    responce.fold((failure) {
       //error
+      print("[RegisterNewStudent] error : ${failure.message}");
       Get.snackbar(kSignUpTxt, kSignUpFailedText, backgroundColor: Colors.red);
       isLoading = false;
-      Get.offAll(() => HomePage());
+      // Get.offAll(() => HomePage());
       return;
     }, (r) {
       //success

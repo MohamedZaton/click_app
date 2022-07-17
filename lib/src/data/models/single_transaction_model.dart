@@ -22,27 +22,27 @@ class SingleTransactionModel {
     moneyAmount = json['money_amount'];
     bankAccountName = json['bank_account_name'];
     bankAccountNumber = json['bank_account_number'];
-    confirmationImage = json['confirmation_image'];
+    confirmationImage = json['confirmation_image'] ?? "";
     status = json['status'];
-    reason = json['reason'];
+    reason = json['reason'] ?? "";
     createdAt = json['created_at'];
   }
   int? id;
-  double? moneyAmount;
+  String? moneyAmount;
   String? bankAccountName;
   String? bankAccountNumber;
   String? confirmationImage;
   String? status;
-  dynamic reason;
+  String? reason;
   String? createdAt;
   SingleTransactionModel copyWith({
     int? id,
-    double? moneyAmount,
+    String? moneyAmount,
     String? bankAccountName,
     String? bankAccountNumber,
     String? confirmationImage,
     String? status,
-    dynamic reason,
+    String? reason,
     String? createdAt,
   }) =>
       SingleTransactionModel(

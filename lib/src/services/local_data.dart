@@ -55,6 +55,19 @@ class LocalData {
     return ProfileModel.fromJson(json);
   }
 
+  /// Language
+  Future<void> writeLanguage(String languageCode) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setString(kLanguageKey, languageCode);
+  }
+
+  Future<String?> readLanguage() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    return prefs.getString(kLanguageKey);
+  }
+
   /// Login password & phone
   Future<void> writeLogin(LogInModel logInModel) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();

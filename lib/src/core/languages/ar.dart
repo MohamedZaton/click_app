@@ -2,6 +2,7 @@ import '../utils/constants.dart';
 
 const Map<String, String> ar = {
   kFullNameTxt: "الاسم الكامل ",
+  kPhoneText: "الهاتف",
   kOnlineTxt: "متصل",
   kOfflineTxt: "غير متصل على الانترنت",
   kHelloLogInTxt: "مرحبا\n تسجيل الدخول!",
@@ -13,6 +14,7 @@ const Map<String, String> ar = {
   kRejectedTxt: "مرفوض",
   kCancelTxt: "إلغاء",
   kConfirmTxt: "تأكيد",
+  kBackTxt: "رجوع",
   kConfirmPasswordTxt: "تاكيد كلمة المرور ",
   kSignInTxt: "تسجيل الدخول",
   kSignUpTxt: "تسجيل",

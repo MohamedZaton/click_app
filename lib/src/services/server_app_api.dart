@@ -113,12 +113,14 @@ class ServerAppApi implements AppApi {
       RegisterModel registerModel, File file) async {
     String registerUrl = baseServer + 'student/register';
     String fileName = file.path.split('/').last;
-
-    registerModel.copyWith(
-      photo: await MultipartFile.fromFile(file.path, filename: fileName),
-    );
-    final RegisterResponse =
-        await dio.post(registerUrl, data: registerModel.toJson());
+    var formData = FormData.fromMap({
+      'name': registerModel.name,
+      'phone': registerModel.phone,
+      'email': registerModel.email,
+      'password': registerModel.password,
+      'photo': await MultipartFile.fromFile(file.path, filename: fileName),
+    });
+    final RegisterResponse = await dio.post(registerUrl, data: formData);
     return RegisterResponse;
   }
 
@@ -126,13 +128,23 @@ class ServerAppApi implements AppApi {
   Future<Response> putProfileInfoRequest(
       RegisterModel registerModel, File file) async {
     String url = baseServer + 'student/updateProfile';
-    String fileName = file.path.split('/').last;
 
     await addTokenHeader();
-    registerModel.copyWith(
-      photo: await MultipartFile.fromFile(file.path, filename: fileName),
-    );
-    final response = await dio.post(url, data: registerModel.toJson());
+    var formData;
+    try {
+      String fileName = file.path.split('/').last;
+
+      formData = FormData.fromMap({
+        'name': registerModel.name,
+        'phone': registerModel.phone,
+        'email': registerModel.email,
+        'photo': await MultipartFile.fromFile(file.path, filename: fileName),
+      });
+    } catch (e) {
+      print("error:${e.toString()}");
+    }
+
+    final response = await dio.post(url, data: formData);
     return response;
   }
 
@@ -147,7 +159,14 @@ class ServerAppApi implements AppApi {
       confirmationImage:
           await MultipartFile.fromFile(file.path, filename: fileName),
     );
-    final response = await dio.post(url, data: transactionModel.toJson());
+    var formData = FormData.fromMap({
+      'money_amount': transactionModel.moneyAmount,
+      'bank_account_name': transactionModel.bankAccountName,
+      'bank_account_number': transactionModel.bankAccountNumber,
+      'confirmation_image':
+          await MultipartFile.fromFile(file.path, filename: fileName),
+    });
+    final response = await dio.post(url, data: formData);
     return response;
   }
 
@@ -164,14 +183,19 @@ class ServerAppApi implements AppApi {
     String idImgName = idImage.path.split('/').last;
 
     await addTokenHeader();
-    universityPaymentModel.copyWith(
-      confirmationImage:
+    var formData = FormData.fromMap({
+      'money_amount': universityPaymentModel.moneyAmount,
+      'bank_account_name': universityPaymentModel.bankAccountName,
+      'bank_account_number': universityPaymentModel.bankAccountNumber,
+      'confirmation_image':
           await MultipartFile.fromFile(confImage.path, filename: confName),
-      passportImage: await MultipartFile.fromFile(passportImage.path,
+      'passport_image': await MultipartFile.fromFile(passportImage.path,
           filename: passportName),
-      idImage: await MultipartFile.fromFile(idImage.path, filename: idImgName),
-    );
-    final response = await dio.post(url, data: universityPaymentModel.toJson());
+      'id_image':
+          await MultipartFile.fromFile(idImage.path, filename: idImgName),
+    });
+
+    final response = await dio.post(url, data: formData);
     return response;
   }
 

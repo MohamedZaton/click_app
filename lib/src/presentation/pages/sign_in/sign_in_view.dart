@@ -176,6 +176,17 @@ class SignInPage extends StatelessWidget {
                                       OvalButtonWdgt(
                                         text: kSignInTxt.tr.toUpperCase(),
                                         onPressed: () {
+                                          bool isAllTextFill =
+                                              emailController.text.isNotEmpty &&
+                                                  passwordController
+                                                      .text.isNotEmpty;
+                                          if (!isAllTextFill) {
+                                            Get.snackbar(kSignInTxt,
+                                                "you must write all information ",
+                                                backgroundColor:
+                                                    Colors.deepOrange);
+                                            return;
+                                          }
                                           if (_formSignInKey.currentState!
                                               .validate()) {
                                             controller.loginUser(

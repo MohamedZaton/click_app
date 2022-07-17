@@ -20,11 +20,13 @@ const String kSuccessTxt = "Success";
 const String kPendingTxt = "Pending";
 const String kRejectedTxt = "Rejected";
 const String kCancelTxt = "Cancel";
+const String kBackTxt = "Back";
 const String kConfirmTxt = "Confirm";
 
 const String kConfirmPasswordTxt = "$kConfirmTxt Password";
 const String kSignInTxt = "sign in";
 const String kSignUpSuccessText = "sign up Success";
+const String kPaymentSuccessText = "Payment Submit Successfully ";
 const String kSignUpFailedText = "sign up Failed";
 const String kSignUpTxt = "sign Up";
 const String kLogOutTxt = "logout";
@@ -55,6 +57,8 @@ const kProfileTxt = "Profile";
 const kChooseCountryTxt = "Choose Your country";
 const kLanguageTxt = "Language";
 const kContactUsTxt = "Contact us";
+const kContactUsDetailsTxt =
+    "Please, contact us this transformation need more time";
 const kShareAppTxt = "Share App";
 const kRateAppTxt = "Rate App";
 const kAboutAppTxt = "About App";
@@ -62,6 +66,8 @@ const kSaveTxt = "Save";
 const kAppliedTxt = "Applied";
 const kNextTxt = "Next";
 const kFormPayTxt = "Payment Form";
+const kPhoneText = "phone";
+
 const kUniversityPayTxt = "Payment University";
 
 const kEgyptTxt = "Egypt";

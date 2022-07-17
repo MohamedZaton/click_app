@@ -9,7 +9,7 @@ class SettingController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    getwhatsappNumbers();
+    getWhatsAppNumbers();
   }
 
   @override
@@ -24,10 +24,10 @@ class SettingController extends GetxController {
     super.onClose();
   }
 
-  void getwhatsappNumbers() async {
+  void getWhatsAppNumbers() async {
     final response = await StudentRepositoryImpl().getWhatsAppNumbers();
     response.fold((failure) {
-      print("[getwhatsappNumbers] error : ${failure.message}");
+      print("[getWhatsAppNumbers] error : ${failure.message}");
       update();
       return;
     }, (whatsAppNumbers) {
@@ -38,10 +38,8 @@ class SettingController extends GetxController {
   }
 
   void logOutProcess() async {
-    final responce = await StudentRepositoryImpl().getLogOut();
-    responce.fold(
-      (l) => Get.to(() => SplashPage()),
-      (r) => Get.to(() => SplashPage()),
-    );
+    Get.off(() => SplashPage());
+
+    await StudentRepositoryImpl().getLogOut();
   }
 }

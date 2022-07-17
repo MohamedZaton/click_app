@@ -1,4 +1,6 @@
+import 'package:click_app/src/core/utils/images_path.dart';
 import 'package:click_app/src/data/models/all_models.dart';
+import 'package:click_app/src/presentation/pages/sign_in/sign_in_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,6 +19,7 @@ class SignUpPage extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   final _formSignInKey = GlobalKey<FormState>();
 
   @override
@@ -69,24 +72,24 @@ class SignUpPage extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Align(
+                                alignment: Alignment.center,
                                 child: InkWell(
                                   child: (controller.isAttached == false)
                                       ? FluxImage(
-                                          imageUrl: kAvatarImage,
+                                          imageUrl: kAvatarUserImg,
                                           width: 100,
                                           height: 100,
                                           fit: BoxFit.cover,
                                         )
                                       : Image.file(
                                           logic.image,
-                                          height: 300.0,
+                                          scale: 2,
                                           fit: BoxFit.cover,
                                         ),
                                   onTap: () async {
                                     await controller.getImage();
                                   },
                                 ),
-                                alignment: Alignment.center,
                               ),
                               Container(
                                 padding: EdgeInsets.only(
@@ -112,6 +115,27 @@ class SignUpPage extends StatelessWidget {
                                           ),
                                         ),
                                         controller: nameController,
+                                      ),
+                                      SizedBox(height: 10),
+
+                                      /// phone
+                                      TextFormField(
+                                        decoration: InputDecoration(
+                                          labelText: kPhoneText.tr,
+                                          labelStyle: TextStyle(
+                                              fontSize: 10,
+                                              color: kLightAccent),
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black12),
+                                          ),
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: kLightAccent),
+                                          ),
+                                        ),
+                                        keyboardType: TextInputType.number,
+                                        controller: phoneController,
                                       ),
                                       SizedBox(height: 10),
 
@@ -231,7 +255,7 @@ class SignUpPage extends StatelessWidget {
                                                   ),
                                             ),
                                             onTap: () {
-                                              /// tap forget password
+                                              Get.to(() => SignInPage());
                                             },
                                           )
                                         ],
@@ -240,6 +264,30 @@ class SignUpPage extends StatelessWidget {
                                       OvalButtonWdgt(
                                           text: kSignUpTxt.tr.toUpperCase(),
                                           onPressed: () {
+                                            if (!logic.isAttached) {
+                                              Get.snackbar(kSignUpTxt,
+                                                  "you must attached profile Image  ",
+                                                  backgroundColor:
+                                                      Colors.deepOrange);
+                                              return;
+                                            }
+                                            bool isAllTextFill = nameController
+                                                    .text.isNotEmpty &&
+                                                phoneController
+                                                    .text.isNotEmpty &&
+                                                emailController
+                                                    .text.isNotEmpty &&
+                                                passwordConfController
+                                                    .text.isNotEmpty &&
+                                                passwordController
+                                                    .text.isNotEmpty;
+                                            if (!isAllTextFill) {
+                                              Get.snackbar(kSignUpTxt,
+                                                  "you must write all information ",
+                                                  backgroundColor:
+                                                      Colors.deepOrange);
+                                              return;
+                                            }
                                             if (_formSignInKey.currentState!
                                                 .validate()) {
                                               if (passwordController.text ==
@@ -251,6 +299,8 @@ class SignUpPage extends StatelessWidget {
                                                         name:
                                                             nameController.text,
                                                         email: emailController
+                                                            .text,
+                                                        phone: phoneController
                                                             .text,
                                                         password:
                                                             passwordController

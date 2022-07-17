@@ -8,8 +8,10 @@ import 'package:get/get.dart';
 import '../../../core/utils/colors.dart';
 import '../../getx/prizes_controller.dart';
 import '../../widgets/prize_card.dart';
+import '../language_list/language_list_controller.dart';
 
 class PrizesPage extends StatelessWidget {
+  final languageLogic = Get.put(LanguageListController());
   final logic = Get.put(PrizesController());
 
   static const String id = "/prizes";
@@ -41,8 +43,12 @@ class PrizesPage extends StatelessWidget {
                     return Builder(builder: (context) {
                       return PrizeCard(
                         logoPath: item.logo ?? kPrizeAImg,
-                        title: item.titleEn.toString(),
-                        body: item.descriptionEn.toString(),
+                        title: (logic.language.value == kEnglishCode)
+                            ? item.titleEn.toString()
+                            : item.titleEn.toString(),
+                        body: (logic.language.value == kEnglishCode)
+                            ? item.descriptionEn.toString()
+                            : item.descriptionEn.toString(),
                       );
                     });
                   }).toList(),

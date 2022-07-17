@@ -1,4 +1,4 @@
-import 'package:click_app/src/presentation/pages/payment_countries/pay_details_view.dart';
+import 'package:click_app/src/presentation/widgets/custom_dailogs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -25,101 +25,111 @@ class PaymentCountriesPage extends StatelessWidget {
         width: ScreenDevices.width(context),
         height: ScreenDevices.heigth(context) * 0.80,
         color: kLightAccent,
-        child: Container(
-          margin: EdgeInsets.only(top: 30),
-          width: ScreenDevices.width(context),
-          height: ScreenDevices.heigth(context) * 0.80,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(40),
-              topRight: Radius.circular(40),
+        child: GetBuilder<PaymentCountriesController>(builder: (logic) {
+          return Container(
+            margin: EdgeInsets.only(top: 30),
+            width: ScreenDevices.width(context),
+            height: ScreenDevices.heigth(context) * 0.80,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(40),
+                topRight: Radius.circular(40),
+              ),
             ),
-          ),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 20,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      padding: EdgeInsets.only(left: 16, right: 16, top: 8),
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.vertical,
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              OvalButtonWdgt(
-                                  text: kEgyptTxt.tr,
-                                  imagePath: kEgyptFlagImg,
-                                  isCenter: false,
-                                  backgroundColor: kLightAccent,
-                                  textColor: Colors.white,
-                                  onPressed: () {
-                                    Get.to(() => PayDetailsPage());
-                                  }),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              OvalButtonWdgt(
-                                  text: kUaeTxt.tr,
-                                  imagePath: kUaeFlagImg,
-                                  isCenter: false,
-                                  backgroundColor: kLightAccent,
-                                  textColor: Colors.white,
-                                  onPressed: () {
-                                    Get.to(() => PayDetailsPage(
-                                          nameCountry: kUaeTxt.tr,
-                                          flagPath: kUaeFlagImg,
-                                        ));
-                                  }),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              OvalButtonWdgt(
-                                  text: kSaudiArabiaTxt.tr,
-                                  imagePath: kKsaFlagImg,
-                                  isCenter: false,
-                                  backgroundColor: kLightAccent,
-                                  textColor: Colors.white,
-                                  onPressed: () {
-                                    Get.to(() => PayDetailsPage(
-                                          nameCountry: kSaudiArabiaTxt.tr,
-                                          flagPath: kKsaFlagImg,
-                                        ));
-                                  }),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Text(
-                                "Or",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline4!
-                                    .copyWith(color: Colors.grey),
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              OvalButtonWdgt(
-                                  text: kContactUsTxt.tr,
-                                  imagePath: kWhatsAppImg,
-                                  isCenter: false,
-                                  backgroundColor: kLightAccent,
-                                  textColor: Colors.white,
-                                  onPressed: () {}),
-                            ]),
-                      ),
-                    )
-                  ],
-                ),
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        padding: EdgeInsets.only(left: 16, right: 16, top: 8),
+                        width: ScreenDevices.width(context) * 0.9,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.vertical,
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                if (logic.countryList.length > 0) ...[
+                                  Container(
+                                    height: ScreenDevices.heigth(context) *
+                                        (logic.countryList.length * 0.1),
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: logic.countryList.length,
+                                      itemBuilder: (context, index) {
+                                        return Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: ScreenDevices.heigth(
+                                                      context) *
+                                                  0.01),
+                                          child: OvalButtonWdgt(
+                                              text: logic
+                                                  .countryList[index].nameEn!,
+                                              imagePath: logic
+                                                  .countryList[index].flag!,
+                                              isCenter: false,
+                                              backgroundColor: kLightAccent,
+                                              textColor: Colors.white,
+                                              onPressed: () {
+                                                logic
+                                                    .getSingleCountryAndGoDetails(
+                                                        logic.countryList[index]
+                                                            .id!);
+                                              }),
+                                        );
+                                      },
+                                    ),
+                                  )
+                                ],
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                  "Or",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline4!
+                                      .copyWith(color: Colors.grey),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                OvalButtonWdgt(
+                                    text: kContactUsTxt.tr,
+                                    imagePath: kWhatsAppImg,
+                                    isCenter: false,
+                                    backgroundColor: kLightAccent,
+                                    textColor: Colors.white,
+                                    onPressed: () {
+                                      if (logic.numbersWatsappList.length > 0) {
+                                        CustomDialogs.whatsAppDialog(
+                                            context, logic.numbersWatsappList);
+                                      } else {
+                                        Get.snackbar(
+                                            kContactUsTxt.tr, "Not found");
+                                      }
+                                    }),
+                                if (logic.isLoading) ...[
+                                  Container(
+                                    child: CircularProgressIndicator(
+                                        color: kDarkAccent),
+                                  )
+                                ]
+                              ]),
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }

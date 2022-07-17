@@ -3,9 +3,9 @@ import 'package:click_app/src/core/utils/images_path.dart';
 import 'package:click_app/src/core/utils/screens.dart';
 import 'package:click_app/src/presentation/pages/language_list/language_list_view.dart';
 import 'package:click_app/src/presentation/pages/profile/profile_view.dart';
+import 'package:click_app/src/presentation/widgets/custom_dailogs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/utils/constants.dart';
 import '../../getx/setting_controller.dart';
@@ -81,7 +81,7 @@ class SettingPage extends StatelessWidget {
                                   textColor: kSettingListColor,
                                   onPressed: () {
                                     if (logic.numbersWatsappList.length > 0) {
-                                      numbersDialog(
+                                      CustomDialogs.whatsAppDialog(
                                           context, logic.numbersWatsappList);
                                     } else {
                                       Get.snackbar(
@@ -138,44 +138,5 @@ class SettingPage extends StatelessWidget {
         ),
       );
     });
-  }
-
-  Future<dynamic> numbersDialog(
-      BuildContext context, List<String> numbersWatsAppList) {
-    return Get.defaultDialog(
-      title: "Select WhatsApp Number ",
-      titleStyle: TextStyle(color: kLightAccent),
-      middleTextStyle: TextStyle(color: Colors.green),
-      backgroundColor: Colors.white,
-      content: Container(
-        height: ScreenDevices.heigth(context) * 0.2,
-        width: ScreenDevices.width(context) * 0.8,
-        child: ListView(
-          children: numbersWatsAppList
-              .map(
-                (item) => Column(
-                  children: [
-                    OvalButtonWdgt(
-                      text: item,
-                      imagePath: kWhatsAppImg,
-                      onPressed: () async {
-                        var whatsappUrl = "whatsapp://send?phone=$item";
-                        await canLaunchUrl(Uri.parse(whatsappUrl))
-                            ? launchUrl(Uri.parse(whatsappUrl))
-                            : print(
-                                "open whatsapp app link or do a snackbar with notification that there is no whatsapp installed");
-                        Get.back();
-                      },
-                    ),
-                    SizedBox(
-                      height: 6,
-                    )
-                  ],
-                ),
-              )
-              .toList(),
-        ),
-      ),
-    );
   }
 }

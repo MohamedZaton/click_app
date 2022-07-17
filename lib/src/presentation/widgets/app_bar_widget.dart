@@ -1,6 +1,8 @@
 import 'package:click_app/src/core/utils/colors.dart';
 import 'package:click_app/src/core/utils/screens.dart';
+import 'package:click_app/src/presentation/pages/setting/setting_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AppBarWidget extends StatelessWidget {
   const AppBarWidget({
@@ -23,7 +25,9 @@ class AppBarWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => SettingPage());
+                    },
                     icon: Icon(
                       Icons.menu_outlined,
                       color: kOrangeColor,

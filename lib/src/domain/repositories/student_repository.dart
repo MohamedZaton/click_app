@@ -32,7 +32,7 @@ abstract class StudentRepository {
   Future<Either<Failure, bool>> postMakeTransaction(
       TransactionModel transactionModel, File file);
 
-  Future<Either<Failure, bool>> putMakeUniversityPaymentTransaction(
+  Future<Either<Failure, bool>> makeUniversityPaymentTransaction(
     UniversityPaymentModel universityPaymentModel,
     File confImage,
     File passportImage,

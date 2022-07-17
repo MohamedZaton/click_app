@@ -36,24 +36,24 @@ class UploadingImgButtonWdgt extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              FluxImage(imageUrl: kUploadingImg),
-              SizedBox(
-                height: 10,
-              ),
               if (isAttachedImage == false) ...[
-                FittedBox(
-                    child: Text(
-                  nameBtn,
-                  style: TextStyle(
-                      color: kLightAccent, fontWeight: FontWeight.bold),
-                ))
+                FluxImage(imageUrl: kUploadingImg),
               ] else ...[
                 Image.file(
                   imageFile!,
-                  height: 300.0,
-                  fit: BoxFit.cover,
+                  scale: 5,
+                  fit: BoxFit.contain,
                 )
               ],
+              SizedBox(
+                height: 10,
+              ),
+              FittedBox(
+                  child: Text(
+                nameBtn,
+                style:
+                    TextStyle(color: kLightAccent, fontWeight: FontWeight.bold),
+              ))
             ],
           ),
         ),

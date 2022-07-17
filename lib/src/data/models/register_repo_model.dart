@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 RegisterRepoModel registerRepoModelFromJson(String str) =>
     RegisterRepoModel.fromJson(json.decode(str));
@@ -66,7 +65,7 @@ class DataRegisterRepo {
   String? name;
   String? phone;
   String? email;
-  File? photo;
+  String? photo;
   String? updatedAt;
   String? createdAt;
   int? id;
@@ -74,7 +73,7 @@ class DataRegisterRepo {
     String? name,
     String? phone,
     String? email,
-    File? photo,
+    String? photo,
     String? updatedAt,
     String? createdAt,
     int? id,

@@ -1,12 +1,15 @@
 import 'package:click_app/src/core/utils/constants.dart';
 import 'package:click_app/src/core/utils/images_path.dart';
+import 'package:click_app/src/data/models/all_models.dart';
 import 'package:click_app/src/presentation/getx/history_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/screens.dart';
+import '../../../core/utils/time_helper.dart';
 import '../../widgets/count_down_timer.dart';
+import '../../widgets/custom_dailogs.dart';
 import '../../widgets/flux_image.dart';
 import '../../widgets/oval_btn_widget.dart';
 
@@ -18,12 +21,18 @@ class HistoryDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      String dataKey = controller.selectedStatueItem.value;
       Map<String, String> dataMap = controller.selectStatueTitleImageMap.value;
+      SingleTransactionModel transactionItem =
+          controller.singleTransactionItem.value;
+
+      int expireHours = 2;
+      controller.isTimerFinishedPadding.value = TimeHelper()
+          .isTransactionExpired(
+              createTime: transactionItem.createdAt!, exprieHour: expireHours);
 
       return Scaffold(
         appBar: AppBar(
-          title: Text(controller.selectedStatueItem.value),
+          title: Text(transactionItem.status!.toLowerCase()),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -49,7 +58,7 @@ class HistoryDetailPage extends StatelessWidget {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(20.0),
                               child: FluxImage(
-                                imageUrl: dataMap[dataKey]!,
+                                imageUrl: dataMap[transactionItem.status!]!,
                                 fit: BoxFit.contain,
                               ),
                             ),
@@ -86,7 +95,7 @@ class HistoryDetailPage extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: Text(
-                              kCaseTransformTxt.tr + dataKey,
+                              kCaseTransformTxt.tr + transactionItem.status!,
                               style: Theme.of(context)
                                   .textTheme
                                   .subtitle1!
@@ -99,9 +108,9 @@ class HistoryDetailPage extends StatelessWidget {
                           SizedBox(
                             height: 2,
                           ),
-                          if (dataKey == kPendingTxt &&
+                          if (transactionItem.status == Status.PENDING.name &&
                               controller.isTimerFinishedPadding.value ==
-                                  false) ...[
+                                  true) ...[
                             Expanded(
                               flex: 1,
                               child: Row(
@@ -114,7 +123,8 @@ class HistoryDetailPage extends StatelessWidget {
                                     width: 8,
                                   ),
                                   CounterDownTimerWgt(
-                                    minutes: 2,
+                                    minutes:
+                                        Duration(hours: expireHours).inMinutes,
                                     onEnd: () {
                                       controller.isTimerFinishedPadding.value =
                                           true;
@@ -126,17 +136,37 @@ class HistoryDetailPage extends StatelessWidget {
                           ],
                           if (controller.isTimerFinishedPadding.value) ...[
                             Expanded(
+                                flex: 1,
+                                child: FittedBox(
+                                    child: Text(kContactUsDetailsTxt))),
+                            Expanded(
                               flex: 1,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  FluxImage(
-                                    imageUrl: kWhatsAppImg,
+                                  Container(
+                                    width: ScreenDevices.width(context) * 0.7,
+                                    height: ScreenDevices.heigth(context) * 0.1,
+                                    child: OvalButtonWdgt(
+                                        text: kContactUsTxt.tr,
+                                        imagePath: kWhatsAppImg,
+                                        isCenter: true,
+                                        backgroundColor: kLightAccent,
+                                        textColor: Colors.white,
+                                        onPressed: () {
+                                          if (controller.numbersWatsappList
+                                                  .value.length >
+                                              0) {
+                                            CustomDialogs.whatsAppDialog(
+                                                context,
+                                                controller
+                                                    .numbersWatsappList.value);
+                                          } else {
+                                            Get.snackbar(
+                                                kContactUsTxt.tr, "Not found");
+                                          }
+                                        }),
                                   ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(kContactUsTxt.tr),
                                 ],
                               ),
                             ),
@@ -171,7 +201,7 @@ class HistoryDetailPage extends StatelessWidget {
                                     Text(kAccountNumberTxt.tr,
                                         style: TextStyle(color: kDarkAccent)),
                                     Text(
-                                        controller.historyItem.value.id
+                                        transactionItem.bankAccountNumber
                                             .toString(),
                                         style: TextStyle(color: kOrangeColor)),
                                   ],
@@ -185,8 +215,7 @@ class HistoryDetailPage extends StatelessWidget {
                                             style:
                                                 TextStyle(color: kDarkAccent)),
                                         Text(
-                                            controller
-                                                .historyItem.value.moneyAmount
+                                            transactionItem.moneyAmount
                                                 .toString(),
                                             style:
                                                 TextStyle(color: kOrangeColor)),
@@ -208,10 +237,13 @@ class HistoryDetailPage extends StatelessWidget {
                             height: 2,
                           ),
                           Expanded(
-                            flex: 2,
+                            flex: 3,
                             child: FluxImage(
-                              imageUrl: kScreenShotImg,
-                              fit: BoxFit.cover,
+                              imageUrl: transactionItem.confirmationImage == ""
+                                  ? kEmptyImg
+                                  : transactionItem.confirmationImage!,
+                              fit: BoxFit.fill,
+                              width: 100,
                             ),
                           ),
                           SizedBox(
@@ -224,7 +256,7 @@ class HistoryDetailPage extends StatelessWidget {
                                 /// make cancel button
                                 Expanded(
                                   child: OvalButtonWdgt(
-                                      text: kCancelTxt.tr,
+                                      text: kBackTxt.tr,
                                       onPressed: () {
                                         Get.back();
                                       }),

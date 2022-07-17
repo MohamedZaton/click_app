@@ -75,7 +75,7 @@ class PrizeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final langController = Get.put(LanguageListController());
-    String _selectedLanguage = langController.getLanguage();
+    String _selectedLanguage = langController.selectedLang;
     return Container(
       color: Colors.white,
       child: Container(
@@ -90,8 +90,8 @@ class PrizeBody extends StatelessWidget {
           padding: EdgeInsets.only(left: 8, right: 8, top: 45),
           child: Column(
             crossAxisAlignment: _selectedLanguage != kArabicCode
-                ? CrossAxisAlignment.start
-                : CrossAxisAlignment.end,
+                ? CrossAxisAlignment.center
+                : CrossAxisAlignment.center,
             children: [
               Flexible(
                 child: Text(

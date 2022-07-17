@@ -63,7 +63,7 @@ class DataSingleCountry {
   String? descriptionEn;
   String? descriptionAr;
   String? contactPhone;
-  dynamic contactPhone2;
+  String? contactPhone2;
   String? code;
   int? currencyId;
   DataSingleCountry copyWith({
@@ -74,7 +74,7 @@ class DataSingleCountry {
     String? descriptionEn,
     String? descriptionAr,
     String? contactPhone,
-    dynamic contactPhone2,
+    String? contactPhone2,
     String? code,
     int? currencyId,
   }) =>
