@@ -73,16 +73,19 @@ class HistoryPage extends StatelessWidget {
                       controller: historyController,
                       nameList: Status.PENDING.name,
                       transformList: historyController.pendingList.value,
+                      loadingFlag: historyController.isLoadingDetails.value,
                     ),
                     TransformListWdgt(
                       controller: historyController,
                       nameList: Status.REJECTED.name,
                       transformList: historyController.rejectedList.value,
+                      loadingFlag: historyController.isLoadingDetails.value,
                     ),
                     TransformListWdgt(
                       controller: historyController,
                       nameList: Status.COMPLETED.name,
                       transformList: historyController.successList.value,
+                      loadingFlag: historyController.isLoadingDetails.value,
                     ),
                   ]),
             ),
@@ -94,6 +97,7 @@ class HistoryPage extends StatelessWidget {
 }
 
 class TransformListWdgt extends StatelessWidget {
+  final bool loadingFlag;
   final String nameList;
   final List<TransactionsListModel> transformList;
   final HistoryController controller;
@@ -102,6 +106,7 @@ class TransformListWdgt extends StatelessWidget {
     required this.controller,
     required this.nameList,
     required this.transformList,
+    this.loadingFlag = false,
   }) : super(key: key);
 
   @override
@@ -111,55 +116,65 @@ class TransformListWdgt extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                if (transformList.length > 0) ...[
-                  Container(
-                    height: ScreenDevices.heigth(context) * 0.80,
-                    padding: EdgeInsets.only(left: 16, right: 16, top: 8),
-                    child: ListView.builder(
-                      scrollDirection: Axis.vertical,
-                      itemCount: transformList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            ItemHistoryWidget(
-                              onPress: () {
-                                controller.getSingleTransactionClick(
-                                    transformList[index].id!);
-                              },
-                              money:
-                                  transformList[index].moneyAmount.toString(),
-                              idTransform: transformList[index].id!,
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  )
-                ] else ...[
-                  Container(
-                    height: ScreenDevices.heigth(context) * 0.80,
-                    padding: EdgeInsets.only(left: 16, right: 16, top: 8),
-                    child: MessageImgButtonWdgt(
-                        title: kNoListTxt.tr, imageUrl: kEmptyImg),
-                  )
-                ]
+      child: (loadingFlag)
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(
+                  color: kDarkAccent,
+                )
               ],
+            )
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      if (transformList.length > 0) ...[
+                        Container(
+                          height: ScreenDevices.heigth(context) * 0.80,
+                          padding: EdgeInsets.only(left: 16, right: 16, top: 8),
+                          child: ListView.builder(
+                            scrollDirection: Axis.vertical,
+                            itemCount: transformList.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Column(
+                                children: [
+                                  ItemHistoryWidget(
+                                    onPress: () {
+                                      controller.getSingleTransactionClick(
+                                          transformList[index].id!);
+                                    },
+                                    money: transformList[index]
+                                        .moneyAmount
+                                        .toString(),
+                                    idTransform: transformList[index].id!,
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        )
+                      ] else ...[
+                        Container(
+                          height: ScreenDevices.heigth(context) * 0.80,
+                          padding: EdgeInsets.only(left: 16, right: 16, top: 8),
+                          child: MessageImgButtonWdgt(
+                              title: kNoListTxt.tr, imageUrl: kEmptyImg),
+                        )
+                      ]
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

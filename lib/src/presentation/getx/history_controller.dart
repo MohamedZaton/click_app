@@ -2,6 +2,7 @@ import 'package:click_app/src/core/utils/images_path.dart';
 import 'package:click_app/src/data/repositories/StudentRepositoryImpl.dart';
 import 'package:get/get.dart';
 
+import '../../core/utils/time_helper.dart';
 import '../../data/models/all_models.dart';
 import '../pages/history_detail/history_view_detail.dart';
 
@@ -10,14 +11,14 @@ enum Status { PENDING, REJECTED, COMPLETED }
 class HistoryController extends GetxController {
   RxBool isLoadingDetails = false.obs;
   RxInt tabIndex = 0.obs;
-  RxBool isTimerFinishedPadding = false.obs;
+  RxInt pendingTime = 0.obs;
   RxList<TransactionsListModel> successList = <TransactionsListModel>[].obs;
   RxList<TransactionsListModel> pendingList = <TransactionsListModel>[].obs;
   RxList<TransactionsListModel> rejectedList = <TransactionsListModel>[].obs;
   RxList<String> numbersWatsappList = <String>[].obs;
 
-  Rx<SingleTransactionModel> singleTransactionItem =
-      SingleTransactionModel().obs;
+  Rx<DataSingleTransactionModel> singleTransactionItem =
+      DataSingleTransactionModel().obs;
 
   // RxList<bool> selectedToggelButton = [true, false, false].obs;
   RxMap<String, String> selectStatueTitleImageMap = {
@@ -62,9 +63,20 @@ class HistoryController extends GetxController {
     });
   }
 
-  void selectTab(int index) {
-/*    selectedToggelButton.value = [false, false, false];
-    selectedToggelButton.value[index] = true;*/
+  void selectTab(int index) async {
+    await fetchTransactionsList();
+    switch (index) {
+      case 0:
+        getPendingList();
+        break;
+      case 1:
+        getRejectedList();
+        break;
+      case 2:
+        getCompleteList();
+        break;
+    }
+
     tabIndex.value = index;
   }
 
@@ -79,6 +91,7 @@ class HistoryController extends GetxController {
       return;
     }, (dataTransaction) {
       singleTransactionItem.value = dataTransaction;
+      getMinuets();
       Get.to(() => HistoryDetailPage());
       isLoadingDetails.value = false;
 
@@ -87,12 +100,30 @@ class HistoryController extends GetxController {
   }
 
   Future<void> fetchTransactionsList() async {
-    await getTransactionListRequest(
-        status: Status.COMPLETED.name, typeContainerList: Status.COMPLETED);
-    await getTransactionListRequest(
-        status: Status.PENDING.name, typeContainerList: Status.PENDING);
+    await getCompleteList();
+    await getPendingList();
+    await getRejectedList();
+  }
+
+  Future<void> getRejectedList() async {
+    isLoadingDetails.value = true;
     await getTransactionListRequest(
         status: Status.REJECTED.name, typeContainerList: Status.REJECTED);
+    isLoadingDetails.value = false;
+  }
+
+  Future<void> getPendingList() async {
+    isLoadingDetails.value = true;
+    await getTransactionListRequest(
+        status: Status.PENDING.name, typeContainerList: Status.PENDING);
+    isLoadingDetails.value = false;
+  }
+
+  Future<void> getCompleteList() async {
+    isLoadingDetails.value = true;
+    await getTransactionListRequest(
+        status: Status.COMPLETED.name, typeContainerList: Status.COMPLETED);
+    isLoadingDetails.value = false;
   }
 
   Future<void> getTransactionListRequest(
@@ -111,5 +142,15 @@ class HistoryController extends GetxController {
 
       return;
     });
+  }
+
+  getMinuets() {
+    int expireMinutes = 2 * 60;
+    pendingTime.value = expireMinutes -
+        TimeHelper().calculateTransactionExpired(
+            createTime: singleTransactionItem.value.createdAt!);
+    if (pendingTime.value < 0) {
+      pendingTime.value = 0;
+    }
   }
 }

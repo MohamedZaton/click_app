@@ -25,7 +25,7 @@ class CurrencyExchangeController extends GetxController {
     value: "20",
     flagImg: kRussiaFlagImg,
   );
-  void chooseSelected(DataCurrenciesModel selected) {
+  void selectCountryCurrency(DataCurrenciesModel selected) {
     selectedCountryCurrency.value = selected;
   }
 

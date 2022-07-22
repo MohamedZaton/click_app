@@ -4,11 +4,10 @@ import 'package:click_app/src/data/models/all_models.dart';
 import 'package:click_app/src/presentation/getx/history_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:slide_countdown/slide_countdown.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/screens.dart';
-import '../../../core/utils/time_helper.dart';
-import '../../widgets/count_down_timer.dart';
 import '../../widgets/custom_dailogs.dart';
 import '../../widgets/flux_image.dart';
 import '../../widgets/oval_btn_widget.dart';
@@ -22,13 +21,13 @@ class HistoryDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       Map<String, String> dataMap = controller.selectStatueTitleImageMap.value;
-      SingleTransactionModel transactionItem =
+      DataSingleTransactionModel transactionItem =
           controller.singleTransactionItem.value;
-
-      int expireHours = 2;
-      controller.isTimerFinishedPadding.value = TimeHelper()
-          .isTransactionExpired(
-              createTime: transactionItem.createdAt!, exprieHour: expireHours);
+/*      int expireMinutes = 2;
+      controller.pendingTime.value = TimeHelper()
+          .calculateTransactionExpired(createTime: transactionItem.createdAt!);
+      int expireReminderMin =
+            (expireMinutes * 60) - controller.pendingTime.value;*/
 
       return Scaffold(
         appBar: AppBar(
@@ -108,69 +107,94 @@ class HistoryDetailPage extends StatelessWidget {
                           SizedBox(
                             height: 2,
                           ),
-                          if (transactionItem.status == Status.PENDING.name &&
-                              controller.isTimerFinishedPadding.value ==
-                                  true) ...[
-                            Expanded(
-                              flex: 1,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FluxImage(
-                                    imageUrl: kClockTimerImg,
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  CounterDownTimerWgt(
-                                    minutes:
-                                        Duration(hours: expireHours).inMinutes,
-                                    onEnd: () {
-                                      controller.isTimerFinishedPadding.value =
-                                          true;
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                          if (controller.isTimerFinishedPadding.value) ...[
-                            Expanded(
+
+                          /// panding status start
+                          if (transactionItem.status ==
+                              Status.PENDING.name) ...[
+                            if (controller.pendingTime.value > 0) ...[
+                              Expanded(
                                 flex: 1,
-                                child: FittedBox(
-                                    child: Text(kContactUsDetailsTxt))),
-                            Expanded(
-                              flex: 1,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    width: ScreenDevices.width(context) * 0.7,
-                                    height: ScreenDevices.heigth(context) * 0.1,
-                                    child: OvalButtonWdgt(
-                                        text: kContactUsTxt.tr,
-                                        imagePath: kWhatsAppImg,
-                                        isCenter: true,
-                                        backgroundColor: kLightAccent,
-                                        textColor: Colors.white,
-                                        onPressed: () {
-                                          if (controller.numbersWatsappList
-                                                  .value.length >
-                                              0) {
-                                            CustomDialogs.whatsAppDialog(
-                                                context,
-                                                controller
-                                                    .numbersWatsappList.value);
-                                          } else {
-                                            Get.snackbar(
-                                                kContactUsTxt.tr, "Not found");
-                                          }
-                                        }),
-                                  ),
-                                ],
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    FluxImage(
+                                      imageUrl: kClockTimerImg,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    SlideCountdownSeparated(
+                                      duration: Duration(
+                                          minutes:
+                                              controller.pendingTime.value),
+                                    ),
+/*                                  CounterDownTimerWgt(
+                                    minutes: controller.pendingTime.value,
+                                    onEnd: () {
+                                      controller.pendingTime.value = 0;
+                                    },
+                                  ),*/
+                                  ],
+                                ),
                               ),
-                            ),
+                            ],
+                            if (controller.pendingTime.value <= 0) ...[
+                              Expanded(
+                                  flex: 1,
+                                  child: FittedBox(
+                                      child: Text(kContactUsDetailsTxt))),
+                              Expanded(
+                                flex: 1,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: ScreenDevices.width(context) * 0.7,
+                                      height:
+                                          ScreenDevices.heigth(context) * 0.1,
+                                      child: OvalButtonWdgt(
+                                          text: kContactUsTxt.tr,
+                                          imagePath: kWhatsAppImg,
+                                          isCenter: true,
+                                          backgroundColor: kLightAccent,
+                                          textColor: Colors.white,
+                                          onPressed: () {
+                                            if (controller.numbersWatsappList
+                                                    .value.length >
+                                                0) {
+                                              CustomDialogs.whatsAppDialog(
+                                                  context,
+                                                  controller.numbersWatsappList
+                                                      .value);
+                                            } else {
+                                              Get.snackbar(kContactUsTxt.tr,
+                                                  "Not found");
+                                            }
+                                          }),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ],
+
+                          /// panding status end
+                          /// panding status start
+                          if (transactionItem.status ==
+                              Status.REJECTED.name) ...[
+                            FittedBox(
+                              child: Text(
+                                  "Reason : ${transactionItem.reason.toString()}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1
+                                      ?.copyWith(
+                                        color: Colors.red,
+                                      )),
+                            )
+                          ],
+
+                          /// panding status end
                           SizedBox(
                             height: 8,
                           ),

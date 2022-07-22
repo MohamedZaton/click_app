@@ -295,7 +295,7 @@ class CurrencyExchangePage extends StatelessWidget {
           children: controller.currencyList
               .map((item) => InkWell(
                   onTap: () {
-                    controller.chooseSelected(item);
+                    controller.selectCountryCurrency(item);
                     Get.back();
                   },
                   child: CurrencyDataWidget(dataCurrencyModel: item)))

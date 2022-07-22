@@ -31,6 +31,7 @@ dependencies:
   cached_network_image: ^3.2.1
   extended_image: ^6.2.1
   image_picker: ^0.8.5
+  slide_countdown: ^0.2.8
   intl: ^0.17.0
 
   carousel_slider: ^4.1.1

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:click_app/src/data/models/all_models.dart';
+import 'package:click_app/src/presentation/getx/currency_exchange_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,6 +14,7 @@ import '../pages/payment_countries/pay_details_view.dart';
 class PaymentCountriesController extends GetxController {
   bool isLoading = false;
   final ImagePicker _picker = ImagePicker();
+  final exchangeLogic = Get.find<CurrencyExchangeController>();
 
   /// university payment money ...{
 
@@ -25,6 +27,7 @@ class PaymentCountriesController extends GetxController {
   String? passportImagePath = kAvatarImage;
   File idImage = new File('');
   String? idImagePath = kAvatarImage;
+  String? countryRubRate = "";
   List<String> numbersWatsappList = [];
   DataSingleCountry dataSingleCountry = DataSingleCountry();
 
@@ -77,6 +80,7 @@ class PaymentCountriesController extends GetxController {
     final responce = await StudentRepositoryImpl()
         .makeUniversityPaymentTransaction(
             universityPaymentModel, confImage, passportImage, idImage);
+
     responce.fold((l) {
       //error
       Get.snackbar(kSignUpTxt, kSignUpFailedText, backgroundColor: Colors.red);
@@ -193,6 +197,8 @@ class PaymentCountriesController extends GetxController {
       return;
     }, (countryListresponse) {
       countryList = countryListresponse;
+      getRubRate(exchangeLogic.selectedCountryCurrency.value.id!,
+          exchangeLogic.selectedCountryCurrency.value.code.toString());
       update();
       return;
     });
@@ -209,6 +215,7 @@ class PaymentCountriesController extends GetxController {
       return;
     }, (singleCountryInfo) {
       dataSingleCountry = singleCountryInfo;
+      getRubRate(id, dataSingleCountry.code.toString());
       Get.to(() => PayDetailsPage());
       isLoading = false;
 
@@ -216,6 +223,18 @@ class PaymentCountriesController extends GetxController {
       return;
     });
 
+    update();
+  }
+
+  Future<void> getRubRate(int countryCode, String countryName) async {
+    final response = await StudentRepositoryImpl().getCheckRate(countryCode, 1);
+    response.fold((l) {
+      print("[getRussaRate] error: " + l.message);
+      return;
+    }, (rubEqual) {
+      countryRubRate = "$rubEqual $countryName";
+      return;
+    });
     update();
   }
 }

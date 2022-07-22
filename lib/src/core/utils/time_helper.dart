@@ -22,16 +22,46 @@ class TimeHelper {
     }
   }
 
-  bool isTransactionExpired(
-      {required String createTime, required int exprieHour}) {
-    var format = DateFormat("HH:mm:ss");
-    var createPlusHour =
-        format.parse(createTime).add(Duration(hours: exprieHour));
-    var endTimeNow = DateTime.now();
-    print("createPlusHour $createPlusHour - endTimeNow = $endTimeNow");
-    print(
-        "createPlusHour - endTimeNow =  ${createPlusHour.difference(endTimeNow).inHours}");
+  int calculateTransactionExpired({required String createTime}) {
+    print("create_at_time: $createTime");
 
-    return true;
+    var format = DateFormat("yyyy-MM-dd HH:mm:ss");
+    var createPlusHour = format.parse(createTime);
+    var endTimeNow = DateTime.now();
+    int different = endTimeNow.difference(createPlusHour).inMinutes;
+    print("createPlusHour $createPlusHour - endTimeNow = $endTimeNow");
+    print(" endTimeNow - createPlusHour =  ${different}");
+
+    return different;
+  }
+
+  String getTimeStringHHaMM(int minutesV) {
+    final int hour = minutesV ~/ 60;
+    final int minutes = minutesV % 60;
+    return '${hour.toString().padLeft(2, "0")}:${minutes.toString().padLeft(2, "0")}';
+  }
+
+  String intToTimeLeft(int value) {
+    int h, m, s;
+
+    h = value ~/ 3600;
+
+    m = ((value - h * 3600)) ~/ 60;
+
+    s = value - (h * 3600) - (m * 60);
+
+    String hourLeft =
+        h.toString().length < 2 ? "0" + h.toString() : h.toString();
+
+    String minuteLeft =
+        m.toString().length < 2 ? "0" + m.toString() : m.toString();
+
+    String secondsLeft =
+        s.toString().length < 2 ? "0" + s.toString() : s.toString();
+
+    String result = "$hourLeft:$minuteLeft:$secondsLeft";
+    print("minuets to HH:MM:SS = $result");
+
+    return result;
   }
 }

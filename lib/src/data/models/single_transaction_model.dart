@@ -7,6 +7,40 @@ String singleTransactionModelToJson(SingleTransactionModel data) =>
 
 class SingleTransactionModel {
   SingleTransactionModel({
+    this.dataSingleTransactionModel,
+  });
+
+  SingleTransactionModel.fromJson(dynamic json) {
+    dataSingleTransactionModel = json['data'] != null
+        ? DataSingleTransactionModel.fromJson(json['data'])
+        : null;
+  }
+  DataSingleTransactionModel? dataSingleTransactionModel;
+  SingleTransactionModel copyWith({
+    DataSingleTransactionModel? data,
+  }) =>
+      SingleTransactionModel(
+        dataSingleTransactionModel: data ?? this.dataSingleTransactionModel,
+      );
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    if (dataSingleTransactionModel != null) {
+      map['data'] = dataSingleTransactionModel?.toJson();
+    }
+    return map;
+  }
+}
+
+class DataSingleTransactionModel {
+  int? id;
+  String? moneyAmount;
+  String? bankAccountName;
+  String? bankAccountNumber;
+  String? confirmationImage;
+  String? status;
+  String? reason;
+  String? createdAt;
+  DataSingleTransactionModel({
     this.id,
     this.moneyAmount,
     this.bankAccountName,
@@ -17,7 +51,7 @@ class SingleTransactionModel {
     this.createdAt,
   });
 
-  SingleTransactionModel.fromJson(dynamic json) {
+  DataSingleTransactionModel.fromJson(dynamic json) {
     id = json['id'];
     moneyAmount = json['money_amount'];
     bankAccountName = json['bank_account_name'];
@@ -27,15 +61,8 @@ class SingleTransactionModel {
     reason = json['reason'] ?? "";
     createdAt = json['created_at'];
   }
-  int? id;
-  String? moneyAmount;
-  String? bankAccountName;
-  String? bankAccountNumber;
-  String? confirmationImage;
-  String? status;
-  String? reason;
-  String? createdAt;
-  SingleTransactionModel copyWith({
+
+  DataSingleTransactionModel copyWith({
     int? id,
     String? moneyAmount,
     String? bankAccountName,
@@ -45,7 +72,7 @@ class SingleTransactionModel {
     String? reason,
     String? createdAt,
   }) =>
-      SingleTransactionModel(
+      DataSingleTransactionModel(
         id: id ?? this.id,
         moneyAmount: moneyAmount ?? this.moneyAmount,
         bankAccountName: bankAccountName ?? this.bankAccountName,

@@ -1,3 +1,4 @@
+import 'package:click_app/src/core/utils/colors.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +50,11 @@ class FluxImage extends StatelessWidget {
             case LoadState.completed:
               return state.completedWidget;
             case LoadState.loading:
+              return FittedBox(
+                child: CircularProgressIndicator(
+                  color: kDarkAccent,
+                ),
+              );
             case LoadState.failed:
             default:
               return const SizedBox();

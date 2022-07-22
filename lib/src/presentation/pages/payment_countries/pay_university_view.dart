@@ -1,4 +1,5 @@
 import 'package:click_app/src/data/models/all_models.dart';
+import 'package:click_app/src/presentation/getx/currency_exchange_controller.dart';
 import 'package:click_app/src/presentation/getx/pay_countries_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,7 @@ import '../../widgets/oval_btn_widget.dart';
 import '../../widgets/upload_button_widget.dart';
 
 class PayUniversityPage extends StatelessWidget {
+  final exchangeLogic = Get.put(CurrencyExchangeController());
   final logic = Get.put(PaymentCountriesController());
   static const String id = "/payUniversity";
   TextEditingController amountMoneyController = TextEditingController();
@@ -20,7 +22,6 @@ class PayUniversityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String rateMoneyValue = "20 EGP";
     return Scaffold(
       appBar: AppBar(
         title: Text(kUniversityPayTxt.tr),
@@ -30,6 +31,8 @@ class PayUniversityPage extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: GetBuilder<PaymentCountriesController>(builder: (logic) {
+            String rateMoneyValue = logic.countryRubRate!;
+
             return Container(
               alignment: Alignment.center,
               width: ScreenDevices.width(context),

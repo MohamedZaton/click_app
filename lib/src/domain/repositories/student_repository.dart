@@ -19,8 +19,8 @@ abstract class StudentRepository {
   Future<Either<Failure, List<ServiceModel>>> getServicesList();
 
   Future<Either<Failure, DataSingleCountry>> getSingleCountryRequest(int? id);
-  Future<Either<Failure, SingleTransactionModel>> getSingleTransactionRequest(
-      int id);
+  Future<Either<Failure, DataSingleTransactionModel>>
+      getSingleTransactionRequest(int id);
   Future<Either<Failure, List<TransactionsListModel>>> getTransactionsList(
       String status);
   Future<Either<Failure, RegisterRepoModel>> postRegister(

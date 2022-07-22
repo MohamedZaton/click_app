@@ -1,10 +1,10 @@
+import 'package:click_app/src/core/utils/time_helper.dart';
 import 'package:flutter/material.dart';
 
 class CounterDownTimerWgt extends StatelessWidget {
   final int minutes;
   final Function() onEnd;
-  const CounterDownTimerWgt(
-      {Key? key, required this.minutes, required this.onEnd})
+  CounterDownTimerWgt({Key? key, required this.minutes, required this.onEnd})
       : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class CounterDownTimerWgt extends StatelessWidget {
           builder: (BuildContext context, Duration value, Widget? child) {
             final minutes = value.inMinutes;
             final seconds = value.inSeconds % 60;
-            return Text('$minutes:$seconds',
+            return Text(TimeHelper().intToTimeLeft(minutes),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Colors.black,

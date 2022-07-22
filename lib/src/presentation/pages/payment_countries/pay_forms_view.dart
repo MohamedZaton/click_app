@@ -21,7 +21,6 @@ class PayFormsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String rateMoneyValue = "20 EGP";
     return Scaffold(
       appBar: AppBar(
         title: Text(kFormPayTxt.tr),
@@ -31,6 +30,8 @@ class PayFormsPage extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: GetBuilder<PaymentCountriesController>(builder: (logic) {
+            String rateMoneyValue = logic.countryRubRate.toString();
+
             return Container(
               alignment: Alignment.center,
               width: ScreenDevices.width(context),

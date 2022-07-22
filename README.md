@@ -18,5 +18,8 @@ https://drive.google.com/drive/folders/1ilsf4zY245BRGav-0Mx9oZUUlb2KGOv2?usp=sha
 
 ☑︎ State management -> Getx . 
 
-☑︎ Using Flutter TDD Clean Architecture . 
+☑︎ Using Flutter TDD Clean Architecture .
 
+☑︎ Using Flutter Unit Testing . 
+
+☑︎ Using Flutter Unit Testing . 

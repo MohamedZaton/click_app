@@ -143,13 +143,15 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
-  Future<Either<Failure, SingleTransactionModel>> getSingleTransactionRequest(
-      int id) async {
+  Future<Either<Failure, DataSingleTransactionModel>>
+      getSingleTransactionRequest(int id) async {
     Response response = await ServerAppApi().getSingleTransactionRequest(id);
     try {
       SingleTransactionModel singleTransactionModel =
           SingleTransactionModel.fromJson(response.data);
-      return right(singleTransactionModel);
+      DataSingleTransactionModel? dataSingleTransactionModel =
+          singleTransactionModel.dataSingleTransactionModel;
+      return right(dataSingleTransactionModel!);
     } catch (e) {
       String messageFailure = await errorMessage(response);
       return left(Failure(
