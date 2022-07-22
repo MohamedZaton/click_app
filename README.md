@@ -1,8 +1,6 @@
 # Click App
 
-The Click App is a currency exchange app for currency exchange from the Middle East to Russia or Ukraine .
-
-So far it is just a UI Kit, and the next step will be to add Rest API and Unit testing .
+Students from the Middle East studying in Russia can exchange currency through the Click App.
 
 ## App Images
 
