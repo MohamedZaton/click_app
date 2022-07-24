@@ -95,7 +95,7 @@ class ProfileController extends GetxController {
     }, (dataProfile) {
       dataProfileModel.value = dataProfile;
       loadingProfile(false);
-      return null;
+      return;
     });
   }
 

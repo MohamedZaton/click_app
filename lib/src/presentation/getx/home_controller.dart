@@ -3,8 +3,8 @@ import 'package:click_app/src/presentation/getx/setting_controller.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:rxdart/rxdart.dart';
 
+import '../../data/repositories/StudentRepositoryImpl.dart';
 import 'currency_exchange_controller.dart';
 import 'history_controller.dart';
 
@@ -64,10 +64,22 @@ class HomeController extends GetxController {
     }
   }
 
+  Future<void> getProfileInfo() async {
+    final response = await StudentRepositoryImpl().getProfileInfo();
+    response.fold((l) {
+      return;
+    }, (dataProfile) {
+      print("user id : ${dataProfile.id.toString()}");
+      FirebaseMessaging.instance.subscribeToTopic(dataProfile.id.toString());
+      FirebaseMessaging.instance.subscribeToTopic("all");
+      return;
+    });
+  }
+
   @override
   void onInit() async {
     super.onInit();
-//    await preparationFCM();
+    await getProfileInfo();
   }
 
   @override
@@ -75,17 +87,6 @@ class HomeController extends GetxController {
     // TODO: implement onReady
     super.onReady();
 // used to pass messages from event handler to the UI
-    final _messageStreamController = BehaviorSubject<RemoteMessage>();
-    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      if (kDebugMode) {
-        print('Handling a foreground message: ${message.messageId}');
-        print('Message data: ${message.data}');
-        print('Message notification: ${message.notification?.title}');
-        print('Message notification: ${message.notification?.body}');
-      }
-
-      _messageStreamController.sink.add(message);
-    });
   }
 
   @override

@@ -32,8 +32,8 @@ void main() async {
   preparationFCM();
 
   /// Set up  message handler
-  _onMessagingOpenAppFirebase();
-  _onMessagingFirebase();
+  _onMessagingOpenAppFCM();
+  _onMessagingFCM();
 
   FirebaseMessaging.onBackgroundMessage(_onMessagingBackgroundHandler);
 
@@ -108,21 +108,27 @@ Future<void> _onMessagingBackgroundHandler(RemoteMessage message) async {
   }
 }
 
-Future<void> _onMessagingFirebase() async {
+Future<void> _onMessagingFCM() async {
   FirebaseMessaging.onMessage.listen((event) {
     print("on message FCM");
-    Get.snackbar(event.notification!.title.toString(),
-        event.notification!.body.toString(),
-        backgroundColor: Colors.blueGrey);
+    Get.snackbar(
+      event.notification!.title.toString(),
+      event.notification!.body.toString(),
+      duration: Duration(minutes: 1),
+      backgroundColor: Colors.orange,
+    );
   });
 }
 
-Future<void> _onMessagingOpenAppFirebase() async {
+Future<void> _onMessagingOpenAppFCM() async {
   FirebaseMessaging.onMessageOpenedApp.listen((event) {
     print("on message FCM");
-    Get.snackbar(event.notification!.title.toString(),
-        event.notification!.body.toString(),
-        backgroundColor: Colors.blueGrey);
+    Get.snackbar(
+      event.notification!.title.toString(),
+      event.notification!.body.toString(),
+      backgroundColor: Colors.orange,
+      duration: Duration(minutes: 1),
+    );
   });
 }
 
