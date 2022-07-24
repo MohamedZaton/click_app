@@ -66,4 +66,5 @@ const Map<String, String> en = {
   kWrongPwdOrPhoneTxt: "Wrong password or email",
   kNoServicesListTxt: "The list of services is empty",
   kNoListTxt: "This list is empty",
+  kContactUsDetailsTxt: "Please, contact us this transformation need more time",
 };

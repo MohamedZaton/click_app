@@ -142,7 +142,7 @@ class HistoryDetailPage extends StatelessWidget {
                               Expanded(
                                   flex: 1,
                                   child: FittedBox(
-                                      child: Text(kContactUsDetailsTxt))),
+                                      child: Text(kContactUsDetailsTxt.tr))),
                               Expanded(
                                 flex: 1,
                                 child: Row(

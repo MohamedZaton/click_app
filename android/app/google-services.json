@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "546370086101",
+    "project_id": "click-app-7caf6",
+    "storage_bucket": "click-app-7caf6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546370086101:android:1df865978248d53ab96e5c",
+        "android_client_info": {
+          "package_name": "com.freelance.click_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546370086101-c8cbj2bj23jj3nrht0726j0v9255kkiu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfUkGqyFPI-SMN-MH3yUOai4trhN2-EEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546370086101-c8cbj2bj23jj3nrht0726j0v9255kkiu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "546370086101-3nc2q626gcsmlslqddt36t2jq34r7eoo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.freelance.clickApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -22,7 +22,7 @@ const Map<String, String> ar = {
   kMakeTransferTxt: "إجراء تحويل",
   kInitAccountTxt: "ليس لديك حساب؟",
   kForgotPasswordTxt: "هل نسيت كلمة المرور؟",
-  kCurrencyExchangeTxt: "تحويل العملات",
+  kCurrencyExchangeTxt: "التصريف اليوم",
   kDoneTransformTxt: "تم إجراء التحويل",
   kPendingTransformTxt: "لا يزال التحويل معلقًا",
   kCaseTransformTxt: "التحول فى مرحلة ",
@@ -30,7 +30,7 @@ const Map<String, String> ar = {
   kTransformtionTxt: "التحول",
   kCheckTxt: "تحقق",
   kCompletedTxt: "مكتمل",
-  kPayUnvMoneyTxt: "دفع أموال الجامعة",
+  kPayUnvMoneyTxt: "دفع اقساط الجامعه",
   kAccountNumberTxt: "رقم حسابك:",
   kMoneyAmountTxt: "مبلغ أموالك:",
   kScreenShotTxt: "صورة التحول",
@@ -64,4 +64,6 @@ const Map<String, String> ar = {
   kWrongPwdOrPhoneTxt: "التسجيل غير صحيح تاكد من الايميل و كلمة السر",
   kNoServicesListTxt: "قائمة الخدمات فارغة",
   kNoListTxt: "هذة القائمة  فارغة",
+  kContactUsDetailsTxt:
+      "من فضلك تواصل معنا لمعرفة سبب التأخير فى استلام حوالتك",
 };
