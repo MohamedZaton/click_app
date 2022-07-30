@@ -108,7 +108,9 @@ class CurrencyExchangePage extends StatelessWidget {
                                       textInputAction: TextInputAction.done,
                                       onChanged: (inputeCurrency) {
                                         logic.inputMoney.value =
-                                            double.parse(inputeCurrency);
+                                            (inputeCurrency.isEmpty)
+                                                ? 0
+                                                : double.parse(inputeCurrency);
                                         logic.checkConvertfromMoneyToRussia(
                                             countryCode: logic
                                                 .selectedCountryCurrency
@@ -222,7 +224,7 @@ class CurrencyExchangePage extends StatelessWidget {
                               child: Row(
                                 children: [
                                   /// check & pay money buttons
-                                  Flexible(
+/*                                  Flexible(
                                     flex: 1,
                                     child: OvalButtonWdgt(
                                         text: kCheckTxt.tr,
@@ -238,7 +240,7 @@ class CurrencyExchangePage extends StatelessWidget {
                                   ),
                                   SizedBox(
                                     width: 2,
-                                  ),
+                                  ),*/
                                   Flexible(
                                     flex: 2,
                                     child: OvalButtonWdgt(

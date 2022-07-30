@@ -19,7 +19,10 @@ abstract class AppApi {
   Future<Response> getServicesListRequest();
   Future<Response> getTransactionsListRequest(String vStatus);
   Future<Response> getWhatsAppNumbersRequest();
+  Future<Response> getAboutsRequest();
+
   Future<Response> getAdsRequest();
+  Future<Response> getNotificationListRequest();
   Future<Response> getSingleCountryRequest(int? id);
   Future<Response> getSingleTransactionRequest(int id);
   Future<Response> getCheckRateRequest(int countryCode, double money);

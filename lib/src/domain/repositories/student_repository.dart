@@ -9,6 +9,7 @@ abstract class StudentRepository {
   Future<Either<Failure, LoginRepoModel>> postLogin(LogInModel logInModel);
   Future<Either<Failure, DataProfile>> getProfileInfo();
   Future<Either<Failure, List<AdsModel>>> getAdsList();
+  Future<Either<Failure, List<NotificationModel>>> getNotificationList();
 
   Future<Either<Failure, List<CountriesListModel>>> getCountriesList();
   Future<Either<Failure, List<DataCurrenciesModel>>> getCurrencyList();

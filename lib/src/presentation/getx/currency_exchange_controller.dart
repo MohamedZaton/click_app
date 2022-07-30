@@ -10,7 +10,7 @@ class CurrencyExchangeController extends GetxController {
   RxList<AdsModel> adsList = <AdsModel>[].obs;
   RxList<DataCurrenciesModel> currencyList = <DataCurrenciesModel>[].obs;
   RxDouble inputMoney = 0.0.obs;
-  RxString outputMoneyRussia = "".obs;
+  RxString outputMoneyRussia = "0".obs;
   Rx<DataCurrenciesModel> selectedCountryCurrency = DataCurrenciesModel().obs;
 
   CurrencyModel selectedCurrency = CurrencyModel(

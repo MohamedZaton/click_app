@@ -83,7 +83,8 @@ class SignUpPage extends StatelessWidget {
                                         )
                                       : Image.file(
                                           logic.image,
-                                          scale: 2,
+                                          width: 100,
+                                          height: 100,
                                           fit: BoxFit.cover,
                                         ),
                                   onTap: () async {
@@ -261,59 +262,71 @@ class SignUpPage extends StatelessWidget {
                                         ],
                                       ),
                                       SizedBox(height: 20),
-                                      OvalButtonWdgt(
-                                          text: kSignUpTxt.tr.toUpperCase(),
-                                          onPressed: () {
-                                            if (!logic.isAttached) {
-                                              Get.snackbar(kSignUpTxt,
-                                                  "you must attached profile Image  ",
-                                                  backgroundColor:
-                                                      Colors.deepOrange);
-                                              return;
-                                            }
-                                            bool isAllTextFill = nameController
-                                                    .text.isNotEmpty &&
-                                                phoneController
-                                                    .text.isNotEmpty &&
-                                                emailController
-                                                    .text.isNotEmpty &&
-                                                passwordConfController
-                                                    .text.isNotEmpty &&
-                                                passwordController
-                                                    .text.isNotEmpty;
-                                            if (!isAllTextFill) {
-                                              Get.snackbar(kSignUpTxt,
-                                                  "you must write all information ",
-                                                  backgroundColor:
-                                                      Colors.deepOrange);
-                                              return;
-                                            }
-                                            if (_formSignInKey.currentState!
-                                                .validate()) {
-                                              if (passwordController.text ==
-                                                  passwordConfController.text) {
-                                                print(
-                                                    "upload image path :${controller.image}");
-                                                controller.registerNewStudent(
-                                                    RegisterModel(
-                                                        name:
-                                                            nameController.text,
-                                                        email: emailController
-                                                            .text,
-                                                        phone: phoneController
-                                                            .text,
-                                                        password:
-                                                            passwordController
-                                                                .text),
-                                                    controller.image);
-                                              } else {
+                                      if (controller.isLoading) ...[
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            CircularProgressIndicator()
+                                          ],
+                                        ),
+                                      ] else ...[
+                                        OvalButtonWdgt(
+                                            text: kSignUpTxt.tr.toUpperCase(),
+                                            onPressed: () {
+                                              if (!logic.isAttached) {
                                                 Get.snackbar(kSignUpTxt,
-                                                    "password not the same",
+                                                    "you must attached profile Image  ",
                                                     backgroundColor:
-                                                        Colors.red);
+                                                        Colors.deepOrange);
+                                                return;
                                               }
-                                            }
-                                          }),
+                                              bool isAllTextFill =
+                                                  nameController
+                                                          .text.isNotEmpty &&
+                                                      phoneController
+                                                          .text.isNotEmpty &&
+                                                      emailController
+                                                          .text.isNotEmpty &&
+                                                      passwordConfController
+                                                          .text.isNotEmpty &&
+                                                      passwordController
+                                                          .text.isNotEmpty;
+                                              if (!isAllTextFill) {
+                                                Get.snackbar(kSignUpTxt,
+                                                    "you must write all information ",
+                                                    backgroundColor:
+                                                        Colors.deepOrange);
+                                                return;
+                                              }
+                                              if (_formSignInKey.currentState!
+                                                  .validate()) {
+                                                if (passwordController.text ==
+                                                    passwordConfController
+                                                        .text) {
+                                                  print(
+                                                      "upload image path :${controller.image}");
+                                                  controller.registerNewStudent(
+                                                      RegisterModel(
+                                                          name: nameController
+                                                              .text,
+                                                          email: emailController
+                                                              .text,
+                                                          phone: phoneController
+                                                              .text,
+                                                          password:
+                                                              passwordController
+                                                                  .text),
+                                                      controller.image);
+                                                } else {
+                                                  Get.snackbar(kSignUpTxt,
+                                                      "password not the same",
+                                                      backgroundColor:
+                                                          Colors.red);
+                                                }
+                                              }
+                                            }),
+                                      ],
                                     ]),
                               )
                             ],

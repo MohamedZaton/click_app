@@ -56,6 +56,8 @@ const String kErrorResponseTxt = "Error Response";
 const kProfileTxt = "Profile";
 const kChooseCountryTxt = "Choose Your country";
 const kLanguageTxt = "Language";
+const kNotificationTxt = "Notification";
+const kNotificationLengthTxt = "NotificationLenght";
 const kContactUsTxt = "Contact us";
 const kContactUsDetailsTxt =
     "Please, contact us this transformation need more time";

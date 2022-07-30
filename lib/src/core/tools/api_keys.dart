@@ -4,6 +4,9 @@ const String kProfileInfoKey = "profile_info";
 const String kLogInfoKey = "Login_info";
 const String kLanguageKey = "Language";
 const String kMainLocalDataBaseKey = "mainLocalDB";
+const kNotificationKey = "Notification";
+const kChangeTabIndexKey = "changeTabIndex";
+const kNotificationLengthKey = "NotificationLenght";
 
 /// parent and sub keys list :
 const String kSuccessMsgUploadValue = "success";

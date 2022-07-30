@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:click_app/src/core/utils/constants.dart';
 import 'package:click_app/src/data/models/profile_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -39,6 +40,28 @@ class LocalData {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setBool(kAutoLoginKey, false);
+  }
+
+  Future<bool> readNewNotification() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getBool(kNotificationKey) ?? false;
+  }
+
+  Future<void> writeNewNotification(bool isNew) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setBool(kNotificationTxt, isNew);
+  }
+
+  Future<int> readNewNotificationLenght() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getInt(kNotificationLengthKey) ?? 0;
+  }
+
+  Future<void> writeNotificationLength(int lenght) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setInt(kNotificationLengthKey, lenght);
   }
 
   /// profile info

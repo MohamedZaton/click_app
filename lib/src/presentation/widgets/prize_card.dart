@@ -50,19 +50,26 @@ class PrizeLogo extends StatelessWidget {
       alignment: FractionalOffset.center,
       height: 60,
       width: 60,
-      child: CircleAvatar(
-        backgroundColor: Colors.white,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(50.0),
         child: FluxImage(
           imageUrl: logoPath.toString(),
-          width: 60,
-          height: 60,
+          width: 100,
+          height: 100,
+          fit: BoxFit.fill,
         ),
-        radius: 50,
       ),
     );
   }
 }
 
+/*ClipRRect(
+        borderRadius: BorderRadius.circular(17.0),
+        child: FluxImage(
+          imageUrl: imagePath.toString(),
+          fit: BoxFit.fill,
+        ),
+      )*/
 class PrizeBody extends StatelessWidget {
   final String? title;
   final String? body;

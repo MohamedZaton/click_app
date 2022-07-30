@@ -18,6 +18,7 @@ import 'package:click_app/src/presentation/pages/sign_up/sign_up_view.dart';
 import 'package:get/get.dart';
 
 import '../../presentation/getx/home_controller.dart';
+import '../../presentation/getx/notification_list_controller.dart';
 import '../../presentation/getx/sign_in_controller.dart';
 import '../../presentation/getx/sign_up_controller.dart';
 import '../../presentation/getx/splash_controller.dart';
@@ -25,6 +26,7 @@ import '../../presentation/pages/currency_exchange/currency_exchange_view.dart';
 import '../../presentation/pages/home/home_view.dart';
 import '../../presentation/pages/language_list/language_list_view.dart';
 import '../../presentation/pages/messages/message_view.dart';
+import '../../presentation/pages/notificaton_list/notification_list_view.dart';
 import '../../presentation/pages/sign_in/sign_in_view.dart';
 import '../../presentation/pages/splash/splash_view.dart';
 
@@ -100,6 +102,14 @@ class AppRoutes {
         page: () => ProfilePage(),
         binding: BindingsBuilder(() {
           Get.lazyPut<ProfileController>(() => ProfileController());
+        }),
+      ),
+      GetPage(
+        name: ProfilePage.id,
+        page: () => NotificationListView(),
+        binding: BindingsBuilder(() {
+          Get.lazyPut<NotificationListController>(
+              () => NotificationListController());
         }),
       ),
       GetPage(

@@ -125,6 +125,21 @@ class StudentRepositoryImpl implements StudentRepository {
   }
 
   @override
+  Future<Either<Failure, List<NotificationModel>>> getNotificationList() async {
+    Response response = await ServerAppApi().getNotificationListRequest();
+    try {
+      List<NotificationModel> notificationList =
+          NotificationModel.getListObject(response);
+      return right(notificationList);
+    } catch (e) {
+      String messageFailure = await errorMessage(response);
+      return left(Failure(
+        messageFailure,
+      ));
+    }
+  }
+
+  @override
   Future<Either<Failure, DataSingleCountry>> getSingleCountryRequest(
       int? id) async {
     Response response = await ServerAppApi().getSingleCountryRequest(id);

@@ -68,6 +68,14 @@ class ServerAppApi implements AppApi {
   }
 
   @override
+  Future<Response> getNotificationListRequest() async {
+    String url = baseServer + 'student/getNotificationsList';
+    await addTokenHeader();
+    final response = await dio.get(url);
+    return response;
+  }
+
+  @override
   Future<Response> getSingleCountryRequest(int? id) async {
     String url = baseServer + 'student/singleCountry/$id';
     await addTokenHeader();
@@ -105,6 +113,17 @@ class ServerAppApi implements AppApi {
     await addTokenHeader();
     final response = await dio.get(url);
     print("whatsapp numbers  : ${response.data.toString()}");
+    return response;
+  }
+
+  @override
+  Future<Response> getAboutsRequest() async {
+    String facebookUrl = baseServer + 'student/getAbout';
+    String token = await LocalData().readAccessToken();
+    dio.options.headers["Authorization"] = "Bearer ${token}";
+    dio.options.headers["Accept"] = 'application/json';
+    Response response = await dio.get(facebookUrl);
+    print("about request : ${response.data.toString()}");
     return response;
   }
 

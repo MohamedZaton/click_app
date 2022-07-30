@@ -4,6 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
+import '../../core/tools/api_keys.dart';
 import '../../data/repositories/StudentRepositoryImpl.dart';
 import 'currency_exchange_controller.dart';
 import 'history_controller.dart';
@@ -14,6 +15,8 @@ class HomeController extends GetxController {
   final historyLogic = Get.find<HistoryController>();
   final settingLogic = Get.find<SettingController>();
   final exchangeLogic = Get.find<CurrencyExchangeController>();
+  dynamic argumentData = Get.arguments;
+
   void changeTabIndex(int index) {
     tabIndex = index;
     switch (index) {
@@ -78,6 +81,10 @@ class HomeController extends GetxController {
 
   @override
   void onInit() async {
+    if (argumentData[0][kChangeTabIndexKey] != null) {
+      changeTabIndex(argumentData[0][kChangeTabIndexKey]);
+    }
+
     super.onInit();
     await getProfileInfo();
   }

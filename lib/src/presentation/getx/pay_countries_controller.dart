@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:click_app/src/core/tools/api_keys.dart';
 import 'package:click_app/src/data/models/all_models.dart';
 import 'package:click_app/src/presentation/getx/currency_exchange_controller.dart';
 import 'package:flutter/material.dart';
@@ -85,7 +86,9 @@ class PaymentCountriesController extends GetxController {
       //error
       Get.snackbar(kSignUpTxt, kSignUpFailedText, backgroundColor: Colors.red);
       isLoading = false;
-      Get.offAll(() => HomePage());
+      Get.offAll(() => HomePage(), arguments: [
+        {kChangeTabIndexKey: 2}
+      ]);
       return;
     }, (r) {
       //success
@@ -94,7 +97,9 @@ class PaymentCountriesController extends GetxController {
           backgroundColor: Colors.green);
 
       isLoading = false;
-      Get.offAll(() => HomePage());
+      Get.offAll(() => HomePage(), arguments: [
+        {kChangeTabIndexKey: 2}
+      ]);
       return;
     });
     update();
@@ -109,16 +114,20 @@ class PaymentCountriesController extends GetxController {
       //error
       Get.snackbar(kFormPayTxt, kSignUpFailedText, backgroundColor: Colors.red);
       isLoading = false;
-      Get.offAll(() => HomePage());
+      Get.offAll(() => HomePage(), arguments: [
+        {kChangeTabIndexKey: 2}
+      ]);
       return;
     }, (r) {
       //success
-      print("[payUniversityRequest ] pay : $r");
+      print("[paymentFormRequest ] pay : $r");
       Get.snackbar(kFormPayTxt, kPaymentSuccessText,
           backgroundColor: Colors.green);
 
       isLoading = false;
-      Get.offAll(() => HomePage());
+      Get.offAll(() => HomePage(), arguments: [
+        {kChangeTabIndexKey: 2}
+      ]);
       return;
     });
     update();

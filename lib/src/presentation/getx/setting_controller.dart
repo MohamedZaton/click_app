@@ -1,15 +1,17 @@
 import 'package:click_app/src/data/repositories/StudentRepositoryImpl.dart';
 import 'package:get/get.dart';
 
+import '../../services/server_app_api.dart';
 import '../pages/splash/splash_view.dart';
 
 class SettingController extends GetxController {
   List<String> numbersWatsappList = [];
-
+  String aboutText = "تطبيق Click ";
   @override
   void onInit() {
     super.onInit();
     getWhatsAppNumbers();
+    getAboutParagraph();
   }
 
   @override
@@ -35,6 +37,14 @@ class SettingController extends GetxController {
       update();
       return;
     });
+  }
+
+  void getAboutParagraph() async {
+    final responce = await ServerAppApi().getAboutsRequest();
+
+    print("getAboutParagraph  :${responce.data.toString()}");
+    aboutText = responce.data.toString();
+    update();
   }
 
   void logOutProcess() async {

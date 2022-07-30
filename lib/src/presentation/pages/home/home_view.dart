@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/images_path.dart';
 import '../../getx/home_controller.dart';
+import '../../getx/notification_list_controller.dart';
 import '../language_list/language_list_controller.dart';
 
 class HomePage extends StatelessWidget {
@@ -25,6 +26,8 @@ class HomePage extends StatelessWidget {
   final historyLogic = Get.put(HistoryController());
   final settingLogic = Get.put(SettingController());
   final exchangeLogic = Get.put(CurrencyExchangeController());
+  final notificationlogic = Get.put(NotificationListController());
+
   final logic = Get.put(HomeController());
 
   @override

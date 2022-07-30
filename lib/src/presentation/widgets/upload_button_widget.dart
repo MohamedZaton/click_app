@@ -41,7 +41,8 @@ class UploadingImgButtonWdgt extends StatelessWidget {
               ] else ...[
                 Image.file(
                   imageFile!,
-                  scale: 5,
+                  width: 60,
+                  height: 60,
                   fit: BoxFit.contain,
                 )
               ],

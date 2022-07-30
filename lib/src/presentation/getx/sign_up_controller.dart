@@ -46,6 +46,7 @@ class SignUpController extends GetxController {
   Future<void> registerNewStudent(
       RegisterModel registerModel, File image) async {
     isLoading = true;
+    update();
     final responce =
         await StudentRepositoryImpl().postRegister(registerModel, image);
     responce.fold((failure) {
@@ -54,6 +55,7 @@ class SignUpController extends GetxController {
       Get.snackbar(kSignUpTxt, kSignUpFailedText, backgroundColor: Colors.red);
       isLoading = false;
       // Get.offAll(() => HomePage());
+      update();
       return;
     }, (r) {
       //success
@@ -62,9 +64,9 @@ class SignUpController extends GetxController {
 
       isLoading = false;
       Get.offAll(() => HomePage());
+      update();
       return;
     });
-    update();
   }
 
   @override

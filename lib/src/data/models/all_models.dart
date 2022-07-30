@@ -4,6 +4,7 @@ export 'currencies_list_model.dart';
 export 'currency_model.dart';
 export 'login_model.dart';
 export 'login_repo_model.dart';
+export 'notification_model.dart';
 export 'profile_model.dart';
 export 'register_model.dart';
 export 'register_repo_model.dart';
