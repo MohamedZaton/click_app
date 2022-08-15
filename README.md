@@ -8,7 +8,7 @@ Students from the Middle East studying in Russia can exchange currency through t
 
 ## Android APK 
 
-https://drive.google.com/drive/folders/1ilsf4zY245BRGav-0Mx9oZUUlb2KGOv2?usp=sharing
+https://play.google.com/console/u/0/developers
 
 ## Features
 
