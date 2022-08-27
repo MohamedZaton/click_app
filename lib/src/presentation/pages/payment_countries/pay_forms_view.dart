@@ -122,35 +122,44 @@ class PayFormsPage extends StatelessWidget {
                     SizedBox(height: spacing_middle),
 
                     /// confirm button
-                    OvalButtonWdgt(
-                        text: kConfirmTxt.tr,
-                        onPressed: () {
-                          bool isAllAttached = logic.isAttachedConfImage;
-                          bool isAllTextFill =
-                              amountMoneyController.text.isNotEmpty &&
-                                  bankNameController.text.isNotEmpty &&
-                                  bankNumberController.text.isNotEmpty;
-                          if (!isAllAttached) {
-                            Get.snackbar(kUniversityPayTxt,
-                                "you must attached all images ",
-                                backgroundColor: Colors.deepOrange);
-                            return;
-                          }
-                          if (!isAllTextFill) {
-                            Get.snackbar(kUniversityPayTxt,
-                                "you must write all information ",
-                                backgroundColor: Colors.deepOrange);
-                            return;
-                          }
+                    if (logic.isLoading) ...[
+                      Row(
+                        children: [CircularProgressIndicator()],
+                        mainAxisAlignment: MainAxisAlignment.center,
+                      ),
+                    ] else ...[
+                      OvalButtonWdgt(
+                          text: kConfirmTxt.tr,
+                          onPressed: () {
+                            bool isAllAttached = logic.isAttachedConfImage;
+                            bool isAllTextFill =
+                                amountMoneyController.text.isNotEmpty &&
+                                    bankNameController.text.isNotEmpty &&
+                                    bankNumberController.text.isNotEmpty;
+                            if (!isAllAttached) {
+                              Get.snackbar(kUniversityPayTxt,
+                                  "you must attached all images ",
+                                  backgroundColor: Colors.deepOrange);
+                              return;
+                            }
+                            if (!isAllTextFill) {
+                              Get.snackbar(kUniversityPayTxt,
+                                  "you must write all information ",
+                                  backgroundColor: Colors.deepOrange);
+                              return;
+                            }
 
-                          if (_formUniversityPaynKey.currentState!.validate()) {
-                            logic.paymentForm(TransactionModel(
-                              moneyAmount: amountMoneyController.text,
-                              bankAccountName: bankNameController.text,
-                              bankAccountNumber: bankNumberController.text,
-                            ));
-                          }
-                        }),
+                            if (_formUniversityPaynKey.currentState!
+                                .validate()) {
+                              logic.paymentForm(TransactionModel(
+                                moneyAmount: amountMoneyController.text,
+                                bankAccountName: bankNameController.text,
+                                bankAccountNumber: bankNumberController.text,
+                              ));
+                            }
+                          }),
+                    ],
+
                     SizedBox(height: spacing_middle),
                   ],
                 ),

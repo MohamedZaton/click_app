@@ -1,4 +1,5 @@
 import 'package:click_app/src/services/local_data.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/utils/constants.dart';
@@ -14,7 +15,7 @@ class LanguageListController extends GetxController {
 
   Future<String> getLanguage() async {
     selectedLang = await LocalData().readLanguage() ?? kEnglishCode;
-    update();
+    Get.updateLocale(Locale(selectedLang));
     return selectedLang;
   }
 

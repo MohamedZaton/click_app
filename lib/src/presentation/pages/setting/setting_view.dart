@@ -6,6 +6,8 @@ import 'package:click_app/src/presentation/pages/profile/profile_view.dart';
 import 'package:click_app/src/presentation/widgets/custom_dailogs.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/utils/constants.dart';
 import '../../getx/setting_controller.dart';
@@ -97,7 +99,11 @@ class SettingPage extends StatelessWidget {
                                   isCenter: false,
                                   backgroundColor: kCyanColor,
                                   textColor: kSettingListColor,
-                                  onPressed: () {}),
+                                  onPressed: () {
+                                    Share.share(
+                                        'https://play.google.com/store/apps/details?id=com.freelance.click_app',
+                                        subject: 'Share Click App ');
+                                  }),
                               SizedBox(
                                 height: 8,
                               ),
@@ -107,7 +113,16 @@ class SettingPage extends StatelessWidget {
                                   isCenter: false,
                                   backgroundColor: kCyanColor,
                                   textColor: kSettingListColor,
-                                  onPressed: () {}),
+                                  onPressed: () async {
+                                    var googlePlayAppLink =
+                                        "https://play.google.com/store/apps/details?id=com.freelance.click_app";
+                                    await canLaunchUrl(
+                                            Uri.parse(googlePlayAppLink))
+                                        ? launchUrl(
+                                            Uri.parse(googlePlayAppLink))
+                                        : print(
+                                            "there isn't  app  installed can open this link ");
+                                  }),
                               SizedBox(
                                 height: 8,
                               ),

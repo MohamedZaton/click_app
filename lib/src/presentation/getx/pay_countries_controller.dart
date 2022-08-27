@@ -53,6 +53,11 @@ class PaymentCountriesController extends GetxController {
     super.onClose();
   }
 
+  void setLoading(bool statue) {
+    isLoading = statue;
+    update();
+  }
+
   Future<File> getImages(
       {required String imagePath,
       required bool isAttached,
@@ -77,7 +82,7 @@ class PaymentCountriesController extends GetxController {
   /// 1. university payment
   Future<void> payUniversityRequest(
       UniversityPaymentModel universityPaymentModel) async {
-    isLoading = true;
+    setLoading(true);
     final responce = await StudentRepositoryImpl()
         .makeUniversityPaymentTransaction(
             universityPaymentModel, confImage, passportImage, idImage);
@@ -85,7 +90,7 @@ class PaymentCountriesController extends GetxController {
     responce.fold((l) {
       //error
       Get.snackbar(kSignUpTxt, kSignUpFailedText, backgroundColor: Colors.red);
-      isLoading = false;
+      setLoading(false);
       Get.offAll(() => HomePage(), arguments: [
         {kChangeTabIndexKey: 2}
       ]);
@@ -96,7 +101,7 @@ class PaymentCountriesController extends GetxController {
       Get.snackbar(kPayUnvMoneyTxt, kPaymentSuccessText,
           backgroundColor: Colors.green);
 
-      isLoading = false;
+      setLoading(false);
       Get.offAll(() => HomePage(), arguments: [
         {kChangeTabIndexKey: 2}
       ]);
@@ -107,13 +112,13 @@ class PaymentCountriesController extends GetxController {
 
   /// 2.  Payment Form
   Future<void> paymentForm(TransactionModel transactionModel) async {
-    isLoading = true;
+    setLoading(true);
     final responce = await StudentRepositoryImpl()
         .postMakeTransaction(transactionModel, confImage);
     responce.fold((l) {
       //error
       Get.snackbar(kFormPayTxt, kSignUpFailedText, backgroundColor: Colors.red);
-      isLoading = false;
+      setLoading(false);
       Get.offAll(() => HomePage(), arguments: [
         {kChangeTabIndexKey: 2}
       ]);
@@ -124,7 +129,7 @@ class PaymentCountriesController extends GetxController {
       Get.snackbar(kFormPayTxt, kPaymentSuccessText,
           backgroundColor: Colors.green);
 
-      isLoading = false;
+      setLoading(false);
       Get.offAll(() => HomePage(), arguments: [
         {kChangeTabIndexKey: 2}
       ]);

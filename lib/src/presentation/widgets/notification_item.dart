@@ -36,12 +36,16 @@ class NotificationItemWidget extends StatelessWidget {
             height: 10,
           ),
           FittedBox(
-            child: Text(
-              notificationModel.body.toString(),
-              style: Theme.of(context)
-                  .textTheme
-                  .subtitle1
-                  ?.copyWith(color: Colors.black),
+            child: Wrap(
+              children: [
+                Text(
+                  notificationModel.body.toString(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .subtitle1
+                      ?.copyWith(color: Colors.black),
+                ),
+              ],
             ),
           ),
         ],
